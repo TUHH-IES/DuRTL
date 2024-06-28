@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json",
+  "default-registry": {
+    "kind": "builtin",
+    "baseline": "cc97b4536ae749ec0e4f643488b600b217540fb3"
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "baseline": "e29c845ade83baf8f0139a2797f9f3cd2e4270fe",
+      "repository": "https://github.com/gian21391/vcpkg-registry",
+      "packages": [
+        "vcd-parser"
+      ]
+    }
+  ]
+}

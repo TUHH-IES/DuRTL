@@ -1,0 +1,70 @@
+image: gian21391/development:latest
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "push"
+
+stages:
+  - build
+  - test
+
+build_gcc:
+  stage: build
+  needs: []
+  script:
+    - ln -s /vcpkgconf/vcpkg ./thirdparty/vcpkg
+    - mkdir build && cd build
+    - cmake -DENABLE_COVERAGE=TRUE -DENABLE_SANITIZER_ADDRESS=TRUE -DENABLE_SANITIZER_LEAK=TRUE -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=TRUE -G Ninja ..
+    - cmake --build .
+
+build_clang:
+  stage: build
+  needs: []
+  script:
+    - ln -s /vcpkgconf/vcpkg ./thirdparty/vcpkg
+    - mkdir build && cd build
+    - CC=clang CXX=clang++ cmake -DENABLE_COVERAGE=TRUE -DENABLE_SANITIZER_ADDRESS=TRUE -DENABLE_SANITIZER_LEAK=TRUE -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=TRUE -G Ninja ..
+    - cmake --build .
+
+format:
+  stage: test
+  needs: [build_gcc]
+  script:
+    - find src -name *.cc -o -name *.h -o -name *.hpp -o -name *.cpp | xargs -I FILE clang-format -n -Werror FILE
+    - find tests -name *.cc -o -name *.h -o -name *.hpp -o -name *.cpp | xargs -I FILE clang-format -n -Werror FILE
+    - find include -name *.cc -o -name *.h -o -name *.hpp -o -name *.cpp | xargs -I FILE clang-format -n -Werror FILE
+
+lint:
+  stage: test
+  needs: [build_gcc]
+  script:
+    - ln -s /vcpkgconf/vcpkg ./thirdparty/vcpkg
+    - (! grep --include=\*.{cpp,hpp} -rnw . -e "uint")
+    - mkdir build-clang && cd build-clang
+    - CC=clang CXX=clang++ cmake -DENABLE_COVERAGE=TRUE -G Ninja ..
+    - sed -i -e 's/@.*modmap//g' compile_commands.json
+    - run-clang-tidy -header-filter=.*
+  artifacts:
+    when: always
+    paths:
+      - build-clang/compile_commands.json
+
+test:
+  stage: test
+  needs: [build_gcc]
+  script:
+    - ln -s /vcpkgconf/vcpkg ./thirdparty/vcpkg
+    - mkdir build && cd build
+    - ctest --output-on-failure -V -D MODEL=Experimental -C Debug -S ../scripts/Dash.ctest
+    - gcovr -r ${CI_PROJECT_DIR} --exclude [.]*vcpkg[.]*  --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml
+  coverage: /^\s*lines:\s*\d+.\d+\%/
+  artifacts:
+    when: always
+    paths:
+      - build/Testing
+    reports:
+      junit: build/testreport.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: build/coverage.xml

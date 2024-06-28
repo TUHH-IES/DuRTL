@@ -1,0 +1,106 @@
+= DuRTL
+:toc:
+This document provides information about the DuRTL tool and its implementation.
+
+== Tool Outline
+
+DuRTL is a tool for the analysis and simulation of digital hardware designs. It can read a hardware design in JSON format exported by YOSYS and export the design back to Verilog. Additionally, DuRTL can export testbenches for the design and simulate the design using the exported testbenches. DuRTL can also simulate the design with added Information Flow Tracking (IFT) logic. The IFT logic is added to the design and testbench and the design is simulated using iverilog. The simulation results are stored in a VCD file that can be parsed by DuRTL.
+
+.DuRTL Tool Flow
+image::doc/flow.png[DuRTL,550,align="center"]
+
+=== Input/Output
+
+DuRTL takes as input a netlist file in JSON format exported by YOSYS.  
+Optionally DuRTL also takes a VCD file as input when exporting testbenches for simulation.
+
+== Internal Representation
+
+DuRTL reads in a JSON file of a hardware netlist as exported by YOSYS. 
+
+The design gets stored internally in an analogous way to the contents of the JSON netlist. 
+The JSON netlist exported by YOSYS contains every module of the design. Every module is further subdivided into ports, cells, and nets.
+
+* `Ports` are all input/output/inout ports of the module
+* `Cells` contain any word-level cells (e.g. and, or, mux, dff) of the module
+* `Nets` contain all word-level nets that connect cells and ports
+  
+A `Design` is the topmost class that holds all the `Modules`. +
+A `Module` holds `Cells` and `Nets`. Both are stored in `std::vector<CellPtr>` and `std::vector<Net>`, respectively. Wires are not explicitly represented, but a `Net` simply stores a set of IDs representing the wires. +
+`Cells` are stored in a `boost::base_collection<Cell>`. +
+// A `CellID` uniquely identifies a `Cell` within a `Module`. +
+// A `NetID` uniquely identifies a `Cell` within a `Module`. +
+An instantiation is possible via `Design::createInstance`. +
+
+==== Module Graphs
+
+Additionally, each module has an internal graph representation `ModuleGraph m_module_graph` which is used when exporting a module to Verilog. `ModuleGraph` is a `boost::adjacency_list<>`. The `ModuleGraph` is an easy way to traverse the module elements and their connections among themselves.
+
+The module graph uses a Boost graph to represent a hardware design. Every port and cell as written by YOSYS into the JSON netlist is a vertex of the graph. Every net as written by YOSYS is represented by at least one edge of the graph. Every net can have multiple edges in the graph because nets in general connect more than two elements but edges in a graph can only connect two elements. So for every two elements that are connected by a net, we need a new edge in the graph.
+
+=== Design Instance Graph
+
+The `DesignInstance` class is used to store simulation data of a design. It contains a flattened graph representation of the design using `boost::adjacency_list<>`. The design instance graph is used for the analysis and storage of simulation data.
+
+== Export to Verilog
+
+Design and testbenches can be exported to Verilog with or without added IFT logic.
+
+=== Export Design
+
+The design can be exported from DuRTL back to a Verilog file using `Design::write_verilog` from the main `Design` class. `Design::write_verilog` calls the corresponding `Module::export_verilog` and `Module::export_verilog_header` functions of every `Module`.  
+The module header and port list are exported first. After that, the module graph is used to export the internal logic of the module.  
+Every cell type has a corresponding export function for exporting the cells and their connections to Verilog.
+
+=== Exporting Verilog Testbenches
+
+DuRTL can export custom testbenches for a design. These testbenches use existing VCD data for the stimuli of the design inputs. Optionally the testbenches can include tag data for IFT simulation.
+
+== Simulation
+
+The exported design is simulated using the third-party tool iverilog.  
+For simulation, the exported design can be simulated using either the original testbench file or a testbench exported by DuRTL that is optionally extended for IFT.
+The results are stored in VCD files which can be parsed by DuRTL.
+
+=== Information Flow Tracking
+
+DuRTL can simulate the design with added IFT logic. The design and the testbench are exported with added IFT logic to Verilog and simulated using iverilog. The IFT simulation results are stored in a VCD file that can be parsed by DuRTL.
+
+=== Tagging Heuristics
+
+DuRTL uses tagging heuristics to determine the tags for the IFT logic. There are two different tagging schemes implemented in DuRTL. The first tagging scheme is based on the VCD data of a given testbench. For every timestep and every primary input of the design and testbench the tags are determined. Either as a full-resolution heuristic for which every primary input is tagged at every timestep, or a random-resolution heuristic for which only a random subset of the primary inputs is tagged at every timestep. +
+The second tagging scheme is a dynamic scheme in which the testbench tags the primary inputs of the design in response to some predefined trigger signals. The trigger signals are defined in the testbench and are used to determine the tags for the primary inputs of the design. +  
+
+== Analysis
+
+The design can be analyzed in different ways, optionally using simulation data stored in a design instance.
+
+The `get_path()` function is a depth-first search algorithm that finds paths in the design. The function parameters like the start condition and the propagation condition can be used to find specific paths in the design. Some examples of path analysis functions are:
+
+* `most_used_path`: Finds the most used paths in the design
+* `least_used_path`: Finds the least used paths in the design
+* `most_toggle_path`: Finds the paths with the most toggling signals in the design
+* `least_toggle_path`: Finds the paths with the least toggling signals in the design
+
+=== Parsing VCD files
+
+DuRTL uses a third-party VCD parser to parse VCD files at two different points.  
+The first use is when parsing the simulation values needed to export a testbench extended with IFT logic.  
+The second use is parsing the simulation results of IFT and storing the simulation values in an instance of the design (see above).
+
+== MISC
+
+### Logging
+
+* spdlog : <https://github.com/gabime/spdlog>
+* macro: `SPDLOG_INFO("info {}", var);`
+  * level: TRACE, DEBUG, INFO, WARN, CRITICAL
+* for pointer use `fmt::ptr()`, for json obejcts use `.dump()`
+* changing SPDLOG_ACTIVE_LEVEL removes log macros during build
+* logfiles can be found at `build/main.log` and `build/tests/tester.log`
+* logger setup/config is in `test.cc` and `main.cc`
+  * logger is created from sink, file- and console log can be configured independently
+  * logger has to be registered and set to default logger to be global available
+
+### VCD Library
+* Verilog-vcd-parser: https://github.com/gian21391/verilog-vcd-parser.git

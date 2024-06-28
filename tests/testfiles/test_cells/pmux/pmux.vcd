@@ -1,0 +1,98 @@
+$date
+	Tue Apr  4 23:26:22 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ns
+$end
+$scope module tb_SR $end
+$var wire 2 ! Y [1:0] $end
+$var reg 2 " A [1:0] $end
+$var reg 2 # B [1:0] $end
+$var reg 1 $ S $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x$
+bx #
+bx "
+bx !
+$end
+#400
+b0 !
+1$
+b0 #
+b0 "
+#450
+b10 !
+b10 #
+#500
+b11 !
+b11 #
+#900
+b0 !
+b0 #
+b1 "
+#950
+b10 !
+b10 #
+#1000
+b11 !
+b11 #
+#1400
+b0 !
+b0 #
+b11 "
+#1450
+b10 !
+b10 #
+#1500
+b11 !
+b11 #
+#1900
+b0 !
+b0 #
+b10 "
+#1950
+b10 !
+b10 #
+#2000
+b11 !
+b11 #
+#2400
+b0 !
+0$
+b0 #
+b0 "
+#2450
+b10 #
+#2500
+b11 #
+#2900
+b1 !
+b0 #
+b1 "
+#2950
+b10 #
+#3000
+b11 #
+#3400
+b11 !
+b0 #
+b11 "
+#3450
+b10 #
+#3500
+b11 #
+#3900
+b10 !
+b0 #
+b10 "
+#3950
+b10 #
+#4000
+b11 #
+#4400

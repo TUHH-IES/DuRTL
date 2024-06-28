@@ -1,0 +1,187 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang 10.0.0-4ubuntu1 -fPIC -Os)",
+  "modules": {
+    "A": {
+      "attributes": {
+        "src": "moduleinstanceTest.v:1.1-6.10"
+      },
+      "ports": {
+        "A_a": {
+          "direction": "input",
+          "bits": [
+            2
+          ]
+        },
+        "A_b": {
+          "direction": "input",
+          "bits": [
+            3
+          ]
+        },
+        "A_c": {
+          "direction": "input",
+          "bits": [
+            4
+          ]
+        },
+        "A_d": {
+          "direction": "output",
+          "bits": [
+            5
+          ]
+        }
+      },
+      "cells": {
+        "$and$moduleinstanceTest.v:4$1": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "moduleinstanceTest.v:4.18-4.27"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [
+              2
+            ],
+            "B": [
+              3
+            ],
+            "Y": [
+              5
+            ]
+          }
+        }
+      },
+      "netnames": {
+        "A_a": {
+          "hide_name": 0,
+          "bits": [
+            2
+          ],
+          "attributes": {
+            "src": "moduleinstanceTest.v:2.11-2.14"
+          }
+        },
+        "A_b": {
+          "hide_name": 0,
+          "bits": [
+            3
+          ],
+          "attributes": {
+            "src": "moduleinstanceTest.v:2.16-2.19"
+          }
+        },
+        "A_c": {
+          "hide_name": 0,
+          "bits": [
+            4
+          ],
+          "attributes": {
+            "src": "moduleinstanceTest.v:2.21-2.24"
+          }
+        },
+        "A_d": {
+          "hide_name": 0,
+          "bits": [
+            5
+          ],
+          "attributes": {
+            "src": "moduleinstanceTest.v:3.12-3.15"
+          }
+        }
+      }
+    },
+    "B": {
+      "attributes": {
+        "src": "moduleinstanceTest.v:8.1-16.10"
+      },
+      "ports": {
+        "B_a": {
+          "direction": "input",
+          "bits": [
+            2
+          ]
+        },
+        "B_b": {
+          "direction": "input",
+          "bits": [
+            3
+          ]
+        },
+        "B_c": {
+          "direction": "output",
+          "bits": [
+            4
+          ]
+        }
+      },
+      "cells": {
+        "modins": {
+          "hide_name": 0,
+          "type": "A",
+          "parameters": {},
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "moduleinstanceTest.v:11.7-15.6"
+          },
+          "port_directions": {
+            "A_a": "input",
+            "A_b": "input",
+            "A_d": "output"
+          },
+          "connections": {
+            "A_a": [
+              2
+            ],
+            "A_b": [
+              3
+            ],
+            "A_d": [
+              4
+            ]
+          }
+        }
+      },
+      "netnames": {
+        "B_a": {
+          "hide_name": 0,
+          "bits": [
+            2
+          ],
+          "attributes": {
+            "src": "moduleinstanceTest.v:9.11-9.14"
+          }
+        },
+        "B_b": {
+          "hide_name": 0,
+          "bits": [
+            3
+          ],
+          "attributes": {
+            "src": "moduleinstanceTest.v:9.16-9.19"
+          }
+        },
+        "B_c": {
+          "hide_name": 0,
+          "bits": [
+            4
+          ],
+          "attributes": {
+            "src": "moduleinstanceTest.v:10.12-10.15"
+          }
+        }
+      }
+    }
+  }
+}

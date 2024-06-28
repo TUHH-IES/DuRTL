@@ -1,0 +1,88 @@
+{
+  "creator": "Yosys 0.9 (git sha1 1979e0b)",
+  "modules": {
+    "split": {
+      "attributes": {
+        "cells_not_processed": 1,
+        "src": "integerTest.v:1"
+      },
+      "ports": {
+        "a": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5, 6, 7 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 8, 9, 10, 11, 12, 13 ]
+        },
+        "out": {
+          "direction": "output",
+          "bits": [ 14, 15, 16, 17, 18, 19 ]
+        }
+      },
+      "cells": {
+        "$and$integerTest.v:9$1": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 6,
+            "B_SIGNED": 0,
+            "B_WIDTH": 32,
+            "Y_WIDTH": 32
+          },
+          "attributes": {
+            "src": "integerTest.v:9"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5, 6, 7 ],
+            "B": [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ],
+            "Y": [ 14, 15, 16, 17, 18, 19, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ]
+          }
+        }
+      },
+      "netnames": {
+        "$and$integerTest.v:9$1_Y": {
+          "hide_name": 1,
+          "bits": [ 14, 15, 16, 17, 18, 19, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ],
+          "attributes": {
+            "src": "integerTest.v:9"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7 ],
+          "attributes": {
+            "src": "integerTest.v:3"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 8, 9, 10, 11, 12, 13 ],
+          "attributes": {
+            "src": "integerTest.v:4"
+          }
+        },
+        "i": {
+          "hide_name": 0,
+          "bits": [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ],
+          "attributes": {
+            "src": "integerTest.v:7"
+          }
+        },
+        "out": {
+          "hide_name": 0,
+          "bits": [ 14, 15, 16, 17, 18, 19 ],
+          "attributes": {
+            "src": "integerTest.v:5"
+          }
+        }
+      }
+    }
+  }
+}

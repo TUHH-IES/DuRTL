@@ -1,0 +1,8 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+
+#pragma once
+
+//NOLINTBEGIN(cppcoreguidelines-macro-usage)
+#cmakedefine TESTFILES_DIR "@TESTFILES_DIR@"
+#cmakedefine OSSCAD_DIR "@OSSCAD_DIR@"
+//NOLINTEND(cppcoreguidelines-macro-usage)

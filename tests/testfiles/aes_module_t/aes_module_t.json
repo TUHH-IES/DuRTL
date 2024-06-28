@@ -1,0 +1,139 @@
+{
+  "creator": "Yosys 0.36 (git sha1 8f07a0d8404, clang 16.0.6 -fPIC -Os)",
+  "modules": {
+    "S": {
+      "attributes": {
+        "src": "aes_module_t/aes_module_t.v:12.1-19.10"
+      },
+      "ports": {
+        "in": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9 ]
+        },
+        "out": {
+          "direction": "output",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "in": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+          "attributes": {
+            "src": "aes_module_t/aes_module_t.v:14.13-14.15"
+          }
+        },
+        "out": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+          "attributes": {
+            "src": "aes_module_t/aes_module_t.v:15.14-15.17"
+          }
+        }
+      }
+    },
+    "aes_module_t": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "aes_module_t/aes_module_t.v:1.1-10.10"
+      },
+      "ports": {
+        "in": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9 ]
+        },
+        "out": {
+          "direction": "output",
+          "bits": [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 26, 27, 28, 29, 30, 31, 32, 33 ]
+        }
+      },
+      "cells": {
+        "$xor$aes_module_t/aes_module_t.v:9$1": {
+          "hide_name": 1,
+          "type": "$xor",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "aes_module_t/aes_module_t.v:9.24-9.45"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 26, 27, 28, 29, 30, 31, 32, 33 ],
+            "B": [ 10, 11, 12, 13, 14, 15, 16, 17 ],
+            "Y": [ 18, 19, 20, 21, 22, 23, 24, 25 ]
+          }
+        },
+        "s0": {
+          "hide_name": 0,
+          "type": "S",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "aes_module_t/aes_module_t.v:5.7-5.26"
+          },
+          "port_directions": {
+            "in": "input",
+            "out": "output"
+          },
+          "connections": {
+            "in": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+            "out": [ 26, 27, 28, 29, 30, 31, 32, 33 ]
+          }
+        },
+        "s4": {
+          "hide_name": 0,
+          "type": "S",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "aes_module_t/aes_module_t.v:8.7-8.24"
+          },
+          "port_directions": {
+            "in": "input",
+            "out": "output"
+          },
+          "connections": {
+            "in": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+            "out": [ 10, 11, 12, 13, 14, 15, 16, 17 ]
+          }
+        }
+      },
+      "netnames": {
+        "$xor$aes_module_t/aes_module_t.v:9$1_Y": {
+          "hide_name": 1,
+          "bits": [ 18, 19, 20, 21, 22, 23, 24, 25 ],
+          "attributes": {
+            "src": "aes_module_t/aes_module_t.v:9.24-9.45"
+          }
+        },
+        "in": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+          "attributes": {
+            "src": "aes_module_t/aes_module_t.v:2.19-2.21"
+          }
+        },
+        "out": {
+          "hide_name": 0,
+          "bits": [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 26, 27, 28, 29, 30, 31, 32, 33 ],
+          "attributes": {
+            "src": "aes_module_t/aes_module_t.v:3.19-3.22"
+          }
+        }
+      }
+    }
+  }
+}

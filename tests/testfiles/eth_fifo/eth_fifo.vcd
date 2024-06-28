@@ -1,0 +1,401 @@
+$date
+	Mon Mar 18 12:52:14 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module eth_fifo_tb $end
+$var wire 1 ! full $end
+$var wire 1 " empty $end
+$var wire 32 # data_out [31:0] $end
+$var wire 4 $ cnt [3:0] $end
+$var wire 1 % almost_full $end
+$var wire 1 & almost_empty $end
+$var parameter 32 ' CNT_WIDTH $end
+$var parameter 32 ( DATA_WIDTH $end
+$var parameter 32 ) DEPTH $end
+$var reg 1 * clear $end
+$var reg 1 + clk $end
+$var reg 32 , data_in [31:0] $end
+$var reg 1 - read $end
+$var reg 1 . reset $end
+$var reg 1 / write $end
+$scope module dut $end
+$var wire 32 0 \$0$memwr$\\fifo$eth_fifo.v:168$1_DATA[31:0]$22 [31:0] $end
+$var wire 32 1 \$0$memwr$\\fifo$eth_fifo.v:168$1_EN[31:0]$23 [31:0] $end
+$var wire 3 2 \$0$memwr$\\fifo$eth_fifo.v:171$2_ADDR[2:0]$24 [2:0] $end
+$var wire 32 3 \$0$memwr$\\fifo$eth_fifo.v:171$2_DATA[31:0]$25 [31:0] $end
+$var wire 32 4 \$0$memwr$\\fifo$eth_fifo.v:171$2_EN[31:0]$26 [31:0] $end
+$var wire 4 5 \$0\\cnt[3:0] [3:0] $end
+$var wire 32 6 \$0\\data_out[31:0] [31:0] $end
+$var wire 3 7 \$0\\read_pointer[2:0] [2:0] $end
+$var wire 3 8 \$0\\write_pointer[2:0] [2:0] $end
+$var wire 32 9 \$1$memwr$\\fifo$eth_fifo.v:168$1_DATA[31:0]$28 [31:0] $end
+$var wire 32 : \$1$memwr$\\fifo$eth_fifo.v:168$1_EN[31:0]$29 [31:0] $end
+$var wire 3 ; \$1$memwr$\\fifo$eth_fifo.v:171$2_ADDR[2:0]$30 [2:0] $end
+$var wire 32 < \$1$memwr$\\fifo$eth_fifo.v:171$2_DATA[31:0]$31 [31:0] $end
+$var wire 32 = \$1$memwr$\\fifo$eth_fifo.v:171$2_EN[31:0]$32 [31:0] $end
+$var wire 3 > \$2$memwr$\\fifo$eth_fifo.v:171$2_ADDR[2:0]$35 [2:0] $end
+$var wire 32 ? \$2$memwr$\\fifo$eth_fifo.v:171$2_DATA[31:0]$36 [31:0] $end
+$var wire 32 @ \$2$memwr$\\fifo$eth_fifo.v:171$2_EN[31:0]$37 [31:0] $end
+$var wire 1 A \$and$eth_fifo.v:121$10_Y $end
+$var wire 1 B \$and$eth_fifo.v:133$14_Y $end
+$var wire 1 C \$and$eth_fifo.v:167$27_Y $end
+$var wire 1 D \$and$eth_fifo.v:170$34_Y $end
+$var wire 32 E \$memrd$\\fifo$eth_fifo.v:178$39_DATA [31:0] $end
+$var wire 32 F \$memrd$\\fifo$eth_fifo.v:180$40_DATA [31:0] $end
+$var wire 1 G \$not$eth_fifo.v:121$9_Y $end
+$var wire 1 H \$not$eth_fifo.v:133$13_Y $end
+$var wire 1 I \$not$eth_fifo.v:137$17_Y $end
+$var wire 1 J \$not$eth_fifo.v:170$33_Y $end
+$var wire 1 K \$procmux$43_CMP $end
+$var wire 1 L \$procmux$46_CMP $end
+$var wire 1 M \$procmux$49_CMP $end
+$var wire 1 N \$procmux$52_CMP $end
+$var wire 1 O \$procmux$55_CMP $end
+$var wire 1 P \$procmux$58_CMP $end
+$var wire 1 Q \$procmux$61_CMP $end
+$var wire 1 R \$procmux$64_CMP $end
+$var wire 1 S \$procmux$67_CMP $end
+$var wire 1 T \$procmux$70_CMP $end
+$var wire 1 U \$procmux$73_CMP $end
+$var wire 1 V \$procmux$76_CMP $end
+$var wire 1 W \$procmux$78_CMP $end
+$var wire 1 X \$procmux$81_CMP $end
+$var wire 1 Y \$procmux$83_CMP $end
+$var wire 1 Z \$procmux$86_CMP $end
+$var wire 1 [ \$procmux$89_CMP $end
+$var wire 1 \ \$procmux$91_CMP $end
+$var wire 1 ] \$procmux$94_CMP $end
+$var wire 1 ^ \$xor$eth_fifo.v:103$4_Y $end
+$var wire 1 _ \$xor$eth_fifo.v:105$5_Y $end
+$var wire 1 & almost_empty $end
+$var wire 1 % almost_full $end
+$var wire 1 * clear $end
+$var wire 1 + clk $end
+$var wire 32 ` data_in [31:0] $end
+$var wire 1 " empty $end
+$var wire 1 ! full $end
+$var wire 1 - read $end
+$var wire 1 . reset $end
+$var wire 1 / write $end
+$var wire 32 a \$sub$eth_fifo.v:107$6_Y [31:0] $end
+$var wire 1 b \$reduce_or$eth_fifo.v:137$16_Y $end
+$var wire 1 c \$reduce_and$eth_fifo.v:140$20_Y $end
+$var wire 4 d \$procmux$93_Y [3:0] $end
+$var wire 4 e \$procmux$90_Y [3:0] $end
+$var wire 4 f \$procmux$88_Y [3:0] $end
+$var wire 3 g \$procmux$85_Y [2:0] $end
+$var wire 3 h \$procmux$82_Y [2:0] $end
+$var wire 3 i \$procmux$80_Y [2:0] $end
+$var wire 3 j \$procmux$77_Y [2:0] $end
+$var wire 3 k \$procmux$75_Y [2:0] $end
+$var wire 32 l \$procmux$72_Y [31:0] $end
+$var wire 32 m \$procmux$69_Y [31:0] $end
+$var wire 32 n \$procmux$66_Y [31:0] $end
+$var wire 32 o \$procmux$63_Y [31:0] $end
+$var wire 3 p \$procmux$60_Y [2:0] $end
+$var wire 3 q \$procmux$57_Y [2:0] $end
+$var wire 32 r \$procmux$54_Y [31:0] $end
+$var wire 32 s \$procmux$51_Y [31:0] $end
+$var wire 32 t \$procmux$48_Y [31:0] $end
+$var wire 32 u \$procmux$45_Y [31:0] $end
+$var wire 32 v \$procmux$42_Y [31:0] $end
+$var wire 1 w \$eq$eth_fifo.v:139$19_Y $end
+$var wire 1 x \$eq$eth_fifo.v:138$18_Y $end
+$var wire 3 y \$add$eth_fifo.v:134$15_Y [2:0] $end
+$var wire 3 z \$add$eth_fifo.v:122$11_Y [2:0] $end
+$var wire 32 { \$add$eth_fifo.v:109$7_Y [31:0] $end
+$var reg 32 | \$memwr$\\fifo$eth_fifo.v:168$1_DATA [31:0] $end
+$var reg 32 } \$memwr$\\fifo$eth_fifo.v:168$1_EN [31:0] $end
+$var reg 3 ~ \$memwr$\\fifo$eth_fifo.v:171$2_ADDR [2:0] $end
+$var reg 32 !" \$memwr$\\fifo$eth_fifo.v:171$2_DATA [31:0] $end
+$var reg 32 "" \$memwr$\\fifo$eth_fifo.v:171$2_EN [31:0] $end
+$var reg 4 #" cnt [3:0] $end
+$var reg 32 $" data_out [31:0] $end
+$var reg 3 %" read_pointer [2:0] $end
+$var reg 3 &" write_pointer [2:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1000 )
+b100000 (
+b100 '
+$end
+#0
+$dumpvars
+bx &"
+bx %"
+bx $"
+bx #"
+bx ""
+bx !"
+bx ~
+bx }
+bx |
+bx {
+bx z
+bx y
+xx
+xw
+bx v
+b0 u
+b0 t
+bx s
+bx r
+bx q
+bx p
+b0 o
+bx n
+b0 m
+bx l
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+bx d
+xc
+xb
+bx a
+b0 `
+0_
+0^
+0]
+0\
+0[
+0Z
+0Y
+0X
+0W
+0V
+0U
+0T
+0S
+0R
+0Q
+0P
+0O
+0N
+0M
+0L
+0K
+xJ
+xI
+xH
+xG
+bx F
+bx E
+0D
+0C
+0B
+0A
+b0 @
+bx ?
+bx >
+b0 =
+bx <
+bx ;
+b0 :
+bx 9
+bx 8
+bx 7
+bx 6
+bx 5
+b0 4
+bx 3
+bx 2
+b0 1
+bx 0
+0/
+0.
+0-
+b0 ,
+0+
+0*
+x&
+x%
+bx $
+bx #
+x"
+x!
+$end
+#2
+b0 ""
+b0 }
+b0 8
+b0 i
+b0 7
+b0 g
+b0 5
+b0 d
+1K
+1X
+1Z
+1]
+1*
+1+
+#4
+0+
+#6
+b1 f
+b1 {
+1J
+1H
+b0 e
+0%
+0c
+1"
+1I
+b11111111111111111111111111111111 a
+b0 h
+b0 j
+0&
+0x
+0!
+0w
+0G
+0b
+b0 $
+b0 #"
+b1 z
+b0 %"
+b1 y
+b0 &"
+b0 8
+b0 i
+b0 7
+b0 g
+b0 5
+b0 d
+0K
+0X
+0Z
+0]
+0*
+1+
+#8
+0+
+#10
+b11111111111111111111111111111111 4
+b11111111111111111111111111111111 =
+b11111111111111111111111111111111 m
+b0 3
+b0 <
+b0 l
+b0 2
+b0 ;
+b0 k
+b1 8
+b1 i
+b11111111111111111111111111111111 @
+b11111111111111111111111111111111 t
+b0 ?
+b0 r
+b0 >
+b0 p
+b1 5
+b1 d
+b1 j
+b11111111111111111111111111111111 u
+b0 s
+b0 q
+b1 e
+1W
+1B
+1L
+1N
+1P
+1D
+1^
+1\
+1_
+1/
+1+
+#12
+0+
+#14
+b10 f
+b0 6
+b0 v
+b10 {
+0"
+0I
+b0 a
+b0 !"
+b0 ~
+b11111111111111111111111111111111 ""
+b0 F
+b0 E
+1&
+1x
+1G
+1b
+b1 $
+b1 #"
+b10 y
+b1 &"
+b0 4
+b0 =
+b0 m
+bx 3
+bx <
+bx l
+bx 2
+bx ;
+bx k
+b1 8
+b1 i
+b0 @
+b0 t
+bx ?
+bx r
+bx >
+bx p
+b1 5
+b1 d
+b1 j
+b0 u
+bx s
+bx q
+b1 e
+0W
+0B
+0L
+0N
+0P
+0D
+0^
+0\
+0_
+0/
+1+
+#16
+0+
+#18
+b0 ""
+b0 #
+b0 $"
+bx ~
+bx !"
+1+
+#20
+0+
+#22
+1+
+#24
+0+
+#26
+1+
+#28
+0+
+#30
+1+
+#32

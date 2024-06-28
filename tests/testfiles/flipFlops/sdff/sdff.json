@@ -1,0 +1,140 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang 14.0.0-1ubuntu1 -fPIC -Os)",
+  "modules": {
+    "m_0": {
+      "attributes": {
+        "dynports": "00000000000000000000000000000001",
+        "src": "sdff.v:1.1-21.10"
+      },
+      "parameter_default_values": {
+        "CLK_POLARITY": "1",
+        "SRST_POLARITY": "1",
+        "SRST_VALUE": "00000000000000000000000000000010",
+        "WIDTH": "00000000000000000000000000000010"
+      },
+      "ports": {
+        "CLK": {
+          "direction": "input",
+          "bits": [
+            2
+          ]
+        },
+        "SRST": {
+          "direction": "input",
+          "bits": [
+            3
+          ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [
+            4,
+            5
+          ]
+        },
+        "Q": {
+          "direction": "output",
+          "bits": [
+            6,
+            7
+          ]
+        }
+      },
+      "cells": {
+        "$auto$ff.cc:262:slice$8": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000001",
+            "SRST_VALUE": "10",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "sdff.v:14.1-19.4"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [
+              2
+            ],
+            "D": [
+              4,
+              5
+            ],
+            "Q": [
+              6,
+              7
+            ],
+            "SRST": [
+              3
+            ]
+          }
+        }
+      },
+      "netnames": {
+        "CLK": {
+          "hide_name": 0,
+          "bits": [
+            2
+          ],
+          "attributes": {
+            "src": "sdff.v:8.7-8.10"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [
+            4,
+            5
+          ],
+          "attributes": {
+            "src": "sdff.v:9.19-9.20"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [
+            6,
+            7
+          ],
+          "attributes": {
+            "src": "sdff.v:10.24-10.25"
+          }
+        },
+        "SRST": {
+          "hide_name": 0,
+          "bits": [
+            3
+          ],
+          "attributes": {
+            "src": "sdff.v:8.12-8.16"
+          }
+        },
+        "pos_clk": {
+          "hide_name": 0,
+          "bits": [
+            2
+          ],
+          "attributes": {
+            "src": "sdff.v:11.6-11.13"
+          }
+        },
+        "pos_srst": {
+          "hide_name": 0,
+          "bits": [
+            3
+          ],
+          "attributes": {
+            "src": "sdff.v:12.6-12.14"
+          }
+        }
+      }
+    }
+  }
+}

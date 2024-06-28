@@ -1,0 +1,101 @@
+{
+  "creator": "Yosys 0.7 (git sha1 61f6811, gcc 6.2.0-11ubuntu1 -O2 -fdebug-prefix-map=/build/yosys-OIL3SR/yosys-0.7=. -fstack-protector-strong -fPIC -Os)",
+  "modules": {
+    "anda": {
+      "attributes": {
+        "top": 1,
+        "src": "1BitAnd.v:1"
+      },
+      "ports": {
+        "a": {
+          "direction": "input",
+          "bits": [
+            2
+          ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [
+            3
+          ]
+        },
+        "c": {
+          "direction": "output",
+          "bits": [
+            4
+          ]
+        }
+      },
+      "cells": {
+        "$and$1BitAnd.v:7$1": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "Y_WIDTH": 1,
+            "B_WIDTH": 1,
+            "A_WIDTH": 1,
+            "B_SIGNED": 0,
+            "A_SIGNED": 0
+          },
+          "attributes": {
+            "src": "1BitAnd.v:7"
+          },
+          "port_directions": {
+            "Y": "output",
+            "B": "input",
+            "A": "input"
+          },
+          "connections": {
+            "Y": [
+              4
+            ],
+            "B": [
+              3
+            ],
+            "A": [
+              2
+            ]
+          }
+        }
+      },
+      "netnames": {
+        "$and$1BitAnd.v:7$1_Y": {
+          "hide_name": 1,
+          "bits": [
+            4
+          ],
+          "attributes": {
+            "src": "1BitAnd.v:7"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [
+            4
+          ],
+          "attributes": {
+            "src": "1BitAnd.v:6"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [
+            3
+          ],
+          "attributes": {
+            "src": "1BitAnd.v:5"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [
+            2
+          ],
+          "attributes": {
+            "src": "1BitAnd.v:4"
+          }
+        }
+      }
+    }
+  }
+}

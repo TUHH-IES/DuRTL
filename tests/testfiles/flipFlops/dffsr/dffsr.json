@@ -1,0 +1,98 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang  -fPIC -Os)",
+  "modules": {
+    "m_0": {
+      "attributes": {
+        "src": "dffsr.v:1.1-29.10"
+      },
+      "ports": {
+        "CLK": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "SET": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "CLR": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "Q": {
+          "direction": "output",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$14": {
+          "hide_name": 1,
+          "type": "$dffsr",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "CLR_POLARITY": "1",
+            "SET_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "dffsr.v:19.3-25.18"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "CLR": "input",
+            "D": "input",
+            "Q": "output",
+            "SET": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "CLR": [ 4 ],
+            "D": [ 5 ],
+            "Q": [ 6 ],
+            "SET": [ 3]
+          }
+        }
+      },
+      "netnames": {
+        "CLK": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "dffsr.v:8.7-8.10"
+          }
+        },
+        "CLR": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "dffsr.v:9.24-9.27"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "dffsr.v:9.29-9.30"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "dffsr.v:10.24-10.25"
+          }
+        },
+        "SET": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "dffsr.v:9.19-9.22"
+          }
+    	}
+      }
+    }
+  }
+}

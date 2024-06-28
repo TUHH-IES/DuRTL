@@ -1,0 +1,51 @@
+$date
+	Mon May  8 17:34:52 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module andVector_tb $end
+$var wire 4 ! out [3:0] $end
+$var reg 4 " a [3:0] $end
+$var reg 4 # b [3:0] $end
+$scope module a1 $end
+$var wire 4 $ a [3:0] $end
+$var wire 4 % b [3:0] $end
+$var wire 4 & out [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 &
+b0 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#2
+b10 "
+b10 $
+#4
+b1 !
+b1 &
+b1 #
+b1 %
+b11 "
+b11 $
+#6
+b0 !
+b0 &
+b100 "
+b100 $
+#8
+b10 !
+b10 &
+b10 #
+b10 %
+b11 "
+b11 $

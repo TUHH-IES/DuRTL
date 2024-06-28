@@ -1,0 +1,92 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang 14.0.0-1ubuntu1 -fPIC -Os)",
+  "modules": {
+    "m_0": {
+      "attributes": {
+        "dynports": "00000000000000000000000000000001",
+        "src": "dlatch.v:1.1-15.10"
+      },
+      "parameter_default_values": {
+      	"ARST_POLARITY": "1",
+      	"ARST_VALUE": "00000000000000000000000000000011",
+        "EN_POLARITY": "1",
+        "WIDTH": "00000000000000000000000000000010"
+      },
+      "ports": {
+      	"ARST":{
+      	  "direction":"input",
+          "bits":[2]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 3, 4 ]
+        },
+        "EN": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "Q": {
+          "direction": "output",
+          "bits": [ 6, 7 ]
+        }
+      },
+      "cells": {
+        "$auto$proc_adlatch.cc:427:proc_adlatch$6": {
+          "hide_name": 1,
+          "type": "$adlatch",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "11",
+            "EN_POLARITY": "00000000000000000000000000000001",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "adlatch.v:10.1-13.4"
+          },
+          "port_directions": {
+            "ARST": "input",	
+            "D": "input",
+            "EN": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [2],	
+            "D": [ 3, 4 ],
+            "EN": [ 5 ],
+            "Q": [ 6, 7 ]
+          }
+        }
+      },
+      "netnames": {
+      	"ARST": {
+      	  "hide_name": 0,
+      	  "bits": [2],
+      	  "attributes": {
+      	   "src": "adlatch.v:8.19-8.20"	
+      	  }
+      	},
+        "D": {
+          "hide_name": 0,
+          "bits": [ 3, 4 ],
+          "attributes": {
+            "src": "adlatch.v:7.19-7.20"
+          }
+        },
+        "EN": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "adlatch.v:6.7-6.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 6, 7 ],
+          "attributes": {
+            "src": "adlatch.v:8.24-8.25"
+          }
+        }
+      }
+    }
+  }
+}

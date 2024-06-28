@@ -1,0 +1,359 @@
+$date
+	Mon Jun 12 11:06:49 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module binary_gates_tb $end
+$var wire 32 ! xor_out_t [31:0] $end
+$var wire 1 " xor_out $end
+$var wire 32 # xnor_out_t [31:0] $end
+$var wire 1 $ xnor_out $end
+$var wire 32 % sub_out_t [31:0] $end
+$var wire 1 & sub_out $end
+$var wire 32 ' sshr_out_t [31:0] $end
+$var wire 1 ( sshr_out $end
+$var wire 32 ) sshl_out_t [31:0] $end
+$var wire 1 * sshl_out $end
+$var wire 32 + shr_out_t [31:0] $end
+$var wire 1 , shr_out $end
+$var wire 32 - shl_out_t [31:0] $end
+$var wire 1 . shl_out $end
+$var wire 32 / pow_out_t [31:0] $end
+$var wire 1 0 pow_out $end
+$var wire 32 1 or_out_t [31:0] $end
+$var wire 1 2 or_out $end
+$var wire 32 3 nex_out_t [31:0] $end
+$var wire 1 4 nex_out $end
+$var wire 32 5 ne_out_t [31:0] $end
+$var wire 1 6 ne_out $end
+$var wire 32 7 mul_out_t [31:0] $end
+$var wire 1 8 mul_out $end
+$var wire 32 9 mod_out_t [31:0] $end
+$var wire 1 : mod_out $end
+$var wire 32 ; lt_out_t [31:0] $end
+$var wire 1 < lt_out $end
+$var wire 32 = logic_or_out_t [31:0] $end
+$var wire 1 > logic_or_out $end
+$var wire 32 ? logic_and_out_t [31:0] $end
+$var wire 1 @ logic_and_out $end
+$var wire 32 A le_out_t [31:0] $end
+$var wire 1 B le_out $end
+$var wire 32 C gt_out_t [31:0] $end
+$var wire 1 D gt_out $end
+$var wire 32 E ge_out_t [31:0] $end
+$var wire 1 F ge_out $end
+$var wire 32 G eqx_out_t [31:0] $end
+$var wire 1 H eqx_out $end
+$var wire 32 I eq_out_t [31:0] $end
+$var wire 1 J eq_out $end
+$var wire 32 K div_out_t [31:0] $end
+$var wire 1 L div_out $end
+$var wire 32 M and_out_t [31:0] $end
+$var wire 1 N and_out $end
+$var wire 32 O add_out_t [31:0] $end
+$var wire 1 P add_out $end
+$var reg 1 Q a $end
+$var reg 32 R a_t [31:0] $end
+$var reg 1 S b $end
+$var reg 32 T b_t [31:0] $end
+$var integer 32 U i [31:0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 U
+b0 T
+0S
+b0 R
+0Q
+0P
+b0 O
+0N
+b0 M
+xL
+b0 K
+1J
+b0 I
+1H
+b0 G
+1F
+b0 E
+0D
+b0 C
+1B
+b0 A
+0@
+b0 ?
+0>
+b0 =
+0<
+b0 ;
+x:
+b0 9
+08
+b0 7
+06
+b0 5
+04
+b0 3
+02
+b0 1
+10
+b0 /
+0.
+b0 -
+0,
+b0 +
+0*
+b0 )
+0(
+b0 '
+0&
+b0 %
+1$
+b0 #
+0"
+b0 !
+$end
+#5000
+b1 1
+b1 =
+b1 !
+b1 #
+b1 -
+b1 +
+b1 )
+b1 '
+b1 G
+b1 3
+b1 ;
+b1 A
+b1 I
+b1 5
+b1 E
+b1 C
+b1 O
+b1 %
+b1 7
+b1 K
+b1 9
+b1 /
+b1 R
+b1 U
+#10000
+12
+1"
+0$
+1>
+0J
+16
+0H
+14
+1<
+0F
+1P
+1&
+0L
+0:
+00
+1S
+b10 1
+b10 =
+b10 !
+b10 #
+b10 -
+b10 +
+b10 )
+b10 '
+b10 G
+b10 3
+b10 ;
+b10 A
+b10 I
+b10 5
+b10 E
+b10 C
+b10 O
+b10 %
+b10 7
+b10 K
+b10 9
+b10 /
+b10 T
+b0 R
+b10 U
+#15000
+b1 M
+b1 ?
+b11 !
+b11 #
+b11 -
+b11 +
+b11 )
+b11 '
+b11 G
+b11 3
+b11 ;
+b11 A
+b11 I
+b11 5
+b11 E
+b11 C
+b11 O
+b11 %
+b11 7
+b11 K
+b11 9
+b11 /
+b1 R
+b11 U
+#20000
+1.
+1,
+1*
+1(
+0B
+1D
+x:
+0S
+0H
+14
+0<
+1F
+1P
+1&
+08
+xL
+10
+1Q
+b0 1
+b0 =
+b0 M
+b0 ?
+b0 !
+b0 #
+b0 -
+b0 +
+b0 )
+b0 '
+b0 G
+b0 3
+b0 ;
+b0 A
+b0 I
+b0 5
+b0 E
+b0 C
+b0 O
+b0 %
+b0 7
+b0 K
+b0 9
+b0 /
+b0 T
+b0 R
+b100 U
+#25000
+b1 1
+b1 =
+b1 !
+b1 #
+b1 -
+b1 +
+b1 )
+b1 '
+b1 G
+b1 3
+b1 ;
+b1 A
+b1 I
+b1 5
+b1 E
+b1 C
+b1 O
+b1 %
+b1 7
+b1 K
+b1 9
+b1 /
+b1 R
+b101 U
+#30000
+1N
+0"
+1$
+1@
+1J
+06
+0.
+0,
+0*
+0(
+1H
+04
+1B
+0D
+0P
+0&
+18
+1L
+0:
+1S
+b10 M
+b10 ?
+b0 1
+b0 =
+b10 !
+b10 #
+b10 -
+b10 +
+b10 )
+b10 '
+b10 G
+b10 3
+b10 ;
+b10 A
+b10 I
+b10 5
+b10 E
+b10 C
+b10 O
+b10 %
+b10 7
+b10 K
+b10 9
+b10 /
+b10 T
+b0 R
+b110 U
+#35000
+b11 M
+b11 ?
+b11 !
+b11 #
+b11 -
+b11 +
+b11 )
+b11 '
+b11 G
+b11 3
+b11 ;
+b11 A
+b11 I
+b11 5
+b11 E
+b11 C
+b11 O
+b11 %
+b11 7
+b11 K
+b11 9
+b11 /
+b1 R
+b111 U
+#40000
+b1000 U

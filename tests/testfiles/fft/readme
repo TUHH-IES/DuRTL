@@ -1,0 +1,2 @@
+currently fft16.json can be parsed
+the ift simulation runs throught, however there is an error when reading back the vcd file and creating the instantiation graph

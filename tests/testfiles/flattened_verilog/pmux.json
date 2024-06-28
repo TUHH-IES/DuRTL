@@ -1,0 +1,240 @@
+{
+  "creator": "Yosys 0.9 (git sha1 1979e0b)",
+  "modules": {
+    "pmux": {
+      "attributes": {
+        "src": "pmux.v:1"
+      },
+      "ports": {
+        "a": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+        },
+        "s": {
+          "direction": "input",
+          "bits": [ 18, 19, 20 ]
+        },
+        "out": {
+          "direction": "output",
+          "bits": [ 21, 22, 23, 24 ]
+        }
+      },
+      "cells": {
+        "$eq$pmux.v:10$1": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 3,
+            "B_SIGNED": 0,
+            "B_WIDTH": 3,
+            "Y_WIDTH": 1
+          },
+          "attributes": {
+            "src": "pmux.v:10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 18, 19, 20 ],
+            "B": [ "1", "0", "0" ],
+            "Y": [ 25 ]
+          }
+        },
+        "$eq$pmux.v:10$2": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 3,
+            "B_SIGNED": 0,
+            "B_WIDTH": 3,
+            "Y_WIDTH": 1
+          },
+          "attributes": {
+            "src": "pmux.v:10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 18, 19, 20 ],
+            "B": [ "0", "1", "0" ],
+            "Y": [ 26 ]
+          }
+        },
+        "$eq$pmux.v:10$3": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 3,
+            "B_SIGNED": 0,
+            "B_WIDTH": 3,
+            "Y_WIDTH": 1
+          },
+          "attributes": {
+            "src": "pmux.v:10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 18, 19, 20 ],
+            "B": [ "0", "0", "1" ],
+            "Y": [ 27 ]
+          }
+        },
+        "$ternary$pmux.v:10$4": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": 4
+          },
+          "attributes": {
+            "src": "pmux.v:10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5 ],
+            "B": [ 14, 15, 16, 17 ],
+            "S": [ 27 ],
+            "Y": [ 28, 29, 30, 31 ]
+          }
+        },
+        "$ternary$pmux.v:10$5": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": 4
+          },
+          "attributes": {
+            "src": "pmux.v:10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 28, 29, 30, 31 ],
+            "B": [ 10, 11, 12, 13 ],
+            "S": [ 26 ],
+            "Y": [ 32, 33, 34, 35 ]
+          }
+        },
+        "$ternary$pmux.v:10$6": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": 4
+          },
+          "attributes": {
+            "src": "pmux.v:10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 32, 33, 34, 35 ],
+            "B": [ 6, 7, 8, 9 ],
+            "S": [ 25 ],
+            "Y": [ 21, 22, 23, 24 ]
+          }
+        }
+      },
+      "netnames": {
+        "$eq$pmux.v:10$1_Y": {
+          "hide_name": 1,
+          "bits": [ 25 ],
+          "attributes": {
+            "src": "pmux.v:10"
+          }
+        },
+        "$eq$pmux.v:10$2_Y": {
+          "hide_name": 1,
+          "bits": [ 26 ],
+          "attributes": {
+            "src": "pmux.v:10"
+          }
+        },
+        "$eq$pmux.v:10$3_Y": {
+          "hide_name": 1,
+          "bits": [ 27 ],
+          "attributes": {
+            "src": "pmux.v:10"
+          }
+        },
+        "$ternary$pmux.v:10$4_Y": {
+          "hide_name": 1,
+          "bits": [ 28, 29, 30, 31 ],
+          "attributes": {
+            "src": "pmux.v:10"
+          }
+        },
+        "$ternary$pmux.v:10$5_Y": {
+          "hide_name": 1,
+          "bits": [ 32, 33, 34, 35 ],
+          "attributes": {
+            "src": "pmux.v:10"
+          }
+        },
+        "$ternary$pmux.v:10$6_Y": {
+          "hide_name": 1,
+          "bits": [ 21, 22, 23, 24 ],
+          "attributes": {
+            "src": "pmux.v:10"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5 ],
+          "attributes": {
+            "src": "pmux.v:3"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ],
+          "attributes": {
+            "src": "pmux.v:4"
+          }
+        },
+        "out": {
+          "hide_name": 0,
+          "bits": [ 21, 22, 23, 24 ],
+          "attributes": {
+            "src": "pmux.v:6"
+          }
+        },
+        "s": {
+          "hide_name": 0,
+          "bits": [ 18, 19, 20 ],
+          "attributes": {
+            "src": "pmux.v:5"
+          }
+        }
+      }
+    }
+  }
+}

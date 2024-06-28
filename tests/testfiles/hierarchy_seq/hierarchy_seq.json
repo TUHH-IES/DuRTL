@@ -1,0 +1,408 @@
+{
+  "creator": "Yosys 0.23 (git sha1 7ce5011c24b)",
+  "modules": {
+    "M": {
+      "attributes": {
+        "src": "hierarchy_seq.v:9.1-22.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "a": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "c": {
+          "direction": "output",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$or$hierarchy_seq.v:19$4": {
+          "hide_name": 1,
+          "type": "$or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "hierarchy_seq.v:19.16-19.21"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "B": [ 4 ],
+            "Y": [ 6 ]
+          }
+        },
+        "$xor$hierarchy_seq.v:18$3": {
+          "hide_name": 1,
+          "type": "$xor",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "hierarchy_seq.v:18.16-18.21"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "B": [ 4 ],
+            "Y": [ 7 ]
+          }
+        },
+        "s1": {
+          "hide_name": 0,
+          "type": "S",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "hierarchy_seq.v:15.4-15.17"
+          },
+          "port_directions": {
+            "a": "input",
+            "b": "input",
+            "c": "output",
+            "clk": "input"
+          },
+          "connections": {
+            "a": [ 7 ],
+            "b": [ 4 ],
+            "c": [ 8 ],
+            "clk": [ 2 ]
+          }
+        },
+        "s2": {
+          "hide_name": 0,
+          "type": "S",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "hierarchy_seq.v:16.4-16.17"
+          },
+          "port_directions": {
+            "a": "input",
+            "b": "input",
+            "c": "output",
+            "clk": "input"
+          },
+          "connections": {
+            "a": [ 6 ],
+            "b": [ 8 ],
+            "c": [ 5 ],
+            "clk": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$or$hierarchy_seq.v:19$4_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:19.16-19.21"
+          }
+        },
+        "$xor$hierarchy_seq.v:18$3_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:18.16-18.21"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:10.12-10.13"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:10.14-10.15"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:13.9-13.10"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:10.8-10.11"
+          }
+        },
+        "d": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:11.7-11.8"
+          }
+        },
+        "e": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:12.7-12.8"
+          }
+        },
+        "f": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:12.10-12.11"
+          }
+        }
+      }
+    },
+    "S": {
+      "attributes": {
+        "src": "hierarchy_seq.v:1.1-6.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "a": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "c": {
+          "direction": "output",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$and$hierarchy_seq.v:5$2": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "hierarchy_seq.v:5.29-5.34"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "B": [ 4 ],
+            "Y": [ 6 ]
+          }
+        },
+        "$procdff$5": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "hierarchy_seq.v:5.2-5.35"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 6 ],
+            "Q": [ 5 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\c[0:0]": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:5.2-5.35"
+          }
+        },
+        "$and$hierarchy_seq.v:5$2_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:5.29-5.34"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:2.13-2.14"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:2.15-2.16"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:3.13-3.14"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:2.8-2.11"
+          }
+        }
+      }
+    },
+    "hierarchy_seq": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "hierarchy_seq.v:24.1-32.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "a": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "c": {
+          "direction": "output",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "m1": {
+          "hide_name": 0,
+          "type": "M",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "hierarchy_seq.v:29.4-29.17"
+          },
+          "port_directions": {
+            "a": "input",
+            "b": "input",
+            "c": "output",
+            "clk": "input"
+          },
+          "connections": {
+            "a": [ 3 ],
+            "b": [ 4 ],
+            "c": [ 6 ],
+            "clk": [ 2 ]
+          }
+        },
+        "m2": {
+          "hide_name": 0,
+          "type": "M",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "hierarchy_seq.v:30.4-30.17"
+          },
+          "port_directions": {
+            "a": "input",
+            "b": "input",
+            "c": "output",
+            "clk": "input"
+          },
+          "connections": {
+            "a": [ 3 ],
+            "b": [ 6 ],
+            "c": [ 5 ],
+            "clk": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "a": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:25.12-25.13"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:25.14-25.15"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:27.9-27.10"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:25.8-25.11"
+          }
+        },
+        "d": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "hierarchy_seq.v:26.7-26.8"
+          }
+        }
+      }
+    }
+  }
+}

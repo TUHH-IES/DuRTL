@@ -1,0 +1,61 @@
+$date
+	Tue Mar 19 14:31:03 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module analysis_test_tb $end
+$var wire 1 ! d $end
+$var wire 1 " c $end
+$var reg 1 # a $end
+$var reg 1 $ b $end
+$var reg 1 % clk $end
+$scope module dut $end
+$var wire 1 # a $end
+$var wire 1 $ b $end
+$var wire 1 " c $end
+$var wire 1 % clk $end
+$var wire 1 ! d $end
+$var reg 1 & e $end
+$var reg 1 ' f $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+x'
+x&
+0%
+0$
+0#
+x"
+x!
+$end
+#1
+1"
+1&
+1!
+1'
+1#
+1%
+#2
+0"
+0&
+1$
+0#
+0%
+#3
+1"
+1&
+1#
+1%
+#4
+0%
+#5
+1%

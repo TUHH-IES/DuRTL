@@ -1,0 +1,97 @@
+$date
+	Thu Oct 12 16:37:31 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module unary_gates_tb $end
+$var wire 32 ! reduce_xor_out_t [31:0] $end
+$var wire 1 " reduce_xor_out $end
+$var wire 32 # reduce_xnor_out_t [31:0] $end
+$var wire 1 $ reduce_xnor_out $end
+$var wire 32 % reduce_or_out_t [31:0] $end
+$var wire 1 & reduce_or_out $end
+$var wire 32 ' reduce_and_out_t [31:0] $end
+$var wire 1 ( reduce_and_out $end
+$var wire 32 ) pos_out_t [31:0] $end
+$var wire 1 * pos_out $end
+$var wire 32 + not_out_t [31:0] $end
+$var wire 1 , not_out $end
+$var wire 32 - neg_out_t [31:0] $end
+$var wire 1 . neg_out $end
+$var wire 32 / logic_not_out_t [31:0] $end
+$var wire 1 0 logic_not_out $end
+$var reg 1 1 a $end
+$var reg 32 2 a_t [31:0] $end
+$var integer 32 3 i [31:0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 3
+b0 2
+01
+10
+b0 /
+0.
+b0 -
+1,
+b0 +
+0*
+b0 )
+0(
+b0 '
+0&
+b0 %
+1$
+b0 #
+0"
+b0 !
+$end
+#5000
+b1 +
+b1 )
+b1 -
+b1 '
+b1 %
+b1 !
+b1 #
+b1 /
+b1 2
+b1 3
+#10000
+0,
+1*
+1.
+1(
+1&
+1"
+0$
+00
+11
+b0 +
+b0 )
+b0 -
+b0 '
+b0 %
+b0 !
+b0 #
+b0 /
+b0 2
+b10 3
+#15000
+b1 +
+b1 )
+b1 -
+b1 '
+b1 %
+b1 !
+b1 #
+b1 /
+b1 2
+b11 3
+#20000
+b100 3

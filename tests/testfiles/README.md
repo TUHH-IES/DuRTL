@@ -1,0 +1,1 @@
+All files contained in these directories have been created by us or retrieved from publicly accessible repositories. The terms of use of externally acquired designs are usually contained in the files.

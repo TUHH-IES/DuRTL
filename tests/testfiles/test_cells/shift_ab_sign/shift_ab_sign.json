@@ -1,0 +1,80 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang  -fPIC -Os)",
+  "modules": {
+    "m_0": {
+      "attributes": {
+        "src": "shift.v:1.1-29.10"
+      },
+      "parameter_default_values": {
+        "A_SIGNED": "00000000000000000000000000000001",
+        "A_WIDTH": "00000000000000000000000000000010",
+        "B_SIGNED": "00000000000000000000000000000001",
+        "B_WIDTH": "00000000000000000000000000000010",
+        "Y_WIDTH": "00000000000000000000000000000010"
+      },
+      "ports": {
+        "A": {
+          "direction": "input",
+          "bits": [ 2, 3 ]
+        },
+        "B": {
+          "direction": "input",
+          "bits": [ 4, 5 ]
+        },
+        "Y": {
+          "direction": "output",
+          "bits": [ 6, 7 ]
+        }
+      },
+      "cells": {
+        "$shr$shift.v:24$1": {
+          "hide_name": 1,
+          "type": "$shift",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "shift.v:24.28-24.34"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3 ],
+            "B": [ 4, 5 ],
+            "Y": [ 6, 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "A": {
+          "hide_name": 0,
+          "bits": [ 2, 3 ],
+          "attributes": {
+            "src": "shift.v:9.25-9.26"
+          }
+        },
+        "B": {
+          "hide_name": 0,
+          "bits": [ 4, 5 ],
+          "attributes": {
+            "src": "shift.v:10.25-10.26"
+          }
+        },
+        "Y": {
+          "hide_name": 0,
+          "bits": [ 6, 7 ],
+          "attributes": {
+            "src": "shift.v:11.26-11.27"
+          }
+        }
+      }
+    }
+  }
+}

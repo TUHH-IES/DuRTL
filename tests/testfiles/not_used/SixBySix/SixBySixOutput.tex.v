@@ -1,0 +1,1 @@
+egin{table}[H]    egin{center}    egin{tabular}{l|c|r}        \hline        \multicolumn{2}{c}{Sample Circuit}\        \hline        Functional Units Included& AND OR ADDER MUX\        Number of Inputs & 6\        Number of Bits Per Input & 6\        Number of Levels of Hierarchy & 3\        \hline    \end{tabular}    \end{center}\label{tab:multicol}\end{table}

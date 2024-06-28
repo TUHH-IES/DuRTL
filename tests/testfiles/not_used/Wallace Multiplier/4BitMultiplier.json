@@ -1,0 +1,1055 @@
+{
+  "creator": "Yosys 0.9 (git sha1 1979e0b)",
+  "modules": {
+    "full_adder": {
+      "attributes": {
+        "src": "4BitMultiplier:23"
+      },
+      "ports": {
+        "Data_in_A": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "Data_in_B": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "Data_in_C": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "Data_out_Sum": {
+          "direction": "output",
+          "bits": [ 5 ]
+        },
+        "Data_out_Carry": {
+          "direction": "output",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$or$4BitMultiplier:65$3": {
+          "hide_name": 1,
+          "type": "$or",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 1,
+            "B_SIGNED": 0,
+            "B_WIDTH": 1,
+            "Y_WIDTH": 1
+          },
+          "attributes": {
+            "src": "4BitMultiplier:65"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 7 ],
+            "B": [ 8 ],
+            "Y": [ 6 ]
+          }
+        },
+        "ha1": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:47"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 2 ],
+            "Data_in_B": [ 3 ],
+            "Data_out_Carry": [ 7 ],
+            "Data_out_Sum": [ 9 ]
+          }
+        },
+        "ha2": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:55"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 4 ],
+            "Data_in_B": [ 9 ],
+            "Data_out_Carry": [ 8 ],
+            "Data_out_Sum": [ 5 ]
+          }
+        }
+      },
+      "netnames": {
+        "$or$4BitMultiplier:65$3_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "4BitMultiplier:65"
+          }
+        },
+        "Data_in_A": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "4BitMultiplier:32"
+          }
+        },
+        "Data_in_B": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "4BitMultiplier:33"
+          }
+        },
+        "Data_in_C": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "4BitMultiplier:34"
+          }
+        },
+        "Data_out_Carry": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "4BitMultiplier:37"
+          }
+        },
+        "Data_out_Sum": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "4BitMultiplier:36"
+          }
+        },
+        "ha1_carry": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "4BitMultiplier:41"
+          }
+        },
+        "ha1_sum": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "4BitMultiplier:39"
+          }
+        },
+        "ha2_carry": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "4BitMultiplier:42"
+          }
+        },
+        "ha2_sum": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "4BitMultiplier:40"
+          }
+        }
+      }
+    },
+    "half_adder": {
+      "attributes": {
+        "src": "4BitMultiplier:3"
+      },
+      "ports": {
+        "Data_in_A": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "Data_in_B": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "Data_out_Sum": {
+          "direction": "output",
+          "bits": [ 4 ]
+        },
+        "Data_out_Carry": {
+          "direction": "output",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$and$4BitMultiplier:19$2": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 1,
+            "B_SIGNED": 0,
+            "B_WIDTH": 1,
+            "Y_WIDTH": 1
+          },
+          "attributes": {
+            "src": "4BitMultiplier:19"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 3 ],
+            "Y": [ 5 ]
+          }
+        },
+        "$xor$4BitMultiplier:18$1": {
+          "hide_name": 1,
+          "type": "$xor",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 1,
+            "B_SIGNED": 0,
+            "B_WIDTH": 1,
+            "Y_WIDTH": 1
+          },
+          "attributes": {
+            "src": "4BitMultiplier:18"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 3 ],
+            "Y": [ 4 ]
+          }
+        }
+      },
+      "netnames": {
+        "$and$4BitMultiplier:19$2_Y": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "4BitMultiplier:19"
+          }
+        },
+        "$xor$4BitMultiplier:18$1_Y": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "4BitMultiplier:18"
+          }
+        },
+        "Data_in_A": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "4BitMultiplier:11"
+          }
+        },
+        "Data_in_B": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "4BitMultiplier:12"
+          }
+        },
+        "Data_out_Carry": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "4BitMultiplier:15"
+          }
+        },
+        "Data_out_Sum": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "4BitMultiplier:14"
+          }
+        }
+      }
+    },
+    "wallace": {
+      "attributes": {
+        "src": "4BitMultiplier:70"
+      },
+      "ports": {
+        "A": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5 ]
+        },
+        "B": {
+          "direction": "input",
+          "bits": [ 6, 7, 8, 9 ]
+        },
+        "prod": {
+          "direction": "output",
+          "bits": [ 10, 11, 12, 13, 14, 15, 16, 17 ]
+        }
+      },
+      "cells": {
+        "$and$4BitMultiplier:81$4": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 4,
+            "B_SIGNED": 0,
+            "B_WIDTH": 7,
+            "Y_WIDTH": 7
+          },
+          "attributes": {
+            "src": "4BitMultiplier:81"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5 ],
+            "B": [ 6, 6, 6, 6, "0", "0", "0" ],
+            "Y": [ 10, 18, 19, 20, 21, 22, 23 ]
+          }
+        },
+        "$and$4BitMultiplier:82$5": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 4,
+            "B_SIGNED": 0,
+            "B_WIDTH": 7,
+            "Y_WIDTH": 7
+          },
+          "attributes": {
+            "src": "4BitMultiplier:82"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5 ],
+            "B": [ 7, 7, 7, 7, "0", "0", "0" ],
+            "Y": [ 24, 25, 26, 27, 28, 29, 30 ]
+          }
+        },
+        "$and$4BitMultiplier:83$6": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 4,
+            "B_SIGNED": 0,
+            "B_WIDTH": 7,
+            "Y_WIDTH": 7
+          },
+          "attributes": {
+            "src": "4BitMultiplier:83"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5 ],
+            "B": [ 8, 8, 8, 8, "0", "0", "0" ],
+            "Y": [ 31, 32, 33, 34, 35, 36, 37 ]
+          }
+        },
+        "$and$4BitMultiplier:84$7": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 4,
+            "B_SIGNED": 0,
+            "B_WIDTH": 7,
+            "Y_WIDTH": 7
+          },
+          "attributes": {
+            "src": "4BitMultiplier:84"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5 ],
+            "B": [ 9, 9, 9, 9, "0", "0", "0" ],
+            "Y": [ 38, 39, 40, 41, 42, 43, 44 ]
+          }
+        },
+        "fa12": {
+          "hide_name": 0,
+          "type": "full_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:98"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_in_C": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 19 ],
+            "Data_in_B": [ 25 ],
+            "Data_in_C": [ 31 ],
+            "Data_out_Carry": [ 45 ],
+            "Data_out_Sum": [ 46 ]
+          }
+        },
+        "fa13": {
+          "hide_name": 0,
+          "type": "full_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:99"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_in_C": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 20 ],
+            "Data_in_B": [ 26 ],
+            "Data_in_C": [ 32 ],
+            "Data_out_Carry": [ 47 ],
+            "Data_out_Sum": [ 48 ]
+          }
+        },
+        "fa14": {
+          "hide_name": 0,
+          "type": "full_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:100"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_in_C": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 27 ],
+            "Data_in_B": [ 33 ],
+            "Data_in_C": [ 39 ],
+            "Data_out_Carry": [ 49 ],
+            "Data_out_Sum": [ 50 ]
+          }
+        },
+        "fa23": {
+          "hide_name": 0,
+          "type": "full_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:105"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_in_C": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 38 ],
+            "Data_in_B": [ 45 ],
+            "Data_in_C": [ 48 ],
+            "Data_out_Carry": [ 51 ],
+            "Data_out_Sum": [ 52 ]
+          }
+        },
+        "fa24": {
+          "hide_name": 0,
+          "type": "full_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:106"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_in_C": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 47 ],
+            "Data_in_B": [ 53 ],
+            "Data_in_C": [ 50 ],
+            "Data_out_Carry": [ 54 ],
+            "Data_out_Sum": [ 55 ]
+          }
+        },
+        "fa25": {
+          "hide_name": 0,
+          "type": "full_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:107"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_in_C": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 49 ],
+            "Data_in_B": [ 54 ],
+            "Data_in_C": [ 56 ],
+            "Data_out_Carry": [ 57 ],
+            "Data_out_Sum": [ 58 ]
+          }
+        },
+        "fa26": {
+          "hide_name": 0,
+          "type": "full_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:108"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_in_C": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 59 ],
+            "Data_in_B": [ 57 ],
+            "Data_in_C": [ 41 ],
+            "Data_out_Carry": [ 60 ],
+            "Data_out_Sum": [ 61 ]
+          }
+        },
+        "ha11": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:97"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 18 ],
+            "Data_in_B": [ 24 ],
+            "Data_out_Carry": [ 62 ],
+            "Data_out_Sum": [ 11 ]
+          }
+        },
+        "ha15": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:101"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 34 ],
+            "Data_in_B": [ 40 ],
+            "Data_out_Carry": [ 59 ],
+            "Data_out_Sum": [ 56 ]
+          }
+        },
+        "ha22": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:104"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 62 ],
+            "Data_in_B": [ 46 ],
+            "Data_out_Carry": [ 63 ],
+            "Data_out_Sum": [ 12 ]
+          }
+        },
+        "ha32": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:111"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 63 ],
+            "Data_in_B": [ 52 ],
+            "Data_out_Carry": [ 53 ],
+            "Data_out_Sum": [ 13 ]
+          }
+        },
+        "ha34": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:112"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 51 ],
+            "Data_in_B": [ 55 ],
+            "Data_out_Carry": [ 64 ],
+            "Data_out_Sum": [ 14 ]
+          }
+        },
+        "ha35": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:113"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 64 ],
+            "Data_in_B": [ 58 ],
+            "Data_out_Carry": [ 65 ],
+            "Data_out_Sum": [ 15 ]
+          }
+        },
+        "ha36": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:114"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 65 ],
+            "Data_in_B": [ 61 ],
+            "Data_out_Carry": [ 66 ],
+            "Data_out_Sum": [ 16 ]
+          }
+        },
+        "ha37": {
+          "hide_name": 0,
+          "type": "half_adder",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": 1,
+            "src": "4BitMultiplier:115"
+          },
+          "port_directions": {
+            "Data_in_A": "input",
+            "Data_in_B": "input",
+            "Data_out_Carry": "output",
+            "Data_out_Sum": "output"
+          },
+          "connections": {
+            "Data_in_A": [ 66 ],
+            "Data_in_B": [ 60 ],
+            "Data_out_Carry": [ 67 ],
+            "Data_out_Sum": [ 17 ]
+          }
+        }
+      },
+      "netnames": {
+        "$and$4BitMultiplier:81$4_Y": {
+          "hide_name": 1,
+          "bits": [ 10, 18, 19, 20, 21, 22, 23 ],
+          "attributes": {
+            "src": "4BitMultiplier:81"
+          }
+        },
+        "$and$4BitMultiplier:82$5_Y": {
+          "hide_name": 1,
+          "bits": [ 24, 25, 26, 27, 28, 29, 30 ],
+          "attributes": {
+            "src": "4BitMultiplier:82"
+          }
+        },
+        "$and$4BitMultiplier:83$6_Y": {
+          "hide_name": 1,
+          "bits": [ 31, 32, 33, 34, 35, 36, 37 ],
+          "attributes": {
+            "src": "4BitMultiplier:83"
+          }
+        },
+        "$and$4BitMultiplier:84$7_Y": {
+          "hide_name": 1,
+          "bits": [ 38, 39, 40, 41, 42, 43, 44 ],
+          "attributes": {
+            "src": "4BitMultiplier:84"
+          }
+        },
+        "A": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5 ],
+          "attributes": {
+            "src": "4BitMultiplier:73"
+          }
+        },
+        "B": {
+          "hide_name": 0,
+          "bits": [ 6, 7, 8, 9 ],
+          "attributes": {
+            "src": "4BitMultiplier:73"
+          }
+        },
+        "c11": {
+          "hide_name": 0,
+          "bits": [ 62 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c12": {
+          "hide_name": 0,
+          "bits": [ 45 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c13": {
+          "hide_name": 0,
+          "bits": [ 47 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c14": {
+          "hide_name": 0,
+          "bits": [ 49 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c15": {
+          "hide_name": 0,
+          "bits": [ 59 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c22": {
+          "hide_name": 0,
+          "bits": [ 63 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c23": {
+          "hide_name": 0,
+          "bits": [ 51 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c24": {
+          "hide_name": 0,
+          "bits": [ 54 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c25": {
+          "hide_name": 0,
+          "bits": [ 57 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c26": {
+          "hide_name": 0,
+          "bits": [ 60 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c32": {
+          "hide_name": 0,
+          "bits": [ 53 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c33": {
+          "hide_name": 0,
+          "bits": [ 68 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c34": {
+          "hide_name": 0,
+          "bits": [ 64 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c35": {
+          "hide_name": 0,
+          "bits": [ 65 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c36": {
+          "hide_name": 0,
+          "bits": [ 66 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "c37": {
+          "hide_name": 0,
+          "bits": [ 67 ],
+          "attributes": {
+            "src": "4BitMultiplier:77"
+          }
+        },
+        "p0": {
+          "hide_name": 0,
+          "bits": [ 10, 18, 19, 20, 21, 22, 23 ],
+          "attributes": {
+            "src": "4BitMultiplier:78"
+          }
+        },
+        "p1": {
+          "hide_name": 0,
+          "bits": [ 24, 25, 26, 27, 28, 29, 30 ],
+          "attributes": {
+            "src": "4BitMultiplier:78"
+          }
+        },
+        "p2": {
+          "hide_name": 0,
+          "bits": [ 31, 32, 33, 34, 35, 36, 37 ],
+          "attributes": {
+            "src": "4BitMultiplier:78"
+          }
+        },
+        "p3": {
+          "hide_name": 0,
+          "bits": [ 38, 39, 40, 41, 42, 43, 44 ],
+          "attributes": {
+            "src": "4BitMultiplier:78"
+          }
+        },
+        "prod": {
+          "hide_name": 0,
+          "bits": [ 10, 11, 12, 13, 14, 15, 16, 17 ],
+          "attributes": {
+            "src": "4BitMultiplier:74"
+          }
+        },
+        "s11": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s12": {
+          "hide_name": 0,
+          "bits": [ 46 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s13": {
+          "hide_name": 0,
+          "bits": [ 48 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s14": {
+          "hide_name": 0,
+          "bits": [ 50 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s15": {
+          "hide_name": 0,
+          "bits": [ 56 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s22": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s23": {
+          "hide_name": 0,
+          "bits": [ 52 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s24": {
+          "hide_name": 0,
+          "bits": [ 55 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s25": {
+          "hide_name": 0,
+          "bits": [ 58 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s26": {
+          "hide_name": 0,
+          "bits": [ 61 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s32": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s33": {
+          "hide_name": 0,
+          "bits": [ 69 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s34": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s35": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s36": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        },
+        "s37": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "4BitMultiplier:76"
+          }
+        }
+      }
+    }
+  }
+}

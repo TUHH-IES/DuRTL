@@ -1,0 +1,118 @@
+{
+  "creator": "Yosys 0.9 (git sha1 1979e0b)",
+  "modules": {
+    "split": {
+      "attributes": {
+        "src": "split.v:1"
+      },
+      "ports": {
+        "a": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5, 6, 7 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 8, 9, 10, 11, 12, 13 ]
+        },
+        "out": {
+          "direction": "output",
+          "bits": [ 14, 15, 16, 17, 18, 19 ]
+        }
+      },
+      "cells": {
+        "$and$split.v:12$1": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 4,
+            "B_SIGNED": 0,
+            "B_WIDTH": 4,
+            "Y_WIDTH": 4
+          },
+          "attributes": {
+            "src": "split.v:12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5 ],
+            "B": [ 9, 11, 12, 13 ],
+            "Y": [ 16, 17, 18, 19 ]
+          }
+        },
+        "$and$split.v:13$2": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": 0,
+            "A_WIDTH": 2,
+            "B_SIGNED": 0,
+            "B_WIDTH": 2,
+            "Y_WIDTH": 2
+          },
+          "attributes": {
+            "src": "split.v:13"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, 5 ],
+            "B": [ 10, 8 ],
+            "Y": [ 14, 15 ]
+          }
+        }
+      },
+      "netnames": {
+        "$and$split.v:12$1_Y": {
+          "hide_name": 1,
+          "bits": [ 16, 17, 18, 19 ],
+          "attributes": {
+            "src": "split.v:12"
+          }
+        },
+        "$and$split.v:13$2_Y": {
+          "hide_name": 1,
+          "bits": [ 14, 15 ],
+          "attributes": {
+            "src": "split.v:13"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7 ],
+          "attributes": {
+            "src": "split.v:3"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 8, 9, 10, 11, 12, 13 ],
+          "attributes": {
+            "src": "split.v:4"
+          }
+        },
+        "out": {
+          "hide_name": 0,
+          "bits": [ 14, 15, 16, 17, 18, 19 ],
+          "attributes": {
+            "src": "split.v:5"
+          }
+        },
+        "tmp": {
+          "hide_name": 0,
+          "bits": [ 16, 17, 18, 19 ],
+          "attributes": {
+            "src": "split.v:8"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+$date
+	Fri Mar 15 10:46:45 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module simple_inout_tb $end
+$var wire 18 ! MEM_DATA_bidir [17:0] $end
+$var reg 1 " MEM_OE $end
+$var reg 1 # MEM_RW $end
+$var reg 8 $ address [7:0] $end
+$var reg 1 % clk $end
+$scope module dut $end
+$var wire 1 " MEM_OE $end
+$var wire 1 # MEM_RW $end
+$var wire 1 & Read $end
+$var wire 1 ' Write $end
+$var wire 8 ( address [7:0] $end
+$var wire 1 % clk $end
+$var wire 18 ) MEM_DATA_bidir [17:0] $end
+$var parameter 32 * MEM_SIZE $end
+$var reg 18 + data_out [17:0] $end
+$var integer 32 , k [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100 *
+$end
+#0
+$dumpvars
+b11 ,
+bx +
+bz )
+b0 (
+0'
+0&
+0%
+b0 $
+0#
+0"
+bz !
+$end
+#2
+b0 +
+1'
+1"
+1#
+1%
+#4
+0%
+#6
+b0 !
+b0 )
+0'
+1&
+0#
+1%
+#8

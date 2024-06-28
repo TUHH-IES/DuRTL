@@ -1,0 +1,172 @@
+$date
+	Tue Jan 16 14:38:52 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module mux_tb $end
+$var wire 32 ! out_t [31:0] $end
+$var wire 1 " out $end
+$var reg 1 # a $end
+$var reg 32 $ a_t [31:0] $end
+$var reg 1 % b $end
+$var reg 32 & b_t [31:0] $end
+$var reg 1 ' s $end
+$var reg 32 ( s_t [31:0] $end
+$var integer 32 ) i [31:0] $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 )
+b100 (
+0'
+b10 &
+0%
+b1 $
+x#
+0"
+b10 !
+$end
+#2
+b1 !
+x"
+1'
+#4
+b10 !
+0"
+0'
+#6
+1"
+1%
+#8
+0"
+b0 (
+b1 )
+0%
+#10
+b1 !
+x"
+1'
+#12
+b10 !
+0"
+0'
+#14
+1"
+1%
+#16
+b0 !
+0"
+b0 &
+b100 (
+b10 )
+0%
+#18
+b1 !
+x"
+1'
+#20
+b0 !
+0"
+0'
+#22
+1"
+1%
+#24
+b10 !
+0"
+b0 $
+b10 &
+b0 (
+b11 )
+0%
+#26
+b0 !
+x"
+1'
+#28
+b10 !
+0"
+0'
+#30
+1"
+1%
+#32
+0"
+b1 $
+b100 )
+0%
+#34
+b1 !
+x"
+1'
+#36
+b10 !
+0"
+0'
+#38
+1"
+1%
+#40
+b0 !
+0"
+b0 $
+b0 &
+b100 (
+b101 )
+0%
+#42
+x"
+1'
+#44
+0"
+0'
+#46
+1"
+1%
+#48
+b10 !
+0"
+b10 &
+b110 )
+0%
+#50
+b0 !
+x"
+1'
+#52
+b10 !
+0"
+0'
+#54
+1"
+1%
+#56
+b0 !
+0"
+b1 $
+b0 &
+b111 )
+0%
+#58
+b1 !
+x"
+1'
+#60
+b0 !
+0"
+0'
+#62
+1"
+1%
+#64
+0"
+b1000 )
+0%

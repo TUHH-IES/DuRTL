@@ -1,0 +1,48 @@
+$date
+	Mon May  8 17:34:52 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module reduceAndGate_tb $end
+$var wire 1 ! out $end
+$var reg 3 " a [2:0] $end
+$scope module a1 $end
+$var wire 3 # a [2:0] $end
+$var wire 1 ! out $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 #
+b0 "
+0!
+$end
+#2
+1!
+b111 "
+b111 #
+#4
+0!
+b10 "
+b10 #
+#6
+1!
+b111 "
+b111 #
+#8
+0!
+b0 "
+b0 #
+#10
+1!
+b111 "
+b111 #
+#12
+0!
+b100 "
+b100 #

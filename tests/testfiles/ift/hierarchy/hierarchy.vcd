@@ -1,0 +1,97 @@
+$date
+	Mon May  8 17:22:27 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module hierarchy_tb $end
+$var wire 1 ! c $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$scope module t1 $end
+$var wire 1 " a $end
+$var wire 1 # b $end
+$var wire 1 $ d $end
+$var wire 1 ! c $end
+$scope module m1 $end
+$var wire 1 " a $end
+$var wire 1 # b $end
+$var wire 1 % e $end
+$var wire 1 & f $end
+$var wire 1 ' d $end
+$var wire 1 $ c $end
+$scope module s1 $end
+$var wire 1 % a $end
+$var wire 1 # b $end
+$var wire 1 ' c $end
+$upscope $end
+$scope module s2 $end
+$var wire 1 & a $end
+$var wire 1 ' b $end
+$var wire 1 $ c $end
+$upscope $end
+$upscope $end
+$scope module m2 $end
+$var wire 1 " a $end
+$var wire 1 $ b $end
+$var wire 1 ( e $end
+$var wire 1 ) f $end
+$var wire 1 * d $end
+$var wire 1 ! c $end
+$scope module s1 $end
+$var wire 1 ( a $end
+$var wire 1 $ b $end
+$var wire 1 * c $end
+$upscope $end
+$scope module s2 $end
+$var wire 1 ) a $end
+$var wire 1 * b $end
+$var wire 1 ! c $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0*
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+0!
+$end
+#8
+1!
+1*
+1(
+1)
+1$
+1'
+1%
+1&
+1#
+#16
+0!
+0$
+0*
+0'
+1(
+0#
+1"
+#24
+0!
+1(
+0*
+0$
+0%
+0'
+1#
+#32

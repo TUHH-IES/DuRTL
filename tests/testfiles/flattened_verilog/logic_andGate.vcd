@@ -1,0 +1,49 @@
+$date
+	Mon May  8 17:34:52 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module logic_andGate_tb $end
+$var wire 1 ! out $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$var reg 1 $ c $end
+$scope module a1 $end
+$var wire 1 " a $end
+$var wire 1 # b $end
+$var wire 1 $ c $end
+$var wire 1 ! out $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0$
+0#
+0"
+0!
+$end
+#2
+1"
+#4
+x"
+#6
+x!
+x$
+x#
+#8
+0!
+1#
+0"
+#10
+1!
+1$
+1"
+#12
+0!
+0#
+0"

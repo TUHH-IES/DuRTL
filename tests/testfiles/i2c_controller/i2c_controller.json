@@ -1,0 +1,3779 @@
+{
+  "creator": "Yosys 0.36 (git sha1 8f07a0d8404, clang 16.0.6 -fPIC -Os)",
+  "modules": {
+    "i2c_controller": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "i2c_controller/i2c_controller.v:4.1-172.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "rst": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "addr": {
+          "direction": "input",
+          "bits": [ 4, 5, 6, 7, 8, 9, 10 ]
+        },
+        "data_in": {
+          "direction": "input",
+          "bits": [ 11, 12, 13, 14, 15, 16, 17, 18 ]
+        },
+        "enable": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "rw": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "data_out": {
+          "direction": "output",
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28 ]
+        },
+        "ready": {
+          "direction": "output",
+          "bits": [ 29 ]
+        },
+        "i2c_sda": {
+          "direction": "inout",
+          "bits": [ 30 ]
+        },
+        "i2c_scl": {
+          "direction": "inout",
+          "bits": [ 31 ]
+        }
+      },
+      "cells": {
+        "$add$i2c_controller/i2c_controller.v:50$17": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:50.20-50.32"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 32, 33, 34, 35, 36, 37, 38, 39 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71 ]
+          }
+        },
+        "$and$i2c_controller/i2c_controller.v:0$57": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 21, 22, 23, 24, 25, 26, 27, 28 ],
+            "B": [ 72, 73, 74, 75, 76, 77, 78, 79 ],
+            "Y": [ 80, 81, 82, 83, 84, 85, 86, 87 ]
+          }
+        },
+        "$auto$proc_dff.cc:307:proc_dff$193": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 88, 89, 90, 91, 92, 93, 94, 95 ],
+            "B": [ 21, 22, 23, 24, 25, 26, 27, 28 ],
+            "S": [ 3 ],
+            "Y": [ 96, 97, 98, 99, 100, 101, 102, 103 ]
+          }
+        },
+        "$auto$proc_dff.cc:307:proc_dff$197": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 104, 105, 106, 107, 108, 109, 110, 111 ],
+            "B": [ 112, 113, 114, 115, 116, 117, 118, 119 ],
+            "S": [ 3 ],
+            "Y": [ 120, 121, 122, 123, 124, 125, 126, 127 ]
+          }
+        },
+        "$auto$proc_dff.cc:307:proc_dff$200": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 128, 129, 130, 131, 132, 133, 134, 135 ],
+            "B": [ 136, 137, 138, 139, 140, 141, 142, 143 ],
+            "S": [ 3 ],
+            "Y": [ 144, 145, 146, 147, 148, 149, 150, 151 ]
+          }
+        },
+        "$auto$proc_dff.cc:307:proc_dff$203": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 152, 153, 154, 155, 156, 157, 158, 159 ],
+            "B": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "S": [ 3 ],
+            "Y": [ 168, 169, 170, 171, 172, 173, 174, 175 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:103$44": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:103.9-103.21"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "Y": [ 176 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:109$46": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:109.11-109.23"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 30 ],
+            "Y": [ 177 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:115$59": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:115.10-115.22"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "Y": [ 178 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:41$4": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:41.19-41.27"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "Y": [ 179 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:41$5": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:41.33-41.46"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "Y": [ 188 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:42$8": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:42.20-42.39"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 189 ],
+            "Y": [ 190 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:46$15": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:46.7-46.36"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 32, 33, 34, 35, 36, 37, 38, 39 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 191 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:57$20": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.9-57.22"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "Y": [ 192 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:57$21": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.28-57.42"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 193 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:57$23": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.48-57.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "0", "1", "0", "0", "0", "0" ],
+            "Y": [ 194 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:89$40": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:89.10-89.22"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "Y": [ 195 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:95$42": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:95.10-95.22"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 30 ],
+            "Y": [ 196 ]
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:97$43": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:97.10-97.28"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 112 ],
+            "Y": [ 197 ]
+          }
+        },
+        "$extend$i2c_controller/i2c_controller.v:42$9": {
+          "hide_name": 1,
+          "type": "$pos",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:42.19-42.55"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 198 ],
+            "Y": [ 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230 ]
+          }
+        },
+        "$extend$i2c_controller/i2c_controller.v:43$12": {
+          "hide_name": 1,
+          "type": "$pos",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:43.19-43.54"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 231 ],
+            "Y": [ 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263 ]
+          }
+        },
+        "$logic_and$i2c_controller/i2c_controller.v:109$48": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:109.10-109.41"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 177 ],
+            "B": [ 19 ],
+            "Y": [ 264 ]
+          }
+        },
+        "$logic_and$i2c_controller/i2c_controller.v:41$6": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:41.18-41.47"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 179 ],
+            "B": [ 188 ],
+            "Y": [ 265 ]
+          }
+        },
+        "$logic_or$i2c_controller/i2c_controller.v:57$22": {
+          "hide_name": 1,
+          "type": "$logic_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.8-57.43"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 192 ],
+            "B": [ 193 ],
+            "Y": [ 266 ]
+          }
+        },
+        "$logic_or$i2c_controller/i2c_controller.v:57$24": {
+          "hide_name": 1,
+          "type": "$logic_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.8-57.62"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 266 ],
+            "B": [ 194 ],
+            "Y": [ 267 ]
+          }
+        },
+        "$neg$i2c_controller/i2c_controller.v:0$50": {
+          "hide_name": 1,
+          "type": "$neg",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299 ],
+            "Y": [ 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331 ]
+          }
+        },
+        "$neg$i2c_controller/i2c_controller.v:0$54": {
+          "hide_name": 1,
+          "type": "$neg",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363 ],
+            "Y": [ 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395 ]
+          }
+        },
+        "$not$i2c_controller/i2c_controller.v:0$56": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 396, 397, 398, 399, 400, 401, 402, 403 ],
+            "Y": [ 72, 73, 74, 75, 76, 77, 78, 79 ]
+          }
+        },
+        "$not$i2c_controller/i2c_controller.v:47$16": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:47.15-47.23"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 198 ],
+            "Y": [ 404 ]
+          }
+        },
+        "$or$i2c_controller/i2c_controller.v:0$58": {
+          "hide_name": 1,
+          "type": "$or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 80, 81, 82, 83, 84, 85, 86, 87 ],
+            "B": [ 405, 406, 407, 408, 409, 410, 411, 412 ],
+            "Y": [ 413, 414, 415, 416, 417, 418, 419, 420 ]
+          }
+        },
+        "$procdff$191": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "1",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:130.2-170.5"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 198 ],
+            "D": [ 421 ],
+            "Q": [ 422 ]
+          }
+        },
+        "$procdff$192": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "1",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:130.2-170.5"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 198 ],
+            "D": [ 423 ],
+            "Q": [ 231 ]
+          }
+        },
+        "$procdff$195": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 198 ],
+            "D": [ 96, 97, 98, 99, 100, 101, 102, 103 ],
+            "Q": [ 21, 22, 23, 24, 25, 26, 27, 28 ]
+          }
+        },
+        "$procdff$196": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "00000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 198 ],
+            "D": [ 424, 425, 426, 427, 428, 429, 430, 431 ],
+            "Q": [ 180, 181, 182, 183, 184, 185, 186, 187 ]
+          }
+        },
+        "$procdff$199": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 198 ],
+            "D": [ 120, 121, 122, 123, 124, 125, 126, 127 ],
+            "Q": [ 112, 113, 114, 115, 116, 117, 118, 119 ]
+          }
+        },
+        "$procdff$202": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 198 ],
+            "D": [ 144, 145, 146, 147, 148, 149, 150, 151 ],
+            "Q": [ 136, 137, 138, 139, 140, 141, 142, 143 ]
+          }
+        },
+        "$procdff$205": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 198 ],
+            "D": [ 168, 169, 170, 171, 172, 173, 174, 175 ],
+            "Q": [ 160, 161, 162, 163, 164, 165, 166, 167 ]
+          }
+        },
+        "$procdff$206": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "xxxxxxxx",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 198 ],
+            "D": [ "x", "x", "x", "x", "x", "x", "x", "x" ],
+            "Q": [ 432, 433, 434, 435, 436, 437, 438, 439 ]
+          }
+        },
+        "$procdff$207": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "xxxxxxxx",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 198 ],
+            "D": [ "x", "x", "x", "x", "x", "x", "x", "x" ],
+            "Q": [ 440, 441, 442, 443, 444, 445, 446, 447 ]
+          }
+        },
+        "$procdff$208": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "xxxxxxxx",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 198 ],
+            "D": [ "x", "x", "x", "x", "x", "x", "x", "x" ],
+            "Q": [ 448, 449, 450, 451, 452, 453, 454, 455 ]
+          }
+        },
+        "$procdff$209": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "xxxxxxxx",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 198 ],
+            "D": [ "x", "x", "x", "x", "x", "x", "x", "x" ],
+            "Q": [ 456, 457, 458, 459, 460, 461, 462, 463 ]
+          }
+        },
+        "$procdff$210": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:53.2-64.5"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 198 ],
+            "D": [ 464 ],
+            "Q": [ 189 ]
+          }
+        },
+        "$procdff$211": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:45.2-51.5"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 465, 466, 467, 468, 469, 470, 471, 472 ],
+            "Q": [ 32, 33, 34, 35, 36, 37, 38, 39 ]
+          }
+        },
+        "$procdff$212": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:45.2-51.5"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 473 ],
+            "Q": [ 198 ]
+          }
+        },
+        "$procmux$100_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 474 ]
+          }
+        },
+        "$procmux$105": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:115.10-115.22|i2c_controller/i2c_controller.v:115.6-116.34"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 475, 476, 477, 478, 479, 480, 481, 482 ],
+            "B": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "S": [ 178 ],
+            "Y": [ 483, 484, 485, 486, 487, 488, 489, 490 ]
+          }
+        },
+        "$procmux$107": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000000101",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "B": [ 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, "1", "1", "1", "0", "0", "0", "0", "0" ],
+            "S": [ 515, 516, 517, 518, 519 ],
+            "Y": [ 152, 153, 154, 155, 156, 157, 158, 159 ]
+          }
+        },
+        "$procmux$108_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 515 ]
+          }
+        },
+        "$procmux$110": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:103.9-103.21|i2c_controller/i2c_controller.v:103.6-105.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 520, 521, 522, 523, 524, 525, 526, 527 ],
+            "B": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "S": [ 176 ],
+            "Y": [ 491, 492, 493, 494, 495, 496, 497, 498 ]
+          }
+        },
+        "$procmux$112_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 516 ]
+          }
+        },
+        "$procmux$114": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:95.10-95.22|i2c_controller/i2c_controller.v:95.6-99.29"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1", "1", "1", "0", "0", "0", "0", "0" ],
+            "B": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "S": [ 30 ],
+            "Y": [ 499, 500, 501, 502, 503, 504, 505, 506 ]
+          }
+        },
+        "$procmux$116_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "1", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 517 ]
+          }
+        },
+        "$procmux$118": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:89.10-89.22|i2c_controller/i2c_controller.v:89.6-91.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 528, 529, 530, 531, 532, 533, 534, 535 ],
+            "B": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "S": [ 195 ],
+            "Y": [ 507, 508, 509, 510, 511, 512, 513, 514 ]
+          }
+        },
+        "$procmux$120_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 518 ]
+          }
+        },
+        "$procmux$121_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 519 ]
+          }
+        },
+        "$procmux$132": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:75.10-75.16|i2c_controller/i2c_controller.v:75.6-80.25"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 136, 137, 138, 139, 140, 141, 142, 143 ],
+            "B": [ 11, 12, 13, 14, 15, 16, 17, 18 ],
+            "S": [ 19 ],
+            "Y": [ 536, 537, 538, 539, 540, 541, 542, 543 ]
+          }
+        },
+        "$procmux$134": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 136, 137, 138, 139, 140, 141, 142, 143 ],
+            "B": [ 536, 537, 538, 539, 540, 541, 542, 543 ],
+            "S": [ 544 ],
+            "Y": [ 128, 129, 130, 131, 132, 133, 134, 135 ]
+          }
+        },
+        "$procmux$135_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "Y": [ 544 ]
+          }
+        },
+        "$procmux$146": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:75.10-75.16|i2c_controller/i2c_controller.v:75.6-80.25"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 112, 113, 114, 115, 116, 117, 118, 119 ],
+            "B": [ 20, 4, 5, 6, 7, 8, 9, 10 ],
+            "S": [ 19 ],
+            "Y": [ 545, 546, 547, 548, 549, 550, 551, 552 ]
+          }
+        },
+        "$procmux$148": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 112, 113, 114, 115, 116, 117, 118, 119 ],
+            "B": [ 545, 546, 547, 548, 549, 550, 551, 552 ],
+            "S": [ 553 ],
+            "Y": [ 104, 105, 106, 107, 108, 109, 110, 111 ]
+          }
+        },
+        "$procmux$149_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "Y": [ 553 ]
+          }
+        },
+        "$procmux$151": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000001001",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, "0", "1", "0", "0", "0", "0", "0", "0", 594, 595, 596, 597, 598, 599, 600, 601 ],
+            "S": [ 602, 603, 604, 605, 606, 607, 608, 609, 610 ],
+            "Y": [ 424, 425, 426, 427, 428, 429, 430, 431 ]
+          }
+        },
+        "$procmux$152_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "0", "1", "0", "0", "0", "0" ],
+            "Y": [ 602 ]
+          }
+        },
+        "$procmux$153_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 603 ]
+          }
+        },
+        "$procmux$155": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:115.10-115.22|i2c_controller/i2c_controller.v:115.6-116.34"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "1", "0", "0", "0", "0", "0" ],
+            "S": [ 178 ],
+            "Y": [ 554, 555, 556, 557, 558, 559, 560, 561 ]
+          }
+        },
+        "$procmux$157_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 604 ]
+          }
+        },
+        "$procmux$159": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:109.10-109.41|i2c_controller/i2c_controller.v:109.6-110.25"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "1", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "S": [ 264 ],
+            "Y": [ 562, 563, 564, 565, 566, 567, 568, 569 ]
+          }
+        },
+        "$procmux$161_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "1", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 605 ]
+          }
+        },
+        "$procmux$163": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:103.9-103.21|i2c_controller/i2c_controller.v:103.6-105.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "1", "1", "0", "0", "0", "0", "0" ],
+            "S": [ 176 ],
+            "Y": [ 570, 571, 572, 573, 574, 575, 576, 577 ]
+          }
+        },
+        "$procmux$165_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 606 ]
+          }
+        },
+        "$procmux$168": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:97.10-97.28|i2c_controller/i2c_controller.v:97.7-98.31"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "1", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "1", "1", "0", "0", "0", "0", "0" ],
+            "S": [ 112 ],
+            "Y": [ 611, 612, 613, 614, 615, 616, 617, 618 ]
+          }
+        },
+        "$procmux$170": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:95.10-95.22|i2c_controller/i2c_controller.v:95.6-99.29"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 611, 612, 613, 614, 615, 616, 617, 618 ],
+            "B": [ "0", "0", "0", "1", "0", "0", "0", "0" ],
+            "S": [ 30 ],
+            "Y": [ 578, 579, 580, 581, 582, 583, 584, 585 ]
+          }
+        },
+        "$procmux$172_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "1", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 607 ]
+          }
+        },
+        "$procmux$174": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:89.10-89.22|i2c_controller/i2c_controller.v:89.6-91.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "1", "0", "0", "0", "0", "0", "0" ],
+            "S": [ 195 ],
+            "Y": [ 586, 587, 588, 589, 590, 591, 592, 593 ]
+          }
+        },
+        "$procmux$176_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 608 ]
+          }
+        },
+        "$procmux$177_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 609 ]
+          }
+        },
+        "$procmux$179": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:75.10-75.16|i2c_controller/i2c_controller.v:75.6-80.25"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0" ],
+            "S": [ 19 ],
+            "Y": [ 594, 595, 596, 597, 598, 599, 600, 601 ]
+          }
+        },
+        "$procmux$181_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "Y": [ 610 ]
+          }
+        },
+        "$procmux$183": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:57.8-57.62|i2c_controller/i2c_controller.v:57.4-61.7"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1" ],
+            "B": [ "0" ],
+            "S": [ 267 ],
+            "Y": [ 464 ]
+          }
+        },
+        "$procmux$186": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:46.7-46.36|i2c_controller/i2c_controller.v:46.3-50.33"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41, 42, 43, 44, 45, 46, 47 ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "S": [ 191 ],
+            "Y": [ 465, 466, 467, 468, 469, 470, 471, 472 ]
+          }
+        },
+        "$procmux$189": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:46.7-46.36|i2c_controller/i2c_controller.v:46.3-50.33"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 198 ],
+            "B": [ 404 ],
+            "S": [ 191 ],
+            "Y": [ 473 ]
+          }
+        },
+        "$procmux$68": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000000101",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 231 ],
+            "B": [ "1", "0", 619, 620, "0" ],
+            "S": [ 621, 622, 623, 624, 625 ],
+            "Y": [ 423 ]
+          }
+        },
+        "$procmux$69_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "0", "1", "0", "0", "0", "0" ],
+            "Y": [ 621 ]
+          }
+        },
+        "$procmux$70_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 622 ]
+          }
+        },
+        "$procmux$71_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 623 ]
+          }
+        },
+        "$procmux$72_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 624 ]
+          }
+        },
+        "$procmux$73_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 625 ]
+          }
+        },
+        "$procmux$74": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000000110",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 422 ],
+            "B": [ "1", "0", "1", "1", "0", "1" ],
+            "S": [ 626, 627, 628, 629, 630, 631 ],
+            "Y": [ 421 ]
+          }
+        },
+        "$procmux$75_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "0", "1", "0", "0", "0", "0" ],
+            "Y": [ 626 ]
+          }
+        },
+        "$procmux$76_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 627 ]
+          }
+        },
+        "$procmux$77_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 628 ]
+          }
+        },
+        "$procmux$78_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "0", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 629 ]
+          }
+        },
+        "$procmux$79_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "1", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 630 ]
+          }
+        },
+        "$procmux$80_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:135.4-168.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 631 ]
+          }
+        },
+        "$procmux$84": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 21, 22, 23, 24, 25, 26, 27, 28 ],
+            "B": [ 413, 414, 415, 416, 417, 418, 419, 420 ],
+            "S": [ 632 ],
+            "Y": [ 88, 89, 90, 91, 92, 93, 94, 95 ]
+          }
+        },
+        "$procmux$85_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 632 ]
+          }
+        },
+        "$procmux$89": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 448, 449, 450, 451, 452, 453, 454, 455 ],
+            "B": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "S": [ 633 ],
+            "Y": [ 634, 635, 636, 637, 638, 639, 640, 641 ]
+          }
+        },
+        "$procmux$90_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 633 ]
+          }
+        },
+        "$procmux$94": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 440, 441, 442, 443, 444, 445, 446, 447 ],
+            "B": [ 405, 406, 407, 408, 409, 410, 411, 412 ],
+            "S": [ 642 ],
+            "Y": [ 643, 644, 645, 646, 647, 648, 649, 650 ]
+          }
+        },
+        "$procmux$95_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "0", "0" ],
+            "Y": [ 642 ]
+          }
+        },
+        "$procmux$99": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0|i2c_controller/i2c_controller.v:72.4-126.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 432, 433, 434, 435, 436, 437, 438, 439 ],
+            "B": [ 396, 397, 398, 399, 400, 401, 402, 403 ],
+            "S": [ 474 ],
+            "Y": [ 651, 652, 653, 654, 655, 656, 657, 658 ]
+          }
+        },
+        "$shift$i2c_controller/i2c_controller.v:0$51": {
+          "hide_name": 1,
+          "type": "$shift",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1" ],
+            "B": [ 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331 ],
+            "Y": [ 396, 397, 398, 399, 400, 401, 402, 403 ]
+          }
+        },
+        "$shift$i2c_controller/i2c_controller.v:0$55": {
+          "hide_name": 1,
+          "type": "$shift",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 30 ],
+            "B": [ 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395 ],
+            "Y": [ 405, 406, 407, 408, 409, 410, 411, 412 ]
+          }
+        },
+        "$shiftx$i2c_controller/i2c_controller.v:0$63": {
+          "hide_name": 1,
+          "type": "$shiftx",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 112, 113, 114, 115, 116, 117, 118, 119 ],
+            "B": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "Y": [ 620 ]
+          }
+        },
+        "$shiftx$i2c_controller/i2c_controller.v:0$64": {
+          "hide_name": 1,
+          "type": "$shiftx",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 136, 137, 138, 139, 140, 141, 142, 143 ],
+            "B": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "Y": [ 619 ]
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:0$49": {
+          "hide_name": 1,
+          "type": "$sub",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000100000",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167, "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299 ]
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:0$53": {
+          "hide_name": 1,
+          "type": "$sub",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000100000",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167, "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363 ]
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:105$45": {
+          "hide_name": 1,
+          "type": "$sub",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:105.26-105.37"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 520, 521, 522, 523, 524, 525, 526, 527, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671, 672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682 ]
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:116$60": {
+          "hide_name": 1,
+          "type": "$sub",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:116.22-116.33"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 475, 476, 477, 478, 479, 480, 481, 482, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693, 694, 695, 696, 697, 698, 699, 700, 701, 702, 703, 704, 705, 706 ]
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:91$41": {
+          "hide_name": 1,
+          "type": "$sub",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:91.26-91.37"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 528, 529, 530, 531, 532, 533, 534, 535, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729, 730 ]
+          }
+        },
+        "$ternary$i2c_controller/i2c_controller.v:41$7": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:41.17-41.56"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "S": [ 265 ],
+            "Y": [ 29, 731, 732, 733, 734, 735, 736, 737, 738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749, 750, 751, 752, 753, 754, 755, 756, 757, 758, 759, 760, 761 ]
+          }
+        },
+        "$ternary$i2c_controller/i2c_controller.v:42$10": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:42.19-42.55"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230 ],
+            "S": [ 189 ],
+            "Y": [ 31, 762, 763, 764, 765, 766, 767, 768, 769, 770, 771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792 ]
+          }
+        },
+        "$ternary$i2c_controller/i2c_controller.v:43$13": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000100000"
+          },
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:43.19-43.54"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z" ],
+            "B": [ 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263 ],
+            "S": [ 422 ],
+            "Y": [ 30, 793, 794, 795, 796, 797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0$bitselwrite$data$i2c_controller/i2c_controller.v:114$2[7:0]$28": {
+          "hide_name": 1,
+          "bits": [ 643, 644, 645, 646, 647, 648, 649, 650 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0$bitselwrite$mask$i2c_controller/i2c_controller.v:114$1[7:0]$27": {
+          "hide_name": 1,
+          "bits": [ 651, 652, 653, 654, 655, 656, 657, 658 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0$bitselwrite$sel$i2c_controller/i2c_controller.v:114$3[7:0]$29": {
+          "hide_name": 1,
+          "bits": [ 634, 635, 636, 637, 638, 639, 640, 641 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0$lookahead\\data_out$25[7:0]$30": {
+          "hide_name": 1,
+          "bits": [ 88, 89, 90, 91, 92, 93, 94, 95 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0\\counter2[7:0]": {
+          "hide_name": 1,
+          "bits": [ 465, 466, 467, 468, 469, 470, 471, 472 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:45.2-51.5"
+          }
+        },
+        "$0\\counter[7:0]": {
+          "hide_name": 1,
+          "bits": [ 152, 153, 154, 155, 156, 157, 158, 159 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0\\data_out[7:0]": {
+          "hide_name": 1,
+          "bits": [ 88, 89, 90, 91, 92, 93, 94, 95 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0\\i2c_clk[0:0]": {
+          "hide_name": 1,
+          "bits": [ 473 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:45.2-51.5"
+          }
+        },
+        "$0\\i2c_scl_enable[0:0]": {
+          "hide_name": 1,
+          "bits": [ 464 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:53.2-64.5"
+          }
+        },
+        "$0\\saved_addr[7:0]": {
+          "hide_name": 1,
+          "bits": [ 104, 105, 106, 107, 108, 109, 110, 111 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0\\saved_data[7:0]": {
+          "hide_name": 1,
+          "bits": [ 128, 129, 130, 131, 132, 133, 134, 135 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0\\sda_out[0:0]": {
+          "hide_name": 1,
+          "bits": [ 423 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:130.2-170.5"
+          }
+        },
+        "$0\\state[7:0]": {
+          "hide_name": 1,
+          "bits": [ 424, 425, 426, 427, 428, 429, 430, 431 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$0\\write_enable[0:0]": {
+          "hide_name": 1,
+          "bits": [ 421 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:130.2-170.5"
+          }
+        },
+        "$1$bitselwrite$data$i2c_controller/i2c_controller.v:114$2[7:0]$33": {
+          "hide_name": 1,
+          "bits": [ 643, 644, 645, 646, 647, 648, 649, 650 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$1$bitselwrite$mask$i2c_controller/i2c_controller.v:114$1[7:0]$32": {
+          "hide_name": 1,
+          "bits": [ 651, 652, 653, 654, 655, 656, 657, 658 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$1$bitselwrite$sel$i2c_controller/i2c_controller.v:114$3[7:0]$34": {
+          "hide_name": 1,
+          "bits": [ 634, 635, 636, 637, 638, 639, 640, 641 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$1$lookahead\\data_out$25[7:0]$35": {
+          "hide_name": 1,
+          "bits": [ 88, 89, 90, 91, 92, 93, 94, 95 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$1\\counter2[7:0]": {
+          "hide_name": 1,
+          "bits": [ "0", "0", "0", "0", "0", "0", "0", "0" ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:35.12-35.24"
+          }
+        },
+        "$1\\i2c_clk[0:0]": {
+          "hide_name": 1,
+          "bits": [ "1" ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:39.6-39.17"
+          }
+        },
+        "$1\\i2c_scl_enable[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:38.6-38.24"
+          }
+        },
+        "$2$bitselwrite$data$i2c_controller/i2c_controller.v:114$2[7:0]$37": {
+          "hide_name": 1,
+          "bits": [ 643, 644, 645, 646, 647, 648, 649, 650 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$2$bitselwrite$mask$i2c_controller/i2c_controller.v:114$1[7:0]$36": {
+          "hide_name": 1,
+          "bits": [ 651, 652, 653, 654, 655, 656, 657, 658 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$2$bitselwrite$sel$i2c_controller/i2c_controller.v:114$3[7:0]$38": {
+          "hide_name": 1,
+          "bits": [ 634, 635, 636, 637, 638, 639, 640, 641 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$2$lookahead\\data_out$25[7:0]$39": {
+          "hide_name": 1,
+          "bits": [ 88, 89, 90, 91, 92, 93, 94, 95 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:67.2-128.5"
+          }
+        },
+        "$add$i2c_controller/i2c_controller.v:50$17_Y": {
+          "hide_name": 1,
+          "bits": [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:50.20-50.32"
+          }
+        },
+        "$and$i2c_controller/i2c_controller.v:0$52_Y": {
+          "hide_name": 1,
+          "bits": [ 30, "0", "0", "0", "0", "0", "0", "0" ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$and$i2c_controller/i2c_controller.v:0$57_Y": {
+          "hide_name": 1,
+          "bits": [ 80, 81, 82, 83, 84, 85, 86, 87 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$auto$rtlil.cc:2558:Mux$194": {
+          "hide_name": 1,
+          "bits": [ 96, 97, 98, 99, 100, 101, 102, 103 ],
+          "attributes": {
+          }
+        },
+        "$auto$rtlil.cc:2558:Mux$198": {
+          "hide_name": 1,
+          "bits": [ 120, 121, 122, 123, 124, 125, 126, 127 ],
+          "attributes": {
+          }
+        },
+        "$auto$rtlil.cc:2558:Mux$201": {
+          "hide_name": 1,
+          "bits": [ 144, 145, 146, 147, 148, 149, 150, 151 ],
+          "attributes": {
+          }
+        },
+        "$auto$rtlil.cc:2558:Mux$204": {
+          "hide_name": 1,
+          "bits": [ 168, 169, 170, 171, 172, 173, 174, 175 ],
+          "attributes": {
+          }
+        },
+        "$bitselwrite$data$i2c_controller/i2c_controller.v:114$2": {
+          "hide_name": 1,
+          "bits": [ 440, 441, 442, 443, 444, 445, 446, 447 ],
+          "attributes": {
+            "nosync": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$bitselwrite$mask$i2c_controller/i2c_controller.v:114$1": {
+          "hide_name": 1,
+          "bits": [ 432, 433, 434, 435, 436, 437, 438, 439 ],
+          "attributes": {
+            "nosync": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$bitselwrite$sel$i2c_controller/i2c_controller.v:114$3": {
+          "hide_name": 1,
+          "bits": [ 448, 449, 450, 451, 452, 453, 454, 455 ],
+          "attributes": {
+            "nosync": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:103$44_Y": {
+          "hide_name": 1,
+          "bits": [ 176 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:103.9-103.21"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:109$46_Y": {
+          "hide_name": 1,
+          "bits": [ 177 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:109.11-109.23"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:109$47_Y": {
+          "hide_name": 1,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:109.29-109.40"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:115$59_Y": {
+          "hide_name": 1,
+          "bits": [ 178 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:115.10-115.22"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:131$62_Y": {
+          "hide_name": 1,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:131.6-131.14"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:41$4_Y": {
+          "hide_name": 1,
+          "bits": [ 179 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:41.19-41.27"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:41$5_Y": {
+          "hide_name": 1,
+          "bits": [ 188 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:41.33-41.46"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:42$8_Y": {
+          "hide_name": 1,
+          "bits": [ 190 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:42.20-42.39"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:43$11_Y": {
+          "hide_name": 1,
+          "bits": [ 422 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:43.20-43.37"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:46$15_Y": {
+          "hide_name": 1,
+          "bits": [ 191 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:46.7-46.36"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:54$19_Y": {
+          "hide_name": 1,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:54.6-54.14"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:57$20_Y": {
+          "hide_name": 1,
+          "bits": [ 192 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.9-57.22"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:57$21_Y": {
+          "hide_name": 1,
+          "bits": [ 193 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.28-57.42"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:57$23_Y": {
+          "hide_name": 1,
+          "bits": [ 194 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.48-57.61"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:68$31_Y": {
+          "hide_name": 1,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:68.6-68.14"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:89$40_Y": {
+          "hide_name": 1,
+          "bits": [ 195 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:89.10-89.22"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:95$42_Y": {
+          "hide_name": 1,
+          "bits": [ 196 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:95.10-95.22"
+          }
+        },
+        "$eq$i2c_controller/i2c_controller.v:97$43_Y": {
+          "hide_name": 1,
+          "bits": [ 197 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:97.10-97.28"
+          }
+        },
+        "$extend$i2c_controller/i2c_controller.v:42$9_Y": {
+          "hide_name": 1,
+          "bits": [ 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:42.19-42.55"
+          }
+        },
+        "$extend$i2c_controller/i2c_controller.v:43$12_Y": {
+          "hide_name": 1,
+          "bits": [ 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:43.19-43.54"
+          }
+        },
+        "$logic_and$i2c_controller/i2c_controller.v:109$48_Y": {
+          "hide_name": 1,
+          "bits": [ 264 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:109.10-109.41"
+          }
+        },
+        "$logic_and$i2c_controller/i2c_controller.v:41$6_Y": {
+          "hide_name": 1,
+          "bits": [ 265 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:41.18-41.47"
+          }
+        },
+        "$logic_or$i2c_controller/i2c_controller.v:57$22_Y": {
+          "hide_name": 1,
+          "bits": [ 266 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.8-57.43"
+          }
+        },
+        "$logic_or$i2c_controller/i2c_controller.v:57$24_Y": {
+          "hide_name": 1,
+          "bits": [ 267 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:57.8-57.62"
+          }
+        },
+        "$lookahead\\data_out$25": {
+          "hide_name": 1,
+          "bits": [ 456, 457, 458, 459, 460, 461, 462, 463 ],
+          "attributes": {
+            "nosync": "00000000000000000000000000000001",
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$neg$i2c_controller/i2c_controller.v:0$50_Y": {
+          "hide_name": 1,
+          "bits": [ 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331 ],
+          "signed": 1,
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$neg$i2c_controller/i2c_controller.v:0$54_Y": {
+          "hide_name": 1,
+          "bits": [ 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395 ],
+          "signed": 1,
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$not$i2c_controller/i2c_controller.v:0$56_Y": {
+          "hide_name": 1,
+          "bits": [ 72, 73, 74, 75, 76, 77, 78, 79 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$not$i2c_controller/i2c_controller.v:47$16_Y": {
+          "hide_name": 1,
+          "bits": [ 404 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:47.15-47.23"
+          }
+        },
+        "$or$i2c_controller/i2c_controller.v:0$58_Y": {
+          "hide_name": 1,
+          "bits": [ 413, 414, 415, 416, 417, 418, 419, 420 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$procmux$100_CMP": {
+          "hide_name": 1,
+          "bits": [ 474 ],
+          "attributes": {
+          }
+        },
+        "$procmux$105_Y": {
+          "hide_name": 1,
+          "bits": [ 483, 484, 485, 486, 487, 488, 489, 490 ],
+          "attributes": {
+          }
+        },
+        "$procmux$106_CMP": {
+          "hide_name": 1,
+          "bits": [ 178 ],
+          "attributes": {
+          }
+        },
+        "$procmux$107_Y": {
+          "hide_name": 1,
+          "bits": [ 152, 153, 154, 155, 156, 157, 158, 159 ],
+          "attributes": {
+          }
+        },
+        "$procmux$108_CMP": {
+          "hide_name": 1,
+          "bits": [ 515 ],
+          "attributes": {
+          }
+        },
+        "$procmux$110_Y": {
+          "hide_name": 1,
+          "bits": [ 491, 492, 493, 494, 495, 496, 497, 498 ],
+          "attributes": {
+          }
+        },
+        "$procmux$111_CMP": {
+          "hide_name": 1,
+          "bits": [ 176 ],
+          "attributes": {
+          }
+        },
+        "$procmux$112_CMP": {
+          "hide_name": 1,
+          "bits": [ 516 ],
+          "attributes": {
+          }
+        },
+        "$procmux$114_Y": {
+          "hide_name": 1,
+          "bits": [ 499, 500, 501, 502, 503, 504, 505, 506 ],
+          "attributes": {
+          }
+        },
+        "$procmux$115_CMP": {
+          "hide_name": 1,
+          "bits": [ 196 ],
+          "attributes": {
+          }
+        },
+        "$procmux$116_CMP": {
+          "hide_name": 1,
+          "bits": [ 517 ],
+          "attributes": {
+          }
+        },
+        "$procmux$118_Y": {
+          "hide_name": 1,
+          "bits": [ 507, 508, 509, 510, 511, 512, 513, 514 ],
+          "attributes": {
+          }
+        },
+        "$procmux$119_CMP": {
+          "hide_name": 1,
+          "bits": [ 195 ],
+          "attributes": {
+          }
+        },
+        "$procmux$120_CMP": {
+          "hide_name": 1,
+          "bits": [ 518 ],
+          "attributes": {
+          }
+        },
+        "$procmux$121_CMP": {
+          "hide_name": 1,
+          "bits": [ 519 ],
+          "attributes": {
+          }
+        },
+        "$procmux$132_Y": {
+          "hide_name": 1,
+          "bits": [ 536, 537, 538, 539, 540, 541, 542, 543 ],
+          "attributes": {
+          }
+        },
+        "$procmux$133_CMP": {
+          "hide_name": 1,
+          "bits": [ 19 ],
+          "attributes": {
+          }
+        },
+        "$procmux$134_Y": {
+          "hide_name": 1,
+          "bits": [ 128, 129, 130, 131, 132, 133, 134, 135 ],
+          "attributes": {
+          }
+        },
+        "$procmux$135_CMP": {
+          "hide_name": 1,
+          "bits": [ 544 ],
+          "attributes": {
+          }
+        },
+        "$procmux$146_Y": {
+          "hide_name": 1,
+          "bits": [ 545, 546, 547, 548, 549, 550, 551, 552 ],
+          "attributes": {
+          }
+        },
+        "$procmux$147_CMP": {
+          "hide_name": 1,
+          "bits": [ 19 ],
+          "attributes": {
+          }
+        },
+        "$procmux$148_Y": {
+          "hide_name": 1,
+          "bits": [ 104, 105, 106, 107, 108, 109, 110, 111 ],
+          "attributes": {
+          }
+        },
+        "$procmux$149_CMP": {
+          "hide_name": 1,
+          "bits": [ 553 ],
+          "attributes": {
+          }
+        },
+        "$procmux$151_Y": {
+          "hide_name": 1,
+          "bits": [ 424, 425, 426, 427, 428, 429, 430, 431 ],
+          "attributes": {
+          }
+        },
+        "$procmux$152_CMP": {
+          "hide_name": 1,
+          "bits": [ 602 ],
+          "attributes": {
+          }
+        },
+        "$procmux$153_CMP": {
+          "hide_name": 1,
+          "bits": [ 603 ],
+          "attributes": {
+          }
+        },
+        "$procmux$155_Y": {
+          "hide_name": 1,
+          "bits": [ 554, 555, 556, 557, 558, 559, 560, 561 ],
+          "attributes": {
+          }
+        },
+        "$procmux$156_CMP": {
+          "hide_name": 1,
+          "bits": [ 178 ],
+          "attributes": {
+          }
+        },
+        "$procmux$157_CMP": {
+          "hide_name": 1,
+          "bits": [ 604 ],
+          "attributes": {
+          }
+        },
+        "$procmux$159_Y": {
+          "hide_name": 1,
+          "bits": [ 562, 563, 564, 565, 566, 567, 568, 569 ],
+          "attributes": {
+          }
+        },
+        "$procmux$160_CMP": {
+          "hide_name": 1,
+          "bits": [ 264 ],
+          "attributes": {
+          }
+        },
+        "$procmux$161_CMP": {
+          "hide_name": 1,
+          "bits": [ 605 ],
+          "attributes": {
+          }
+        },
+        "$procmux$163_Y": {
+          "hide_name": 1,
+          "bits": [ 570, 571, 572, 573, 574, 575, 576, 577 ],
+          "attributes": {
+          }
+        },
+        "$procmux$164_CMP": {
+          "hide_name": 1,
+          "bits": [ 176 ],
+          "attributes": {
+          }
+        },
+        "$procmux$165_CMP": {
+          "hide_name": 1,
+          "bits": [ 606 ],
+          "attributes": {
+          }
+        },
+        "$procmux$168_Y": {
+          "hide_name": 1,
+          "bits": [ 611, 612, 613, 614, 615, 616, 617, 618 ],
+          "attributes": {
+          }
+        },
+        "$procmux$169_CMP": {
+          "hide_name": 1,
+          "bits": [ 197 ],
+          "attributes": {
+          }
+        },
+        "$procmux$170_Y": {
+          "hide_name": 1,
+          "bits": [ 578, 579, 580, 581, 582, 583, 584, 585 ],
+          "attributes": {
+          }
+        },
+        "$procmux$171_CMP": {
+          "hide_name": 1,
+          "bits": [ 196 ],
+          "attributes": {
+          }
+        },
+        "$procmux$172_CMP": {
+          "hide_name": 1,
+          "bits": [ 607 ],
+          "attributes": {
+          }
+        },
+        "$procmux$174_Y": {
+          "hide_name": 1,
+          "bits": [ 586, 587, 588, 589, 590, 591, 592, 593 ],
+          "attributes": {
+          }
+        },
+        "$procmux$175_CMP": {
+          "hide_name": 1,
+          "bits": [ 195 ],
+          "attributes": {
+          }
+        },
+        "$procmux$176_CMP": {
+          "hide_name": 1,
+          "bits": [ 608 ],
+          "attributes": {
+          }
+        },
+        "$procmux$177_CMP": {
+          "hide_name": 1,
+          "bits": [ 609 ],
+          "attributes": {
+          }
+        },
+        "$procmux$179_Y": {
+          "hide_name": 1,
+          "bits": [ 594, 595, 596, 597, 598, 599, 600, 601 ],
+          "attributes": {
+          }
+        },
+        "$procmux$180_CMP": {
+          "hide_name": 1,
+          "bits": [ 19 ],
+          "attributes": {
+          }
+        },
+        "$procmux$181_CMP": {
+          "hide_name": 1,
+          "bits": [ 610 ],
+          "attributes": {
+          }
+        },
+        "$procmux$183_Y": {
+          "hide_name": 1,
+          "bits": [ 464 ],
+          "attributes": {
+          }
+        },
+        "$procmux$184_CMP": {
+          "hide_name": 1,
+          "bits": [ 267 ],
+          "attributes": {
+          }
+        },
+        "$procmux$186_Y": {
+          "hide_name": 1,
+          "bits": [ 465, 466, 467, 468, 469, 470, 471, 472 ],
+          "attributes": {
+          }
+        },
+        "$procmux$187_CMP": {
+          "hide_name": 1,
+          "bits": [ 191 ],
+          "attributes": {
+          }
+        },
+        "$procmux$189_Y": {
+          "hide_name": 1,
+          "bits": [ 473 ],
+          "attributes": {
+          }
+        },
+        "$procmux$190_CMP": {
+          "hide_name": 1,
+          "bits": [ 191 ],
+          "attributes": {
+          }
+        },
+        "$procmux$68_Y": {
+          "hide_name": 1,
+          "bits": [ 423 ],
+          "attributes": {
+          }
+        },
+        "$procmux$69_CMP": {
+          "hide_name": 1,
+          "bits": [ 621 ],
+          "attributes": {
+          }
+        },
+        "$procmux$70_CMP": {
+          "hide_name": 1,
+          "bits": [ 622 ],
+          "attributes": {
+          }
+        },
+        "$procmux$71_CMP": {
+          "hide_name": 1,
+          "bits": [ 623 ],
+          "attributes": {
+          }
+        },
+        "$procmux$72_CMP": {
+          "hide_name": 1,
+          "bits": [ 624 ],
+          "attributes": {
+          }
+        },
+        "$procmux$73_CMP": {
+          "hide_name": 1,
+          "bits": [ 625 ],
+          "attributes": {
+          }
+        },
+        "$procmux$74_Y": {
+          "hide_name": 1,
+          "bits": [ 421 ],
+          "attributes": {
+          }
+        },
+        "$procmux$75_CMP": {
+          "hide_name": 1,
+          "bits": [ 626 ],
+          "attributes": {
+          }
+        },
+        "$procmux$76_CMP": {
+          "hide_name": 1,
+          "bits": [ 627 ],
+          "attributes": {
+          }
+        },
+        "$procmux$77_CMP": {
+          "hide_name": 1,
+          "bits": [ 628 ],
+          "attributes": {
+          }
+        },
+        "$procmux$78_CMP": {
+          "hide_name": 1,
+          "bits": [ 629 ],
+          "attributes": {
+          }
+        },
+        "$procmux$79_CMP": {
+          "hide_name": 1,
+          "bits": [ 630 ],
+          "attributes": {
+          }
+        },
+        "$procmux$80_CMP": {
+          "hide_name": 1,
+          "bits": [ 631 ],
+          "attributes": {
+          }
+        },
+        "$procmux$84_Y": {
+          "hide_name": 1,
+          "bits": [ 88, 89, 90, 91, 92, 93, 94, 95 ],
+          "attributes": {
+          }
+        },
+        "$procmux$85_CMP": {
+          "hide_name": 1,
+          "bits": [ 632 ],
+          "attributes": {
+          }
+        },
+        "$procmux$89_Y": {
+          "hide_name": 1,
+          "bits": [ 634, 635, 636, 637, 638, 639, 640, 641 ],
+          "attributes": {
+          }
+        },
+        "$procmux$90_CMP": {
+          "hide_name": 1,
+          "bits": [ 633 ],
+          "attributes": {
+          }
+        },
+        "$procmux$94_Y": {
+          "hide_name": 1,
+          "bits": [ 643, 644, 645, 646, 647, 648, 649, 650 ],
+          "attributes": {
+          }
+        },
+        "$procmux$95_CMP": {
+          "hide_name": 1,
+          "bits": [ 642 ],
+          "attributes": {
+          }
+        },
+        "$procmux$99_Y": {
+          "hide_name": 1,
+          "bits": [ 651, 652, 653, 654, 655, 656, 657, 658 ],
+          "attributes": {
+          }
+        },
+        "$shift$i2c_controller/i2c_controller.v:0$51_Y": {
+          "hide_name": 1,
+          "bits": [ 396, 397, 398, 399, 400, 401, 402, 403 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$shift$i2c_controller/i2c_controller.v:0$55_Y": {
+          "hide_name": 1,
+          "bits": [ 405, 406, 407, 408, 409, 410, 411, 412 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$shiftx$i2c_controller/i2c_controller.v:0$63_Y": {
+          "hide_name": 1,
+          "bits": [ 620 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$shiftx$i2c_controller/i2c_controller.v:0$64_Y": {
+          "hide_name": 1,
+          "bits": [ 619 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:0$49_Y": {
+          "hide_name": 1,
+          "bits": [ 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299 ],
+          "signed": 1,
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:0$53_Y": {
+          "hide_name": 1,
+          "bits": [ 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363 ],
+          "signed": 1,
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:0.0-0.0"
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:105$45_Y": {
+          "hide_name": 1,
+          "bits": [ 520, 521, 522, 523, 524, 525, 526, 527, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671, 672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:105.26-105.37"
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:116$60_Y": {
+          "hide_name": 1,
+          "bits": [ 475, 476, 477, 478, 479, 480, 481, 482, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693, 694, 695, 696, 697, 698, 699, 700, 701, 702, 703, 704, 705, 706 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:116.22-116.33"
+          }
+        },
+        "$sub$i2c_controller/i2c_controller.v:91$41_Y": {
+          "hide_name": 1,
+          "bits": [ 528, 529, 530, 531, 532, 533, 534, 535, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729, 730 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:91.26-91.37"
+          }
+        },
+        "$ternary$i2c_controller/i2c_controller.v:41$7_Y": {
+          "hide_name": 1,
+          "bits": [ 29, 731, 732, 733, 734, 735, 736, 737, 738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749, 750, 751, 752, 753, 754, 755, 756, 757, 758, 759, 760, 761 ],
+          "signed": 1,
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:41.17-41.56"
+          }
+        },
+        "$ternary$i2c_controller/i2c_controller.v:42$10_Y": {
+          "hide_name": 1,
+          "bits": [ 31, 762, 763, 764, 765, 766, 767, 768, 769, 770, 771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:42.19-42.55"
+          }
+        },
+        "$ternary$i2c_controller/i2c_controller.v:43$13_Y": {
+          "hide_name": 1,
+          "bits": [ 30, 793, 794, 795, 796, 797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:43.19-43.54"
+          }
+        },
+        "addr": {
+          "hide_name": 0,
+          "bits": [ 4, 5, 6, 7, 8, 9, 10 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:7.19-7.23"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:5.13-5.16"
+          }
+        },
+        "counter": {
+          "hide_name": 0,
+          "bits": [ 160, 161, 162, 163, 164, 165, 166, 167 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:34.12-34.19"
+          }
+        },
+        "counter2": {
+          "hide_name": 0,
+          "bits": [ 32, 33, 34, 35, 36, 37, 38, 39 ],
+          "attributes": {
+            "init": "00000000",
+            "src": "i2c_controller/i2c_controller.v:35.12-35.20"
+          }
+        },
+        "data_in": {
+          "hide_name": 0,
+          "bits": [ 11, 12, 13, 14, 15, 16, 17, 18 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:8.19-8.26"
+          }
+        },
+        "data_out": {
+          "hide_name": 0,
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:12.19-12.27"
+          }
+        },
+        "enable": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:9.13-9.19"
+          }
+        },
+        "i2c_clk": {
+          "hide_name": 0,
+          "bits": [ 198 ],
+          "attributes": {
+            "init": "1",
+            "src": "i2c_controller/i2c_controller.v:39.6-39.13"
+          }
+        },
+        "i2c_scl": {
+          "hide_name": 0,
+          "bits": [ 31 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:16.13-16.20"
+          }
+        },
+        "i2c_scl_enable": {
+          "hide_name": 0,
+          "bits": [ 189 ],
+          "attributes": {
+            "init": "0",
+            "src": "i2c_controller/i2c_controller.v:38.6-38.20"
+          }
+        },
+        "i2c_sda": {
+          "hide_name": 0,
+          "bits": [ 30 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:15.8-15.15"
+          }
+        },
+        "ready": {
+          "hide_name": 0,
+          "bits": [ 29 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:13.14-13.19"
+          }
+        },
+        "rst": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:6.13-6.16"
+          }
+        },
+        "rw": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:10.13-10.15"
+          }
+        },
+        "saved_addr": {
+          "hide_name": 0,
+          "bits": [ 112, 113, 114, 115, 116, 117, 118, 119 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:32.12-32.22"
+          }
+        },
+        "saved_data": {
+          "hide_name": 0,
+          "bits": [ 136, 137, 138, 139, 140, 141, 142, 143 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:33.12-33.22"
+          }
+        },
+        "sda_out": {
+          "hide_name": 0,
+          "bits": [ 231 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:37.6-37.13"
+          }
+        },
+        "state": {
+          "hide_name": 0,
+          "bits": [ 180, 181, 182, 183, 184, 185, 186, 187 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:31.12-31.17"
+          }
+        },
+        "write_enable": {
+          "hide_name": 0,
+          "bits": [ 422 ],
+          "attributes": {
+            "src": "i2c_controller/i2c_controller.v:36.6-36.18"
+          }
+        }
+      }
+    }
+  }
+}

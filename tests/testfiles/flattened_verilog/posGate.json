@@ -1,0 +1,43 @@
+{
+  "creator": "Yosys 0.23 (git sha1 7ce5011c24b)",
+  "modules": {
+    "posGate": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "posGate.v:1.1-9.10"
+      },
+      "ports": {
+        "a": {
+          "direction": "input",
+          "signed": 1,
+          "bits": [ 2, 3, 4 ]
+        },
+        "out": {
+          "direction": "output",
+          "signed": 1,
+          "bits": [ 2, 3, 4 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "a": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4 ],
+          "signed": 1,
+          "attributes": {
+            "src": "posGate.v:3.21-3.22"
+          }
+        },
+        "out": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4 ],
+          "signed": 1,
+          "attributes": {
+            "src": "posGate.v:4.22-4.25"
+          }
+        }
+      }
+    }
+  }
+}

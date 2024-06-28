@@ -1,0 +1,161 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang 14.0.0-1ubuntu1 -fPIC -Os)",
+  "modules": {
+    "m_0": {
+      "attributes": {
+        "dynports": "00000000000000000000000000000001",
+        "src": "adffe.v:1.1-22.10"
+      },
+      "parameter_default_values": {
+        "ARST_POLARITY": "1",
+        "ARST_VALUE": "00000000000000000000000000000010",
+        "CLK_POLARITY": "1",
+        "EN_POLARITY": "1",
+        "WIDTH": "00000000000000000000000000000010"
+      },
+      "ports": {
+        "CLK": {
+          "direction": "input",
+          "bits": [
+            2
+          ]
+        },
+        "ARST": {
+          "direction": "input",
+          "bits": [
+            3
+          ]
+        },
+        "EN": {
+          "direction": "input",
+          "bits": [
+            4
+          ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [
+            5,
+            6
+          ]
+        },
+        "Q": {
+          "direction": "output",
+          "bits": [
+            7,
+            8
+          ]
+        }
+      },
+      "cells": {
+        "$auto$ff.cc:262:slice$8": {
+          "hide_name": 1,
+          "type": "$adffe",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000001",
+            "ARST_VALUE": "10",
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "EN_POLARITY": "00000000000000000000000000000001",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "adffe.v:15.1-20.4"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "EN": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [
+              3
+            ],
+            "CLK": [
+              2
+            ],
+            "D": [
+              5,
+              6
+            ],
+            "EN": [
+              4
+            ],
+            "Q": [
+              7,
+              8
+            ]
+          }
+        }
+      },
+      "netnames": {
+        "ARST": {
+          "hide_name": 0,
+          "bits": [
+            3
+          ],
+          "attributes": {
+            "src": "adffe.v:9.12-9.16"
+          }
+        },
+        "CLK": {
+          "hide_name": 0,
+          "bits": [
+            2
+          ],
+          "attributes": {
+            "src": "adffe.v:9.7-9.10"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [
+            5,
+            6
+          ],
+          "attributes": {
+            "src": "adffe.v:10.19-10.20"
+          }
+        },
+        "EN": {
+          "hide_name": 0,
+          "bits": [
+            4
+          ],
+          "attributes": {
+            "src": "adffe.v:9.18-9.20"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [
+            7,
+            8
+          ],
+          "attributes": {
+            "src": "adffe.v:11.24-11.25"
+          }
+        },
+        "pos_arst": {
+          "hide_name": 0,
+          "bits": [
+            3
+          ],
+          "attributes": {
+            "src": "adffe.v:13.6-13.14"
+          }
+        },
+        "pos_clk": {
+          "hide_name": 0,
+          "bits": [
+            2
+          ],
+          "attributes": {
+            "src": "adffe.v:12.6-12.13"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+$date
+	Mon Jun 12 11:18:27 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module hierarchy_tb $end
+$var wire 32 ! c_t [31:0] $end
+$var wire 1 " c $end
+$var reg 1 # a $end
+$var reg 32 $ a_t [31:0] $end
+$var reg 1 % b $end
+$var reg 32 & b_t [31:0] $end
+$var integer 32 ' i [31:0] $end
+$var integer 32 ( t [31:0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10 (
+b0 '
+b0 &
+0%
+b0 $
+0#
+0"
+b0 !
+$end
+#2
+b1 !
+b1 &
+b1 '
+#4
+b0 !
+b10 $
+b0 &
+b10 '
+#6
+b1 !
+b1 &
+b11 '
+#8
+b0 !
+1"
+b0 $
+b0 &
+b100 '
+1%
+#10
+b101 '
+#12
+b10 !
+b10 $
+b110 '
+#14
+b11 !
+b1 &
+b111 '
+#16
+b0 !
+0"
+b0 $
+b0 &
+b1000 '
+0%
+1#
+#18
+b1 !
+b1 &
+b1001 '
+#20
+b0 !
+b10 $
+b0 &
+b1010 '
+#22
+b1 !
+b1 &
+b1011 '
+#24
+b0 !
+b0 $
+b0 &
+b1100 '
+1%
+#26
+b1 !
+b1 &
+b1101 '
+#28
+b10 !
+b10 $
+b0 &
+b1110 '
+#30
+b11 !
+b1 &
+b1111 '
+#32
+b10000 '

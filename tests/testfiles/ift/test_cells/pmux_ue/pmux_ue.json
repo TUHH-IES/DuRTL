@@ -1,0 +1,89 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang  -fPIC -Os)",
+  "modules": {
+    "m_0": {
+      "attributes": {
+        "dynports": "00000000000000000000000000000001",
+        "src": "mux.v:1.1-16.10"
+      },
+      "parameter_default_values": {
+        "WIDTH": "00000000000000000000000000000010"
+      },
+      "ports": {
+        "A": {
+          "direction": "input",
+          "bits": [ 2, 3 ]
+        },
+        "B": {
+          "direction": "input",
+          "bits": [ 4, 5 ,6,7,8,9]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 10,11,12 ]
+        },
+        "Y": {
+          "direction": "output",
+          "bits": [ 13, 14 ]
+        }
+      },
+      "cells": {
+        "$procmux$3": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000000011",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "parallel_case": "00000000000000000000000000000001",
+            "src": "mux.v:10.13-10.14|mux.v:10.9-13.19"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3 ],
+            "B": [ 4, 5, 6, 7,8,9 ],
+            "S": [ 10,11 ,12],
+            "Y": [ 13, 14 ]
+          }
+        }
+      },
+      "netnames": {
+        "A": {
+          "hide_name": 0,
+          "bits": [ 2, 3 ],
+          "attributes": {
+            "src": "mux.v:5.23-5.24"
+          }
+        },
+        "B": {
+          "hide_name": 0,
+          "bits": [ 4, 5,6,7,8,9 ],
+          "attributes": {
+            "src": "mux.v:5.26-5.27"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 10,11,12 ],
+          "attributes": {
+            "src": "mux.v:6.11-6.12"
+          }
+        },
+        "Y": {
+          "hide_name": 0,
+          "bits": [ 13, 14 ],
+          "attributes": {
+            "src": "mux.v:7.28-7.29"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+$date
+	Wed Apr 19 15:29:14 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Test_tb $end
+$var wire 1 ! c $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$scope module ins $end
+$var wire 1 " B_a $end
+$var wire 1 # B_b $end
+$var wire 1 ! B_c $end
+$scope module modins $end
+$var wire 1 " A_a $end
+$var wire 1 # A_b $end
+$var wire 1 $ A_c $end
+$var wire 1 ! A_d $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+z$
+0#
+0"
+0!
+$end
+#2
+1!
+1#
+1"
+#4

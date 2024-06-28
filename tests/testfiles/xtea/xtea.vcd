@@ -1,0 +1,232 @@
+$date
+	Mon Oct  9 17:14:07 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module cipher_testbench $end
+$var wire 1 ! all_done_decipher $end
+$var wire 1 " all_done_encipher $end
+$var wire 1 # clock $end
+$var wire 32 $ data_in_decipher1 [31:0] $end
+$var wire 32 % data_in_decipher2 [31:0] $end
+$var wire 32 & data_in_encipher1 [31:0] $end
+$var wire 32 ' data_in_encipher2 [31:0] $end
+$var wire 1 ( reset $end
+$var parameter 32 ) s0 $end
+$var parameter 32 * s1 $end
+$var parameter 32 + s10 $end
+$var parameter 32 , s11 $end
+$var parameter 32 - s12 $end
+$var parameter 32 . s13 $end
+$var parameter 32 / s14 $end
+$var parameter 32 0 s15 $end
+$var parameter 32 1 s16 $end
+$var parameter 32 2 s17 $end
+$var parameter 32 3 s18 $end
+$var parameter 32 4 s19 $end
+$var parameter 32 5 s2 $end
+$var parameter 32 6 s20 $end
+$var parameter 32 7 s21 $end
+$var parameter 32 8 s22 $end
+$var parameter 32 9 s23 $end
+$var parameter 32 : s24 $end
+$var parameter 32 ; s25 $end
+$var parameter 32 < s26 $end
+$var parameter 32 = s27 $end
+$var parameter 32 > s28 $end
+$var parameter 32 ? s29 $end
+$var parameter 32 @ s3 $end
+$var parameter 32 A s30 $end
+$var parameter 32 B s31 $end
+$var parameter 32 C s32 $end
+$var parameter 32 D s33 $end
+$var parameter 32 E s34 $end
+$var parameter 32 F s35 $end
+$var parameter 32 G s36 $end
+$var parameter 32 H s37 $end
+$var parameter 32 I s38 $end
+$var parameter 32 J s39 $end
+$var parameter 32 K s4 $end
+$var parameter 32 L s40 $end
+$var parameter 32 M s41 $end
+$var parameter 32 N s42 $end
+$var parameter 32 O s43 $end
+$var parameter 32 P s44 $end
+$var parameter 32 Q s45 $end
+$var parameter 32 R s46 $end
+$var parameter 32 S s47 $end
+$var parameter 32 T s48 $end
+$var parameter 32 U s49 $end
+$var parameter 32 V s5 $end
+$var parameter 32 W s6 $end
+$var parameter 32 X s7 $end
+$var parameter 32 Y s8 $end
+$var parameter 32 Z s9 $end
+$var reg 32 [ data_out_decipher1 [31:0] $end
+$var reg 32 \ data_out_decipher2 [31:0] $end
+$var reg 32 ] data_out_encipher1 [31:0] $end
+$var reg 32 ^ data_out_encipher2 [31:0] $end
+$var reg 128 _ key_out [127:0] $end
+$var reg 1 ` reset_out $end
+$var reg 1 a result $end
+$var reg 8 b state [7:0] $end
+$var reg 32 c tempdata1 [31:0] $end
+$var reg 32 d tempdata2 [31:0] $end
+$var reg 1 e test_ciphertext $end
+$var reg 1 f test_plaintext $end
+$upscope $end
+$scope module xtea $end
+$var wire 1 g clock $end
+$var wire 32 h data_in1 [31:0] $end
+$var wire 32 i data_in2 [31:0] $end
+$var wire 128 j key_in [127:0] $end
+$var wire 1 k mode $end
+$var wire 1 l reset $end
+$var parameter 8 m s0 $end
+$var parameter 8 n s1 $end
+$var parameter 8 o s10 $end
+$var parameter 8 p s11 $end
+$var parameter 8 q s12 $end
+$var parameter 8 r s13 $end
+$var parameter 8 s s14 $end
+$var parameter 8 t s15 $end
+$var parameter 8 u s16 $end
+$var parameter 8 v s17 $end
+$var parameter 8 w s2 $end
+$var parameter 8 x s3 $end
+$var parameter 8 y s4 $end
+$var parameter 8 z s5 $end
+$var parameter 8 { s6 $end
+$var parameter 8 | s7 $end
+$var parameter 8 } s8 $end
+$var parameter 8 ~ s9 $end
+$var reg 1 !" all_done $end
+$var reg 32 "" data_out1 [31:0] $end
+$var reg 32 #" data_out2 [31:0] $end
+$var reg 32 $" delta [31:0] $end
+$var reg 1 %" modereg $end
+$var reg 2 &" selectslice [1:0] $end
+$var reg 8 '" state [7:0] $end
+$var reg 32 (" sum [31:0] $end
+$var reg 1 )" while_flag $end
+$var reg 32 *" workunit1 [31:0] $end
+$var reg 32 +" workunit2 [31:0] $end
+$var reg 8 ," x [7:0] $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1001 ~
+b1000 }
+b111 |
+b110 {
+b101 z
+b100 y
+b11 x
+b10 w
+b10001 v
+b10000 u
+b1111 t
+b1110 s
+b1101 r
+b1100 q
+b1011 p
+b1010 o
+b1 n
+b0 m
+b1001 Z
+b1000 Y
+b111 X
+b110 W
+b101 V
+b110001 U
+b110000 T
+b101111 S
+b101110 R
+b101101 Q
+b101100 P
+b101011 O
+b101010 N
+b101001 M
+b101000 L
+b100 K
+b100111 J
+b100110 I
+b100101 H
+b100100 G
+b100011 F
+b100010 E
+b100001 D
+b100000 C
+b11111 B
+b11110 A
+b11 @
+b11101 ?
+b11100 >
+b11011 =
+b11010 <
+b11001 ;
+b11000 :
+b10111 9
+b10110 8
+b10101 7
+b10100 6
+b10 5
+b10011 4
+b10010 3
+b10001 2
+b10000 1
+b1111 0
+b1110 /
+b1101 .
+b1100 -
+b1011 ,
+b1010 +
+b1 *
+b0 )
+$end
+#0
+$dumpvars
+bx ,"
+bx +"
+bx *"
+x)"
+bx ("
+bx '"
+bx &"
+x%"
+bx $"
+bx #"
+bx ""
+x!"
+zl
+zk
+bz j
+bz i
+bz h
+zg
+xf
+xe
+bx d
+bx c
+bx b
+xa
+x`
+bx _
+bx ^
+bx ]
+bx \
+bx [
+z(
+bz '
+bz &
+bz %
+bz $
+z#
+z"
+z!
+$end

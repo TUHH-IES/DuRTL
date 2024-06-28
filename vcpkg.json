@@ -1,0 +1,18 @@
+{
+  "name": "ducode",
+  "version": "0.1.0",
+  "dependencies": [
+    "ms-gsl",
+    "fmt",
+    "spdlog",
+    "cli11",
+    "catch2",
+    "boost-process",
+    "boost-poly-collection",
+    "boost-graph",
+    "nlohmann-json",
+    "range-v3",
+    "vcd-parser",
+    "unordered-dense"
+  ]
+}

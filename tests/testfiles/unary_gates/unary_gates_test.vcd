@@ -1,0 +1,44 @@
+$date
+	Tue Apr  4 13:25:26 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module unary_gates_tb $end
+$var wire 1 ! reduce_xor_out $end
+$var wire 1 " reduce_xnor_out $end
+$var wire 1 # reduce_or_out $end
+$var wire 1 $ reduce_and_out $end
+$var wire 1 % pos_out $end
+$var wire 1 & not_out $end
+$var wire 1 ' neg_out $end
+$var wire 1 ( logic_not_out $end
+$var reg 1 ) a $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0)
+1(
+0'
+1&
+0%
+0$
+0#
+1"
+0!
+$end
+#10000
+0&
+1%
+1'
+1$
+1#
+1!
+0"
+0(
+1)
+#20000

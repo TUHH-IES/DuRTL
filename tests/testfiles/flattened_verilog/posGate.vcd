@@ -1,0 +1,55 @@
+$date
+	Mon May  8 17:34:52 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module posGate_tb $end
+$var wire 3 ! out [2:0] $end
+$var reg 3 " a [2:0] $end
+$scope module a1 $end
+$var wire 3 # a [2:0] $end
+$var wire 3 $ out [2:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#2
+b111 !
+b111 $
+b111 "
+b111 #
+#4
+b110 !
+b110 $
+b110 "
+b110 #
+#6
+b111 !
+b111 $
+b111 "
+b111 #
+#8
+b0 !
+b0 $
+b0 "
+b0 #
+#10
+b111 !
+b111 $
+b111 "
+b111 #
+#12
+b100 !
+b100 $
+b100 "
+b100 #

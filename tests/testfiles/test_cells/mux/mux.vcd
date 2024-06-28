@@ -1,0 +1,37 @@
+$date
+	Wed Apr 12 13:51:20 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module mux_tb $end
+$var wire 1 ! out $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$var reg 1 $ s $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0$
+0#
+0"
+0!
+$end
+#2
+1!
+1$
+1"
+#4
+0!
+0$
+#6
+1!
+1#
+0"
+#8
+0!
+0#

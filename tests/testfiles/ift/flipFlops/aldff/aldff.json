@@ -1,0 +1,160 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang 14.0.0-1ubuntu1 -fPIC -Os)",
+  "modules": {
+    "m_0": {
+      "attributes": {
+        "dynports": "00000000000000000000000000000001",
+        "src": "aldff.v:1.1-21.10"
+      },
+      "parameter_default_values": {
+        "ALOAD_POLARITY": "1",
+        "CLK_POLARITY": "1",
+        "WIDTH": "00000000000000000000000000000010"
+      },
+      "ports": {
+        "AD": {
+          "direction": "input",
+          "bits": [
+            2,
+            3
+          ]
+        },
+        "ALOAD": {
+          "direction": "input",
+          "bits": [
+            4
+          ]
+        },
+        "CLK": {
+          "direction": "input",
+          "bits": [
+            5
+          ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [
+            6,
+            7
+          ]
+        },
+        "Q": {
+          "direction": "output",
+          "bits": [
+            8,
+            9
+          ]
+        }
+      },
+      "cells": {
+        "$procdff$4": {
+          "hide_name": 1,
+          "type": "$aldff",
+          "parameters": {
+            "ALOAD_POLARITY": "1",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "aldff.v:14.1-19.4"
+          },
+          "port_directions": {
+            "AD": "input",
+            "ALOAD": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "AD": [
+              2,
+              3
+            ],
+            "ALOAD": [
+              4
+            ],
+            "CLK": [
+              5
+            ],
+            "D": [
+              6,
+              7
+            ],
+            "Q": [
+              8,
+              9
+            ]
+          }
+        }
+      },
+      "netnames": {
+        "AD": {
+          "hide_name": 0,
+          "bits": [
+            2,
+            3
+          ],
+          "attributes": {
+            "src": "aldff.v:8.19-8.21"
+          }
+        },
+        "ALOAD": {
+          "hide_name": 0,
+          "bits": [
+            4
+          ],
+          "attributes": {
+            "src": "aldff.v:7.12-7.17"
+          }
+        },
+        "CLK": {
+          "hide_name": 0,
+          "bits": [
+            5
+          ],
+          "attributes": {
+            "src": "aldff.v:7.7-7.10"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [
+            6,
+            7
+          ],
+          "attributes": {
+            "src": "aldff.v:9.19-9.20"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [
+            8,
+            9
+          ],
+          "attributes": {
+            "src": "aldff.v:10.24-10.25"
+          }
+        },
+        "pos_aload": {
+          "hide_name": 0,
+          "bits": [
+            4
+          ],
+          "attributes": {
+            "src": "aldff.v:12.6-12.15"
+          }
+        },
+        "pos_clk": {
+          "hide_name": 0,
+          "bits": [
+            5
+          ],
+          "attributes": {
+            "src": "aldff.v:11.6-11.13"
+          }
+        }
+      }
+    }
+  }
+}

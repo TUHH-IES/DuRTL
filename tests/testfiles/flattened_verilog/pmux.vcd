@@ -1,0 +1,75 @@
+$date
+	Tue May  9 18:14:14 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module pmux_tb $end
+$var wire 4 ! out [3:0] $end
+$var reg 4 " a [3:0] $end
+$var reg 12 # b [11:0] $end
+$var reg 3 $ s [2:0] $end
+$scope module a1 $end
+$var wire 4 % a [3:0] $end
+$var wire 12 & b [11:0] $end
+$var wire 3 ' s [2:0] $end
+$var wire 4 ( out [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 (
+b0 '
+b0 &
+b0 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#2
+b1000000000 #
+b1000000000 &
+#4
+b11 !
+b11 (
+b10000000 #
+b10000000 &
+b11 "
+b11 %
+#6
+b10 !
+b10 (
+b1 $
+b1 '
+b10 #
+b10 &
+#8
+b1000 !
+b1000 (
+b10 $
+b10 '
+b10000010 #
+b10000010 &
+b0 "
+b0 %
+#10
+b1011 !
+b1011 (
+b100 $
+b100 '
+b101110000000 #
+b101110000000 &
+b1 "
+b1 %
+#12
+b1 !
+b1 (
+b110000000 #
+b110000000 &
+b0 "
+b0 %

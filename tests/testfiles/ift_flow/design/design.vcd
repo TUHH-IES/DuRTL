@@ -1,0 +1,46 @@
+$date
+	Fri May 26 14:01:26 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module design_tb $end
+$var wire 1 ! c $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$var reg 1 $ s $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0$
+0#
+0"
+1!
+$end
+#8
+0!
+1#
+#16
+1!
+0#
+1"
+#24
+0!
+1#
+#32
+1$
+0#
+0"
+#40
+1#
+#48
+0#
+1"
+#56
+1!
+1#
+#64

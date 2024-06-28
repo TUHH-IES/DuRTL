@@ -1,0 +1,106 @@
+{
+  "creator": "Yosys 0.20 (git sha1 4fcb95ed087, clang 14.0.0-1ubuntu1 -fPIC -Os)",
+  "modules": {
+    "m_0": {
+      "attributes": {
+        "dynports": "00000000000000000000000000000001",
+        "src": "dlatch.v:1.1-15.10"
+      },
+      "parameter_default_values": {
+        "CLR_POLARITY": "1",
+        "CLK_POLARITY": "1",
+        "SET_POLARITY": "1",
+        "WIDTH": "00000000000000000000000000000010"
+      },
+      "ports": {
+      	"CLK": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+      	"CLR": {
+          "direction": "input",
+          "bits": [ 3, 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5, 6 ]
+        },
+        "Q": {
+          "direction": "output",
+          "bits": [ 7, 8 ]
+        },
+        
+        "SET": {
+          "direction": "input",
+          "bits": [ 9, 10 ]
+        }
+      },
+      "cells": {
+        "$auto$proc_dffsr.cc:427:proc_dffsr$6": {
+          "hide_name": 1,
+          "type": "$dffsr",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "CLR_POLARITY": "00000000000000000000000000000001",	
+            "SET_POLARITY": "00000000000000000000000000000001",           
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "dlatch.v:10.1-13.4"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "CLR": "input",
+            "D": "input",
+            "Q": "output",
+            "SET": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "CLR": [3, 4 ],	
+            "D": [ 5, 6 ],
+            "Q": [ 7, 8 ],
+            "SET":[ 9, 10]
+          }
+        }
+      },
+      "netnames": {
+        "CLK": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "dlatch.v:6.7-6.9"
+          }
+        },
+        "CLR": {
+          "hide_name": 0,
+          "bits": [ 3, 4 ],
+          "attributes": {
+            "src": "dlatch.v:7.19-7.20"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5, 6 ],
+          "attributes": {
+            "src": "dlatch.v:7.19-7.20"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 7, 8 ],
+          "attributes": {
+            "src": "dlatch.v:8.24-8.25"
+          }
+        },
+        "SET": {
+          "hide_name": 0,
+          "bits": [ 9, 10 ],
+          "attributes": {
+            "src": "dlatch.v:7.19-7.20"
+          }
+        }
+      }
+    }
+  }
+}

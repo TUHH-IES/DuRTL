@@ -1,0 +1,70 @@
+$date
+	Fri Apr 21 13:17:48 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_shiftx $end
+$var wire 2 ! Y [1:0] $end
+$var reg 2 " A [1:0] $end
+$var reg 2 # B [1:0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx #
+bx "
+bx !
+$end
+#100000
+b0 !
+b0 #
+b0 "
+#110000
+bx0 !
+b1 #
+#120000
+bx !
+b10 #
+#130000
+b11 #
+#240000
+b1 !
+b0 #
+b1 "
+#250000
+bx0 !
+b1 #
+#260000
+bx !
+b10 #
+#270000
+b11 #
+#380000
+b10 !
+b0 #
+b10 "
+#390000
+bx1 !
+b1 #
+#400000
+bx !
+b10 #
+#410000
+b11 #
+#520000
+b11 !
+b0 #
+b11 "
+#530000
+bx1 !
+b1 #
+#540000
+bx !
+b10 #
+#550000
+b11 #
+#660000

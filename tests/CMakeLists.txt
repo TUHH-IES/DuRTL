@@ -1,0 +1,8 @@
+file(GLOB_RECURSE unitfiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
+add_executable(tester ${unitfiles})
+target_link_libraries(tester PRIVATE sources configuration_files Catch2::Catch2 vcd-parser::vcd-parser)
+catch_discover_tests(tester)
+enable_sanitizers(tester)
+if (NOT ENABLE_COVERAGE)
+    set_target_properties(tester PROPERTIES UNITY_BUILD ON)
+endif ()
