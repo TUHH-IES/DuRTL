@@ -1,23 +1,29 @@
+---
+icon: hand-wave
+cover: https://gitbookio.github.io/onboarding-template-images/header.png
+coverY: 0
+layout:
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
 
-## Build
-### Part 1
-#### Linux
-* `sudo apt install git g++ cmake bison flex curl zip unzip tar pkg-config`
+# Welcome
 
-#### Windows
-* Download the latest release of WinFlexBison from: https://github.com/lexxmark/winflexbison/releases/latest and extract the content of the downloaded archive in `thirdparty/win_flex_bison`
-* Install git from: https://gitforwindows.org/
-* Download the latest release of the OSS CAD Suite for Windows from: https://github.com/YosysHQ/oss-cad-suite-build/releases/latest and extract the content of the downloaded archive in `thirdparty/oss-cad-suite`
+Welcome to the GitBook Starter Template! Here you'll get an overview of all the amazing features GitBook offers to help you build beautiful, interactive documentation.
 
-### Part 2
-* `git clone https://github.com/microsoft/vcpkg.git thirdparty/vcpkg`
-* `mkdir build`
-* `cd build`
-* `cmake ..`
-* `make`
+You'll see some of the best parts of GitBook in action — and find help on how you can turn this template into your own.
 
-## Usage
+### Jump right in
 
-* Run all tests using the `tester` executable.
-* Run the `main` executable to execute the basic IFT analysis on a design.
-  * Run `main -h` to get more information about the command options available.
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Getting Started</strong></td><td>Create your first site</td><td></td><td></td><td><a href="getting-started/quickstart.md">quickstart.md</a></td></tr><tr><td><strong>Basics</strong></td><td>Learn the basics of GitBook</td><td></td><td></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td><strong>Publish your docs</strong></td><td>Share your docs online</td><td></td><td></td><td><a href="getting-started/publish-your-docs.md">publish-your-docs.md</a></td></tr></tbody></table>
