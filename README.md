@@ -22,6 +22,7 @@ Compile the project by executing the following commands:
 - `mkdir build`
 - `cd build`
 - `cmake ..`
+- `cmake --build .`
 
 ## Usage
 
