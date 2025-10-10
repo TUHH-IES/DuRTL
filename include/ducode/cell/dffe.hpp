@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <ducode/cell.hpp>
+#include <ducode/cell/basic_dff.hpp>
 
 #include <utility>
 
@@ -12,13 +12,12 @@ namespace ducode {
     pred_0 = RST, pred_1 = CLK, pred_2= dataIn, the succssor is the data output.
 */
 
-class CellDFFE : public Cell {
-  bool clk_pos_edge;
+class CellDFFE : public CellBasicDFF {
   bool en_active_high;
 
 public:
   CellDFFE(std::string name, std::string type, std::vector<ducode::Port>& ports, bool hidden, const nlohmann::json& parameters, const nlohmann::json& attributes)
-      : Cell(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
+      : CellBasicDFF(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
     // One output
     assert(ports.size() == 4);
     assert(ports[0].m_name == "CLK");
@@ -33,9 +32,7 @@ public:
     assert(ports[2].m_bits.size() == 1);
     assert(ports[1].m_bits.size() == ports[3].m_bits.size());
     // Clock is the first input
-    clk_pos_edge = std::stoull(parameters.at("CLK_POLARITY").get<std::string>(), nullptr, 2) != 0;
     en_active_high = std::stoull(parameters.at("EN_POLARITY").get<std::string>(), nullptr, 2) != 0;
-    m_register = true;
   }
 
   [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const override {
@@ -87,6 +84,17 @@ public:
     result << "  end\n\n";
 
     return result.str();
+  }
+
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+
+    assert(port_expr_map.size() <= 5);// 4 ports: CLK, D, EN, Q and 1 port from the previous timestep: Q_prev
+
+    if (en_active_high) {
+      solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 1), port_expr_map.at("D"), port_expr_map.at("Q_prev")))));
+    } else {
+      solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 0), port_expr_map.at("D"), port_expr_map.at("Q_prev")))));
+    }
   }
 };
 }// namespace ducode

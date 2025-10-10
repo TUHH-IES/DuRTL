@@ -1,0 +1,44 @@
+$date
+	Sat Dec  7 14:21:00 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module anda_tb $end
+$var wire 5 ! c [4:0] $end
+$var reg 5 " a [4:0] $end
+$var reg 5 # b [4:0] $end
+$scope module d1 $end
+$var wire 5 $ a [4:0] $end
+$var wire 5 % b [4:0] $end
+$var wire 5 & c [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 &
+b0 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#1
+b1 "
+b1 $
+#2
+b1 #
+b1 %
+b0 "
+b0 $
+#3
+b100 #
+b100 %
+#4

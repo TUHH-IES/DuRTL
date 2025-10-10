@@ -1,0 +1,74 @@
+{
+  "creator": "Yosys 0.54+29 (git sha1 7b0c1fe49, clang++ 18.1.8 -fPIC -O3)",
+  "modules": {
+    "qifa_exampleSimple": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "qifa_exampleTrivial.v:1.1-9.10"
+      },
+      "ports": {
+        "secret": {
+          "direction": "input",
+          "bits": [ 2, 3 ]
+        },
+        "inp": {
+          "direction": "input",
+          "bits": [ 4, 5 ]
+        },
+        "out": {
+          "direction": "output",
+          "bits": [ 6, 7 ]
+        }
+      },
+      "cells": {
+        "$add$qifa_exampleTrivial.v:7$1": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "qifa_exampleTrivial.v:7.18-7.28"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, 5 ],
+            "B": [ 2, 3 ],
+            "Y": [ 6, 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "inp": {
+          "hide_name": 0,
+          "bits": [ 4, 5 ],
+          "attributes": {
+            "src": "qifa_exampleTrivial.v:3.23-3.26"
+          }
+        },
+        "out": {
+          "hide_name": 0,
+          "bits": [ 6, 7 ],
+          "attributes": {
+            "src": "qifa_exampleTrivial.v:4.24-4.27"
+          }
+        },
+        "secret": {
+          "hide_name": 0,
+          "bits": [ 2, 3 ],
+          "attributes": {
+            "src": "qifa_exampleTrivial.v:2.23-2.29"
+          }
+        }
+      }
+    }
+  }
+}

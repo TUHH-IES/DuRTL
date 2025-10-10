@@ -45,7 +45,7 @@ public:
 
         connections.emplace_back(fmt::format(".{}({})", legalize_identifier(port.m_name), assignment));
         if (ift) {
-          connections.emplace_back(fmt::format(".{}_t({}_t)", legalize_identifier(port.m_name), assignment));
+          connections.emplace_back(fmt::format(".{}{}({}{})", legalize_identifier(port.m_name), ift_tag, assignment, ift_tag));
         }
       }
     }
@@ -54,6 +54,19 @@ public:
     result << fmt::format("  {} {}({});\n", legalize_identifier(m_type), legalize_identifier(m_name), connections_string);
 
     return result.str();
+  }
+
+
+  void export_smt2([[maybe_unused]] z3::context& ctx, [[maybe_unused]] z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+    if (port_expr_map.size() != 2) {
+      throw std::runtime_error(fmt::format(
+          "Port expression map size is {}, but must be exactly 2.", port_expr_map.size()));
+    }
+    std::string port_name = params["port"];
+
+    if (port_expr_map.at(fmt::format("{}_{}", port_name, "successor")).to_string() != port_expr_map.at(port_name).to_string()) {
+      solver.add(port_expr_map.at(fmt::format("{}_{}", port_name, "successor")) == port_expr_map.at(port_name));
+    }
   }
 };
 }// namespace ducode

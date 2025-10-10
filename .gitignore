@@ -1,5 +1,6 @@
 build/
 build-clang/
+build*
 .vscode/
 doc/html/
 doc/latex/
@@ -16,3 +17,10 @@ cmake-build-*
 tags_*.txt
 results.json
 *.out
+test.v
+*.z3-trace
+*.smt2
+/.cache
+*.bkp
+out/
+compile_commands.json

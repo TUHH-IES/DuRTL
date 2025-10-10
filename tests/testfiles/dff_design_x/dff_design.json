@@ -1,0 +1,291 @@
+{
+  "creator": "Yosys 0.36 (git sha1 8f07a0d8404, clang 16.0.6 -fPIC -Os)",
+  "modules": {
+    "dff_design": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "dff_design.v:1.1-21.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "a": {
+          "direction": "input",
+          "bits": [ 3, 4, 5, 6, 7, 8, 9, 10 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 11, 12, 13, 14, 15, 16, 17, 18 ]
+        },
+        "c": {
+          "direction": "input",
+          "bits": [ 19, 20, 21, 22, 23, 24, 25, 26 ]
+        },
+        "d": {
+          "direction": "output",
+          "bits": [ 27, 28, 29, 30, 31, 32, 33, 34 ]
+        },
+        "e": {
+          "direction": "output",
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42 ]
+        }
+      },
+      "cells": {
+        "$and$dff_design.v:10$1": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "dff_design.v:10.14-10.19"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3, 4, 5, 6, 7, 8, 9, 10 ],
+            "B": [ 11, 12, 13, 14, 15, 16, 17, 18 ],
+            "Y": [ 43, 44, 45, 46, 47, 48, 49, 50 ]
+          }
+        },
+        "$and$dff_design.v:15$4": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "dff_design.v:15.10-15.15"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 27, 28, 29, 30, 31, 32, 33, 34 ],
+            "B": [ 19, 20, 21, 22, 23, 24, 25, 26 ],
+            "Y": [ 51, 52, 53, 54, 55, 56, 57, 58 ]
+          }
+        },
+        "$and$dff_design.v:19$5": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "dff_design.v:19.14-19.19"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 59, 60, 61, 62, 63, 64, 65, 66 ],
+            "B": [ 67, 68, 69, 70, 71, 72, 73, 74 ],
+            "Y": [ 35, 36, 37, 38, 39, 40, 41, 42 ]
+          }
+        },
+        "$or$dff_design.v:11$2": {
+          "hide_name": 1,
+          "type": "$or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "dff_design.v:11.14-11.19"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3, 4, 5, 6, 7, 8, 9, 10 ],
+            "B": [ 11, 12, 13, 14, 15, 16, 17, 18 ],
+            "Y": [ 67, 68, 69, 70, 71, 72, 73, 74 ]
+          }
+        },
+        "$procdff$6": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "dff_design.v:13.3-16.6"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ "x", "x", "x", "x", "x", "x", "x", "x" ],
+            "Q": [ 27, 28, 29, 30, 31, 32, 33, 34 ]
+          }
+        },
+        "$procdff$7": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "dff_design.v:13.3-16.6"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 51, 52, 53, 54, 55, 56, 57, 58 ],
+            "Q": [ 59, 60, 61, 62, 63, 64, 65, 66 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\o[7:0]": {
+          "hide_name": 1,
+          "bits": [ "x", "x", "x", "x", "x", "x", "x", "x" ],
+          "attributes": {
+            "src": "dff_design.v:13.3-16.6"
+          }
+        },
+        "$0\\p[7:0]": {
+          "hide_name": 1,
+          "bits": [ 51, 52, 53, 54, 55, 56, 57, 58 ],
+          "attributes": {
+            "src": "dff_design.v:13.3-16.6"
+          }
+        },
+        "$and$dff_design.v:10$1_Y": {
+          "hide_name": 1,
+          "bits": [ 43, 44, 45, 46, 47, 48, 49, 50 ],
+          "attributes": {
+            "src": "dff_design.v:10.14-10.19"
+          }
+        },
+        "$and$dff_design.v:15$4_Y": {
+          "hide_name": 1,
+          "bits": [ 51, 52, 53, 54, 55, 56, 57, 58 ],
+          "attributes": {
+            "src": "dff_design.v:15.10-15.15"
+          }
+        },
+        "$and$dff_design.v:19$5_Y": {
+          "hide_name": 1,
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42 ],
+          "attributes": {
+            "src": "dff_design.v:19.14-19.19"
+          }
+        },
+        "$or$dff_design.v:11$2_Y": {
+          "hide_name": 1,
+          "bits": [ 67, 68, 69, 70, 71, 72, 73, 74 ],
+          "attributes": {
+            "src": "dff_design.v:11.14-11.19"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 3, 4, 5, 6, 7, 8, 9, 10 ],
+          "attributes": {
+            "src": "dff_design.v:4.20-4.21"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 11, 12, 13, 14, 15, 16, 17, 18 ],
+          "attributes": {
+            "src": "dff_design.v:4.22-4.23"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [ 19, 20, 21, 22, 23, 24, 25, 26 ],
+          "attributes": {
+            "src": "dff_design.v:4.24-4.25"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "dff_design.v:5.14-5.17"
+          }
+        },
+        "d": {
+          "hide_name": 0,
+          "bits": [ 27, 28, 29, 30, 31, 32, 33, 34 ],
+          "attributes": {
+            "src": "dff_design.v:6.21-6.22"
+          }
+        },
+        "e": {
+          "hide_name": 0,
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42 ],
+          "attributes": {
+            "src": "dff_design.v:6.23-6.24"
+          }
+        },
+        "o": {
+          "hide_name": 0,
+          "bits": [ 27, 28, 29, 30, 31, 32, 33, 34 ],
+          "attributes": {
+            "src": "dff_design.v:8.13-8.14"
+          }
+        },
+        "p": {
+          "hide_name": 0,
+          "bits": [ 59, 60, 61, 62, 63, 64, 65, 66 ],
+          "attributes": {
+            "src": "dff_design.v:8.15-8.16"
+          }
+        },
+        "x": {
+          "hide_name": 0,
+          "bits": [ 43, 44, 45, 46, 47, 48, 49, 50 ],
+          "attributes": {
+            "src": "dff_design.v:7.14-7.15"
+          }
+        },
+        "y": {
+          "hide_name": 0,
+          "bits": [ 67, 68, 69, 70, 71, 72, 73, 74 ],
+          "attributes": {
+            "src": "dff_design.v:7.16-7.17"
+          }
+        }
+      }
+    }
+  }
+}

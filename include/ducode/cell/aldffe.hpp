@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <ducode/cell.hpp>
+#include <ducode/cell/basic_dff.hpp>
 #include <ducode/port.hpp>
 
 #include <cassert>
@@ -18,14 +18,13 @@ namespace ducode {
 pred_0= aDataIn, pred_1= aLoad, pred_2 = CLK, pred_3 = DataIn, pred_4 = ENable,  the succssor is the data output.
 */
 
-class CellALDFFE : public Cell {
-  bool clk_pos_edge;
+class CellALDFFE : public CellBasicDFF {
   bool aload_active_high;
   bool en_active_high;
 
 public:
   CellALDFFE(std::string name, std::string type, std::vector<ducode::Port>& ports, bool hidden, const nlohmann::json& parameters, const nlohmann::json& attributes)
-      : Cell(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
+      : CellBasicDFF(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
     // One output
     assert(ports.size() == 6);
     assert(ports[0].m_name == "AD");
@@ -45,10 +44,8 @@ public:
     assert(ports[4].m_bits.size() == 1);
     assert(ports[0].m_bits.size() == ports[5].m_bits.size());
     assert(ports[3].m_bits.size() == ports[5].m_bits.size());
-    clk_pos_edge = std::stoull(parameters.at("CLK_POLARITY").get<std::string>(), nullptr, 2) != 0;
     aload_active_high = std::stoull(parameters.at("ALOAD_POLARITY").get<std::string>(), nullptr, 2) != 0;
     en_active_high = std::stoull(parameters.at("EN_POLARITY").get<std::string>(), nullptr, 2) != 0;
-    m_register = true;
   }
 
   [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const override {
@@ -117,6 +114,25 @@ public:
     result << "  end\n\n";
 
     return result.str();
+  }
+
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+    // throw std::runtime_error("ALDFFE cell Not validated for smt2-simulation!! Would only work with specific configurations treating it like a synchronous element.");
+    assert(port_expr_map.size() <= 7);
+
+    if (en_active_high) {
+      if (aload_active_high) {
+        solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ALOAD") == 1), port_expr_map.at("AD"), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 1), port_expr_map.at("D"), port_expr_map.at("Q_prev")))))));
+      } else {
+        solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ALOAD") == 0), port_expr_map.at("AD"), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 1), port_expr_map.at("D"), port_expr_map.at("Q_prev")))))));
+      }
+    } else {
+      if (aload_active_high) {
+        solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ALOAD") == 1), port_expr_map.at("AD"), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 0), port_expr_map.at("D"), port_expr_map.at("Q_prev")))))));
+      } else {
+        solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ALOAD") == 0), port_expr_map.at("AD"), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 0), port_expr_map.at("D"), port_expr_map.at("Q_prev")))))));
+      }
+    }
   }
 };
 }// namespace ducode

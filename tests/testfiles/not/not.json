@@ -1,0 +1,104 @@
+{
+  "creator": "Yosys 0.36 (git sha1 8f07a0d8404, clang 16.0.6 -fPIC -Os)",
+  "modules": {
+    "not_": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "not.v:1.1-10.10"
+      },
+      "ports": {
+        "a": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5, 6 ]
+        },
+        "b": {
+          "direction": "output",
+          "bits": [ 7 ]
+        },
+        "c": {
+          "direction": "output",
+          "bits": [ 8, 9, 10, 11, 12 ]
+        }
+      },
+      "cells": {
+        "$logic_not$not.v:7$1": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "not.v:7.14-7.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5, 6 ],
+            "Y": [ 7 ]
+          }
+        },
+        "$not$not.v:8$2": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "src": "not.v:8.14-8.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5, 6 ],
+            "Y": [ 8, 9, 10, 11, 12 ]
+          }
+        }
+      },
+      "netnames": {
+        "$logic_not$not.v:7$1_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "not.v:7.14-7.16"
+          }
+        },
+        "$not$not.v:8$2_Y": {
+          "hide_name": 1,
+          "bits": [ 8, 9, 10, 11, 12 ],
+          "attributes": {
+            "src": "not.v:8.14-8.16"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6 ],
+          "attributes": {
+            "src": "not.v:4.20-4.21"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "not.v:5.15-5.16"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [ 8, 9, 10, 11, 12 ],
+          "attributes": {
+            "src": "not.v:6.21-6.22"
+          }
+        }
+      }
+    }
+  }
+}

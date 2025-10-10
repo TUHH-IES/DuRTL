@@ -20,5 +20,10 @@ public:
   [[nodiscard]] std::string get_verilog_operator() const override {
     return "&";
   }
+
+  [[nodiscard]] z3::expr get_cell_assertion_unary(z3::context& ctx, const z3::expr& input1, const z3::expr& output) const override {
+
+    return (output == to_expr(ctx, Z3_mk_bvredand(ctx, input1)));
+  }
 };
 }// namespace ducode

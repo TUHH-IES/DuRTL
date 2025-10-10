@@ -12,10 +12,10 @@
 #include <fmt/format.h>
 #include <gsl/assert>
 #include <nlohmann/json.hpp>
-#include <range/v3/view/enumerate.hpp>
 
 #include <limits>
 #include <memory>
+#include <ranges>
 #include <string>
 #include <unordered_set>
 #include <utility>
@@ -135,9 +135,8 @@ public:
    * 
    * @return The name of the object as a string.
    */
-  [[nodiscard]] std::string get_name() const {
-    return m_name;
-  }
+  [[nodiscard]] const std::string& get_name() const { return m_name; }
+
 
   /**
    * Sets the initial value for the object.
@@ -194,6 +193,9 @@ public:
     Expects(params.contains("ift"));
     const bool ift = params["ift"].get<bool>();
 
+    Expects(params.contains("tag_size"));
+    const uint32_t tag_size = params["tag_size"].get<uint32_t>();
+
     bool is_register = false;
     if (params.contains("is_register")) {
       is_register = params["is_register"].get<bool>();
@@ -216,7 +218,7 @@ public:
 
     result << fmt::format("  {} {} {};\n", net_type, net_width_string, legalized_name);
     if (ift) {
-      result << fmt::format("  {} [{}:0] {}_t{};\n", net_type, tag_size - 1, legalized_name, is_register ? " = 0" : "");
+      result << fmt::format("  {} [{}:0] {}{}{};\n", net_type, tag_size - 1, legalized_name, ift_tag, is_register ? " = 0" : "");
     }
 
     if (is_register && !get_init_value().empty()) {
@@ -226,7 +228,7 @@ public:
     }
 
     if (contains_constant()) {
-      for (const auto& [index, bit]: ranges::views::enumerate(m_bits)) {
+      for (const auto& [index, bit]: std::views::enumerate(m_bits)) {
         const std::string assignment_string = m_bits.size() > 1 ? fmt::format("{}[{}]", legalized_name, index) : legalized_name;
         if (bit == Bit::const_bit_Z) {
           // do nothing
@@ -238,7 +240,7 @@ public:
 
     if (ift) {
       if (!contains_non_constant()) {
-        const std::string assignment_string = fmt::format("{}", legalized_name + "_t");
+        const std::string assignment_string = fmt::format("{}{}", legalized_name, ift_tag);
         result << fmt::format("  assign {} = 0;\n", assignment_string);
       }
     }

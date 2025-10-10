@@ -58,7 +58,7 @@ concept range_like =
               end_mf_t<declref_t<T>> _end) {
        { _begin != _end } -> std::same_as<bool>;
        { *_begin } -> std::convertible_to<typename T::value_type>;
-       { ++_begin };
+       { ++_begin };// NOLINT(bugprone-inc-dec-in-conditions)
      }) ||
     (/*Types with non-member begin/end*/
      requires {
@@ -68,5 +68,5 @@ concept range_like =
               end_non_mf_t<declref_t<T>> _end) {
        { _begin != _end } -> std::same_as<bool>;
        { *_begin } -> std::convertible_to<typename T::value_type>;
-       { ++_begin };
+       { ++_begin };// NOLINT(bugprone-inc-dec-in-conditions)
      });

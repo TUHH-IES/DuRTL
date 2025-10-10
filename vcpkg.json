@@ -13,6 +13,15 @@
     "nlohmann-json",
     "range-v3",
     "vcd-parser",
-    "unordered-dense"
+    "verible",
+    "unordered-dense",
+    "yosys-verilog",
+    "z3"
+  ],
+  "overrides": [
+    {
+      "name": "fmt",
+      "version": "10.2.1"
+    }
   ]
 }

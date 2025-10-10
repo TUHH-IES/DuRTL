@@ -1,5 +1,5 @@
 
-module main;
+module y86_tb;
 
   reg clk, rst;
   wire [31:0] bus_A_ins;

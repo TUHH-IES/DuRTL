@@ -20,8 +20,8 @@ inline bool no_repetitions_compare(const VCDSignalValues& a, const VCDSignalValu
                   ranges::views::transform([](const VCDTimedValue& value) { return value.value; }) |
                   ranges::views::unique;
 
-  auto a_size = ranges::distance(a_values.begin(), a_values.end());
-  auto b_size = ranges::distance(b_values.begin(), b_values.end());
+  auto a_size = std::ranges::distance(a_values.begin(), a_values.end());
+  auto b_size = std::ranges::distance(b_values.begin(), b_values.end());
   if (a_size != b_size) {
     return false;
   }

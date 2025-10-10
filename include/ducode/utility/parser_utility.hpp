@@ -5,7 +5,11 @@
 
 #pragma once
 
+#include <ducode/instantiation_graph_traits.hpp>
+
 #include <vcd-parser/VCDFileParser.hpp>
+
+#include <algorithm>
 
 namespace ducode {
 
@@ -22,7 +26,7 @@ inline std::vector<std::string> get_hierarchical_name(const VCDSignal& signal) {
     currScope = currScope->parent;
   }
 
-  std::reverse(std::begin(hierarchy), std::end(hierarchy));
+  std::ranges::reverse(hierarchy);
 
   return hierarchy;
 }
@@ -45,6 +49,18 @@ inline VCDBitVector bit_to_vector(const VCDValue& value) {
   if (value.get_type() == VCDValueType::SCALAR) {
     valVector.push_back(value.get_value_bit());
   } else if (value.get_type() == VCDValueType::VECTOR) {
+    valVector = value.get_value_vector();
+  } else {
+    throw std::invalid_argument("should not be called on EMPTY or REAL");
+  }
+  return valVector;
+}
+
+inline SignalBitVector bit_to_vector(const SignalValue& value) {
+  SignalBitVector valVector;
+  if (value.get_type() == SignalValueType::SCALAR) {
+    valVector.push_back(value.get_value_bit());
+  } else if (value.get_type() == SignalValueType::VECTOR) {
     valVector = value.get_value_vector();
   } else {
     throw std::invalid_argument("should not be called on EMPTY or REAL");

@@ -1,0 +1,19 @@
+digraph CallGraph {
+  //Get cell instance from queue and simulate
+  "Simulator::simulate" -> "ModuleInstance::simulate(CellID cid, Simulator &sim)";
+  // Call cell instance for simulation
+  "ModuleInstance::simulate(CellID cid, Simulator &sim)" -> "CellInstance::simulate(Simulator &sim)";
+  "CellInstance::simulate(Simulator &sim)" -> "CellBasicGate::simulate(const ModuleInstance *parent, const ModuleInstance *child, Simulator &sim)";
+  "CellBasicGate::simulate(const ModuleInstance *parent, const ModuleInstance *child, Simulator &sim)" -> "Simulator::updateSimulationState(const FlatNetID &fn, const SimValue &val)";
+  "Simulator::updateSimulationState(const FlatNetID &fn, const SimValue &val)" -> "ModuleInstance::scheduleSuccessors(NetID nid, Simulator &sim)";
+  "ModuleInstance::scheduleSuccessors(NetID nid, Simulator &sim)" -> "NetInstance::scheduleSuccessors(Simulator &sim)";
+  "NetInstance::scheduleSuccessors(Simulator &sim)" -> "CellInstance::scheduleForSimulation(NetID nid, Simulator &sim)";
+  "NetInstance::scheduleSuccessors(Simulator &sim)" -> "CellModuleInstance::scheduleForSimulation(NetID nid, Simulator &sim)";
+  "NetInstance::scheduleSuccessors(Simulator &sim)" -> "ModuleInstance::scheduleSuccessorsOfOutput(NetID nid, Simulator &sim)";
+  "CellInstance::scheduleForSimulation(NetID nid, Simulator &sim)" -> "Simulator::scheduleForSimulation(const FlatCellID &fci)";
+  "CellModuleInstance::scheduleForSimulation(NetID nid, Simulator &sim)" -> "CellModule::scheduleForSimulation(const ModuleInstance *parent, NetID nid, const ModuleInstance *child, Simulator &sim)";
+  "CellModule::scheduleForSimulation(const ModuleInstance *parent, NetID nid, const ModuleInstance *child, Simulator &sim)" -> "Simulator::updateSimulationState(const FlatNetID &fn, const SimValue &val)";
+  "ModuleInstance::scheduleSuccessorsOfOutput(NetID nid, Simulator &sim)" -> "CellModuleInstance::updateSimulationStateOfOutput(uint portNumber, const SimValue &v, Simulator &sim)";
+  "CellModuleInstance::updateSimulationStateOfOutput(uint portNumber, const SimValue &v, Simulator &sim)" -> "CellModule::updateSimulationStateOfOutput(const ModuleInstance *parent, uint portNumber, const SimValue &v, Simulator &sim)";
+  "CellModule::updateSimulationStateOfOutput(const ModuleInstance *parent, uint portNumber, const SimValue &v, Simulator &sim)" -> "Simulator::updateSimulationState(const FlatNetID &fn, const SimValue &val)";
+}

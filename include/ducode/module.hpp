@@ -7,26 +7,16 @@
 #include <ducode/net.hpp>
 #include <ducode/port.hpp>
 #include <ducode/types.hpp>
-#include <ducode/utility/export_connection.hpp>
-#include <ducode/utility/graph.hpp>
-#include <ducode/utility/subrange.hpp>
+#include <ducode/utility/legalize_identifier.hpp>
 
-#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/detail/adjacency_list.hpp>
 #include <boost/graph/graphviz.hpp>
 #include <boost/poly_collection/base_collection.hpp>
-#include <fmt/ranges.h>
-#include <gsl/assert>
-#include <gsl/narrow>
-#include <nlohmann/json.hpp>
-#include <range/v3/view/concat.hpp>
-#include <range/v3/view/enumerate.hpp>
+#include <fmt/core.h>
+#include <nlohmann/json_fwd.hpp>
 #include <spdlog/spdlog.h>
-#include <vcd-parser/VCDFile.hpp>
 
 #include <algorithm>
-#include <cstdint>
-#include <map>
-#include <ostream>
 #include <stdexcept>
 #include <string>
 #include <unordered_set>
@@ -46,12 +36,12 @@ namespace ducode {
  */
 class Module {
   std::string m_name;
-  std::string m_src_name;
-  uint32_t m_src_line = 0;
   std::vector<Net> m_nets;
   boost::base_collection<Cell> m_cells;
   std::vector<Port> m_ports;
   ModuleGraph m_module_graph;
+  nlohmann::json m_parameters;
+  nlohmann::json m_attributes;
 
 public:
   /**
@@ -67,8 +57,6 @@ public:
    * @param other The Module object to be copied.
    */
   Module(const Module& other) : m_name(other.m_name),
-                                m_src_name(other.m_src_name),
-                                m_src_line(other.m_src_line),
                                 m_nets(other.m_nets),
                                 m_cells(other.m_cells),
                                 m_ports(other.m_ports) {
@@ -93,8 +81,6 @@ public:
     }
 
     m_name = other.m_name;
-    m_src_name = other.m_src_name;
-    m_src_line = other.m_src_line;
     m_nets = other.m_nets;
     m_cells = other.m_cells;
     m_ports = other.m_ports;
@@ -152,6 +138,8 @@ public:
     return *port_it;
   }
 
+  [[nodiscard]] bool check_clock_signal_consistency() const;
+  [[nodiscard]] bool check_clock_rising_edge_consistency() const;
   /**
    * Adds a port to the module.
    *
@@ -200,29 +188,6 @@ public:
   }
 
   /**
-   * Sets the source information for the module.
-   *
-   * @param src The name of the source file.
-   * @param line The line number in the source file.
-   */
-  void set_source_info(const std::string& src, uint32_t line) {
-    m_src_name = src;
-    m_src_line = line;
-  }
-
-  /**
-   * Returns the source information of the module.
-   *
-   * The source information is a string representation of the source file name and line number
-   * where the module is defined.
-   *
-   * @return A string containing the source information in the format "filename:line_number".
-   */
-  [[nodiscard]] std::string get_source_info() const {
-    return fmt::format("{}:{}", m_src_name, m_src_line);
-  }
-
-  /**
    * @brief Returns a const reference to the vector of nets.
    *
    * This function returns a const reference to the vector of nets in the module.
@@ -266,6 +231,47 @@ public:
     }
     return names;
   }
+
+  /**
+   * @brief Retrieves references to all input ports in the module.
+   * 
+   * This function returns a vector of reference wrappers to all the input ports
+   * in the module. Using reference wrappers allows storing references in a 
+   * standard container while maintaining access to the original port objects.
+   * 
+   * @return A vector of reference wrappers to the input ports.
+   */
+  [[nodiscard]] std::vector<std::reference_wrapper<const Port>> get_input_ports() const {
+    std::vector<std::reference_wrapper<const Port>> port_refs;
+    port_refs.reserve(m_ports.size());
+    for (const auto& port: m_ports) {
+      if (port.m_direction == Port::Direction::input) {
+        port_refs.emplace_back(port);
+      }
+    }
+    return port_refs;
+  }
+
+  /**
+   * @brief Retrieves references to all input ports in the module.
+   * 
+   * This function returns a vector of reference wrappers to all the input ports
+   * in the module. Using reference wrappers allows storing references in a 
+   * standard container while maintaining access to the original port objects.
+   * 
+   * @return A vector of reference wrappers to the input ports.
+   */
+  [[nodiscard]] std::vector<std::reference_wrapper<const Port>> get_output_ports() const {
+    std::vector<std::reference_wrapper<const Port>> port_refs;
+    port_refs.reserve(m_ports.size());
+    for (const auto& port: m_ports) {
+      if (port.m_direction == Port::Direction::output) {
+        port_refs.emplace_back(port);
+      }
+    }
+    return port_refs;
+  }
+
 
   /**
    * @brief Retrieves the names of the input/output ports in the module.
@@ -313,245 +319,7 @@ public:
    * 
    * @throws std::runtime_error if an unsupported case is encountered.
    */
-  void populate_graph() {
-    auto vectors_intersection = [](const fast_bit_container& bits1, const fast_bit_container& bits2) -> bool {
-      if (bits1.empty() || bits2.empty()) {
-        std::runtime_error("Empty bits!");
-      }
-
-      return std::ranges::any_of(bits1, [&](const Bit& bit) { return bits2.contains(bit); });
-    };
-
-    std::unordered_multimap<std::size_t, ModuleGraph::vertex_descriptor> net_signatures;
-    std::unordered_multimap<std::size_t, ModuleGraph::vertex_descriptor> module_port_signatures;
-
-    // adding all the nets; ports are directly connected to matching nets, if any
-    for (const Net& net: m_nets) {
-      auto port_it = std::ranges::find_if(m_ports, [&](const Port& port) { return port.m_bits_signature == net.get_bits_signature() && port.m_name == net.get_name(); });
-      if (port_it == m_ports.end()) {
-        VertexInfo module_vertex_prop;
-        module_vertex_prop.type = VertexType::kNet;
-        module_vertex_prop.net_ptr = &net;
-        module_vertex_prop.label = fmt::format("net -> {} ({})", net.get_name(), net.get_bits());
-        auto net_vertex = boost::add_vertex(module_vertex_prop, m_module_graph);
-        net_signatures.emplace(net.get_bits_signature(), net_vertex);
-      } else {
-        VertexInfo module_vertex_prop;
-        module_vertex_prop.type = VertexType::kNet;
-        module_vertex_prop.port_type = VertexType::kModulePort;
-        module_vertex_prop.net_ptr = &net;
-        module_vertex_prop.port_ptr = &(*port_it);
-        module_vertex_prop.label = fmt::format("port net -> {} ({})", net.get_name(), net.get_bits());
-        auto port_vertex = boost::add_vertex(module_vertex_prop, m_module_graph);
-        module_port_signatures.emplace(net.get_bits_signature(), port_vertex);
-
-        auto net_range = subrange(net_signatures.equal_range(net.get_bits_signature()));
-        for (auto [net_signature, net_descriptor]: net_range) {
-          if (port_it->m_direction == Port::Direction::input) {
-            boost::add_edge(port_vertex, net_descriptor, m_module_graph);
-          } else if (port_it->m_direction == Port::Direction::output || port_it->m_direction == Port::Direction::inout) {
-            boost::add_edge(net_descriptor, port_vertex, m_module_graph);
-          } else {
-            throw std::runtime_error("Case not managed.");
-          }
-        }
-      }
-    }
-
-    // adding all the cells and connecting them to the existing nets or to new nets
-    std::unordered_multimap<std::size_t, ModuleGraph::vertex_descriptor> cell_port_signatures;
-    for (const Cell& cell: m_cells) {
-      VertexInfo vertex_prop;
-      vertex_prop.type = VertexType::kCell;
-      vertex_prop.cell_ptr = &cell;
-      vertex_prop.label = fmt::format("cell -> {}", cell.get_name());
-      auto cell_vertex = boost::add_vertex(vertex_prop, m_module_graph);
-
-      for (const Port& port: cell.get_ports()) {
-        std::vector<ModuleGraph::vertex_descriptor> to_be_connected;
-
-        if (net_signatures.contains(port.m_bits_signature)) {
-          to_be_connected.emplace_back(net_signatures.find(port.m_bits_signature)->second);
-        } else if (module_port_signatures.contains(port.m_bits_signature)) {
-          to_be_connected.emplace_back(module_port_signatures.find(port.m_bits_signature)->second);
-        }
-
-        for (const auto& vertex: to_be_connected) {
-          if (port.m_direction == Port::Direction::input) {
-            boost::add_edge(vertex, cell_vertex, m_module_graph);
-          } else if (port.m_direction == Port::Direction::output || port.m_direction == Port::Direction::inout) {
-            boost::add_edge(cell_vertex, vertex, m_module_graph);
-          } else {
-            throw std::runtime_error("Case not managed.");
-          }
-        }
-
-        if (to_be_connected.empty() && !port.m_bits.empty()) {
-          VertexInfo module_vertex_prop;
-          module_vertex_prop.type = VertexType::kCellPort;
-          module_vertex_prop.cell_ptr = &cell;
-          module_vertex_prop.port_ptr = &port;
-          module_vertex_prop.label = fmt::format("cell port -> {}.{} ({})", cell.get_name(), port.m_name, port.m_bits);
-          auto port_vertex = boost::add_vertex(module_vertex_prop, m_module_graph);
-          cell_port_signatures.emplace(port.m_bits_signature, port_vertex);
-          if (port.m_direction == Port::Direction::input) {
-            boost::add_edge(port_vertex, cell_vertex, m_module_graph);
-          } else if (port.m_direction == Port::Direction::output || port.m_direction == Port::Direction::inout) {
-            boost::add_edge(cell_vertex, port_vertex, m_module_graph);
-          } else {
-            throw std::runtime_error("Case not managed.");
-          }
-        }
-      }
-    }
-
-    // connecting remaining elements
-    auto target_vertices = subrange(boost::vertices(m_module_graph));
-    for (const auto& target_vertex: target_vertices) {
-      if (m_module_graph[target_vertex].type == VertexType::kCell) {
-        continue;
-      }
-
-      if (m_module_graph[target_vertex].port_type == VertexType::kModulePort && m_module_graph[target_vertex].port_ptr->m_direction == Port::Direction::input) {
-        continue;
-      }
-
-      // if this node has already a source
-      const auto in_degree = boost::in_degree(target_vertex, m_module_graph);
-      if (in_degree != 0) {
-        continue;
-      }
-
-      const auto* target_port_ptr = m_module_graph[target_vertex].port_ptr;
-      const auto* target_net_ptr = m_module_graph[target_vertex].net_ptr;
-
-      std::size_t target_bits_signature = 0;
-      fast_bit_container target_bits;
-
-      Ensures(target_port_ptr != nullptr || target_net_ptr != nullptr);
-
-      if (target_net_ptr != nullptr) {
-        if (target_net_ptr->contains_only_constants()) {
-          continue;
-        }
-        target_bits_signature = target_net_ptr->get_bits_signature();
-        target_bits = target_net_ptr->get_fast_search_bits();
-      } else {
-        if (target_port_ptr->contains_only_constants()) {
-          continue;
-        }
-        target_bits_signature = target_port_ptr->m_bits_signature;
-        target_bits = target_port_ptr->m_fast_search_bits;
-      }
-
-      std::vector<ModuleGraph::vertex_descriptor> to_be_connected;
-
-      auto cell_ports_range = subrange(cell_port_signatures.equal_range(target_bits_signature));
-      auto nets_range = subrange(net_signatures.equal_range(target_bits_signature));
-      auto module_ports_range = subrange(module_port_signatures.equal_range(target_bits_signature));
-      auto range = ranges::concat_view(module_ports_range, nets_range, cell_ports_range);
-
-      for (const auto& [source_signature, source_vertex]: range) {
-        if (source_vertex == target_vertex) {
-          continue;
-        }
-        if (m_module_graph[source_vertex].type == VertexType::kCellPort && m_module_graph[source_vertex].port_ptr->m_direction == Port::Direction::input) {
-          continue;
-        }
-        if (source_reachable(m_module_graph, source_vertex, target_vertex)) {
-          continue;
-        }
-
-        to_be_connected.emplace_back(source_vertex);
-        target_bits.clear();
-        break;
-      }
-
-      for (const auto& [source_bits_signature, source_vertex]: module_port_signatures) {
-        if (target_bits.empty()) {
-          break;
-        }
-        if (source_vertex == target_vertex) {
-          continue;
-        }
-        const auto* source_net_ptr = m_module_graph[source_vertex].net_ptr;
-        Ensures(source_net_ptr != nullptr);
-        if (source_net_ptr->contains_only_constants()) {
-          continue;
-        }
-        if (source_reachable(m_module_graph, source_vertex, target_vertex)) {
-          continue;
-        }
-
-        const fast_bit_container& source_bits = source_net_ptr->get_fast_search_bits();
-        if (source_bits_signature == target_bits_signature || vectors_intersection(source_bits, target_bits)) {
-          to_be_connected.emplace_back(source_vertex);
-          for (const auto& element: source_bits) {
-            target_bits.erase(element);
-          }
-        }
-      }
-
-      for (const auto& [source_bits_signature, source_vertex]: net_signatures) {
-        if (target_bits.empty()) {
-          break;
-        }
-        if (source_vertex == target_vertex) {
-          continue;
-        }
-        const auto* source_net_ptr = m_module_graph[source_vertex].net_ptr;
-        Ensures(source_net_ptr != nullptr);
-
-        if (source_net_ptr->contains_only_constants()) {
-          continue;
-        }
-        if (source_reachable(m_module_graph, source_vertex, target_vertex)) {
-          continue;
-        }
-
-        const fast_bit_container& source_bits = source_net_ptr->get_fast_search_bits();
-        if (source_bits_signature == target_bits_signature || vectors_intersection(source_bits, target_bits)) {
-          to_be_connected.emplace_back(source_vertex);
-          for (const auto& element: source_bits) {
-            target_bits.erase(element);
-          }
-        }
-      }
-
-      for (const auto& [source_bits_signature, source_vertex]: cell_port_signatures) {
-        if (target_bits.empty()) {
-          break;
-        }
-        if (source_vertex == target_vertex) {
-          continue;
-        }
-        if (m_module_graph[source_vertex].port_ptr->m_direction == Port::Direction::input) {
-          continue;
-        }
-        const auto* source_port_ptr = m_module_graph[source_vertex].port_ptr;
-        Ensures(source_port_ptr != nullptr);
-
-        if (source_port_ptr->contains_only_constants()) {
-          continue;
-        }
-        if (source_reachable(m_module_graph, source_vertex, target_vertex)) {
-          continue;
-        }
-
-        const fast_bit_container& source_bits = source_port_ptr->m_fast_search_bits;
-        if (source_bits_signature == target_bits_signature || vectors_intersection(source_bits, target_bits)) {
-          to_be_connected.emplace_back(source_vertex);
-          for (const auto& element: source_bits) {
-            target_bits.erase(element);
-          }
-        }
-      }
-
-      for (const auto& source_vertex: to_be_connected) {
-        boost::add_edge(source_vertex, target_vertex, m_module_graph);
-      }
-    }
-  }
+  void populate_graph();
 
   /**
    * @brief Returns the module graph.
@@ -589,61 +357,7 @@ public:
    *
    * @throws std::runtime_error if the port direction is not recognized.
    */
-  [[nodiscard]] std::string export_verilog_header(const nlohmann::json& params) const {
-    Expects(params.contains("ift"));
-
-    const bool ift = params["ift"].get<bool>();
-
-    auto input_names = get_input_names();
-    auto output_names = get_output_names();
-    auto inout_names = get_inout_names();
-
-    if (ift) {
-      input_names.clear();
-      for (const auto& name: get_input_names()) {
-        input_names.emplace_back(legalize_identifier(name));
-        input_names.emplace_back(fmt::format("{}_t", legalize_identifier(name)));
-      }
-      output_names.clear();
-      for (const auto& name: get_output_names()) {
-        output_names.emplace_back(legalize_identifier(name));
-        output_names.emplace_back(fmt::format("{}_t", legalize_identifier(name)));
-      }
-      inout_names.clear();
-      for (const auto& name: get_inout_names()) {
-        inout_names.emplace_back(legalize_identifier(name));
-        inout_names.emplace_back(fmt::format("{}_t", legalize_identifier(name)));
-      }
-    }
-    auto all_ports = ranges::views::concat(input_names, output_names, inout_names);
-    auto all_ports_string = boost::algorithm::join(all_ports, ", ");
-
-    std::stringstream result;
-
-    result << fmt::format("module {}({});\n", legalize_identifier(m_name), all_ports_string);
-
-    for (const auto& port: m_ports) {
-      std::string direction_string;
-      if (port.m_direction == Port::Direction::input) {
-        direction_string = "input";
-      } else if (port.m_direction == Port::Direction::output) {
-        direction_string = "output";
-      } else if (port.m_direction == Port::Direction::inout) {
-        direction_string = "inout";
-      } else {
-        throw std::runtime_error("port direction not recognized");
-      }
-
-      std::string width_string = port.m_bits.size() > 1 ? fmt::format("[{}:0]", port.m_bits.size() - 1) : "";
-
-      result << fmt::format("{} {} {};\n", direction_string, width_string, legalize_identifier(port.m_name));
-      if (ift) {
-        result << fmt::format("{} [{}:0] {}_t;\n", direction_string, tag_size - 1, legalize_identifier(port.m_name));
-      }
-    }
-
-    return result.str();
-  }
+  [[nodiscard]] std::string export_verilog_header(const nlohmann::json& params) const;
 
   /**
    * @brief Exports the module to Verilog code.
@@ -655,110 +369,9 @@ public:
    * @param params The parameters for exporting the module.
    * @return A string containing the Verilog code representation of the module.
    */
-  [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const {
-    bool ift = false;
-    if (params.contains("ift")) {
-      ift = params["ift"].get<bool>();
-    }
+  [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const;
 
-    std::stringstream result;
-
-    result << export_verilog_header(params);
-
-    for (auto vertex: subrange(boost::vertices(m_module_graph))) {
-      std::vector<ModuleGraph::vertex_descriptor> sources;
-      std::string target_name;
-      bit_container target_bits;
-
-      if (m_module_graph[vertex].type == VertexType::kCell) {
-        Expects(m_module_graph[vertex].cell_ptr != nullptr && m_module_graph[vertex].port_ptr == nullptr);
-        const auto* cell_ptr = m_module_graph[vertex].cell_ptr;
-        spdlog::debug(cell_ptr->get_type());
-
-        auto cell_params = params;
-        std::unordered_map<std::size_t, std::string> identifiers_map;
-        auto view1 = subrange(boost::adjacent_vertices(vertex, m_module_graph));
-        auto view2 = subrange(boost::inv_adjacent_vertices(vertex, m_module_graph));
-        auto adjacent_vertices_range = ranges::views::concat(view1, view2);
-
-        for (const auto& adjacent_vertex: adjacent_vertices_range) {
-          if (m_module_graph[adjacent_vertex].type == VertexType::kNet || m_module_graph[adjacent_vertex].type == VertexType::kModulePort) {
-            Expects(m_module_graph[adjacent_vertex].net_ptr != nullptr);
-            const auto* net_ptr = m_module_graph[adjacent_vertex].net_ptr;
-            identifiers_map.emplace(net_ptr->get_bits_signature(), legalize_identifier(net_ptr->get_name()));
-          } else if (m_module_graph[adjacent_vertex].type == VertexType::kCellPort) {
-            Expects(m_module_graph[adjacent_vertex].port_ptr != nullptr);
-            const auto* port_ptr = m_module_graph[adjacent_vertex].port_ptr;
-            identifiers_map.emplace(port_ptr->m_bits_signature, legalize_identifier(port_ptr->m_identifier));
-          }
-        }
-
-        cell_params["identifiers_map"] = identifiers_map;
-        result << cell_ptr->export_verilog(cell_params);
-      } else if (m_module_graph[vertex].type == VertexType::kNet) {
-        Expects(m_module_graph[vertex].net_ptr != nullptr);
-        const auto* net_ptr = m_module_graph[vertex].net_ptr;
-        target_name = legalize_identifier(net_ptr->get_name());
-        target_bits = net_ptr->get_bits();
-        auto net_params = params;
-        auto net_sources = subrange(boost::inv_adjacent_vertices(vertex, m_module_graph));
-        for (const auto& source: net_sources) {
-          sources.emplace_back(source);
-          if (m_module_graph[source].type == VertexType::kCell && m_module_graph[source].cell_ptr->has_register()) {
-            net_params["is_register"] = true;
-          }
-        }
-        result << net_ptr->export_verilog(net_params);
-      } else if (m_module_graph[vertex].type == VertexType::kCellPort) {
-        Expects(m_module_graph[vertex].port_ptr != nullptr && m_module_graph[vertex].cell_ptr != nullptr && m_module_graph[vertex].net_ptr == nullptr);
-        const auto* port_ptr = m_module_graph[vertex].port_ptr;
-        target_name = legalize_identifier(port_ptr->m_identifier);
-        target_bits = port_ptr->m_bits;
-        auto port_params = params;
-        auto port_sources = subrange(boost::inv_adjacent_vertices(vertex, m_module_graph));
-        for (const auto& source: port_sources) {
-          sources.emplace_back(source);
-          if (m_module_graph[source].type == VertexType::kCell && m_module_graph[source].cell_ptr->has_register()) {
-            port_params["is_register"] = true;
-          }
-        }
-        result << port_ptr->export_verilog(port_params);
-      }
-
-      std::vector<std::string> ift_source_names;
-      for (const auto& source: sources) {
-        std::string source_name;
-        bit_container source_bits;
-        if (m_module_graph[source].type == VertexType::kCellPort) {
-          const auto* port_ptr = m_module_graph[source].port_ptr;
-          Ensures(port_ptr != nullptr);
-          source_name = legalize_identifier(port_ptr->m_identifier);
-          source_bits = port_ptr->m_bits;
-        } else if (m_module_graph[source].type == VertexType::kNet) {
-          const auto* net_ptr = m_module_graph[source].net_ptr;
-          Ensures(net_ptr != nullptr);
-          source_name = legalize_identifier(net_ptr->get_name());
-          source_bits = net_ptr->get_bits();
-        } else {
-          continue;
-        }
-
-        result << export_connection(source_name, source_bits, target_name, target_bits);
-        if (ift) {
-          ift_source_names.emplace_back(source_name + "_t");
-        }
-      }
-      if (!ift_source_names.empty()) {
-        result << fmt::format(" assign {}_t = {};\n", target_name, boost::join(ift_source_names, " | "));
-      }
-    }
-
-    result << "endmodule" << '\n';
-
-    return result.str();
-  }
+  nlohmann::json& get_attributes() { return m_attributes; }
 };
 
 }// namespace ducode
-
-#include "detail/module_inl.hpp"

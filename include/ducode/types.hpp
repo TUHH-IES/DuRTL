@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <ducode/bit.hpp>
+
 #include <ankerl/unordered_dense.h>
 
 #include <unordered_set>

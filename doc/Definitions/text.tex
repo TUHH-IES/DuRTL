@@ -1,0 +1,58 @@
+\section{Taint Propagation}
+A general definition of the conditions required for the propagation of tainted input will be provided below.  
+
+The first condition described includes that suggested by our team:
+if \[ \frac{df}{da}(Current Valuation) != 0 \]
+then propagate $a_t$.
+
+f(a), represents the function describing the current state of the system. 
+
+
+The second list of expression were taken for the paper by Berg et al where the shadow logic for the AND, the expression provided by Jason Oberg is provided below:
+
+\[ sh(f=f_1 \cdot f_2,\cdots,f_n) = \prod_{i=1}^{N} (f_i + sh(f_i)) - f \] 
+
+
+Or expressions:
+
+\[ sh(f=f_1 + f_2 +\cdots+f_n) = \prod_{i=1}^{N} (\bar{f_i} + sh(f_i)) - \bar{f} \] 
+
+XOR expressions:
+\[sh(f) = a_1 + a_2 +\cdots+ a_n\]
+
+2-to-1 MUX expression:
+\[sh(f) = s\cdot sh(g) + \bar{s}\cdot sh(h) + ((g \oplus h) +sh(g)+sh(h)) \cdot sh(s)\]
+
+Gate Level Information Flow Tracking for Security Lattices
+
+Wei HU, Dejun Mu, Jason Oberg, Baolei Mao, Mohit Tiwari, Timothy Sherwood, Ryan Kastner. ACM Transactions on Design Automation of Electronic Systems, Vol. 19, No. 1, Article 1, Pub. date : January 2014.
+
+Buffers, Inverters, and Flip-Flops expression
+
+This paper discusses the definition that shows that the model the IFT works with is the lattice model. Section 3. indicates the least upper bound and the greatest upperbound of the out lattice. $\odot$ in our lattice model would 
+\newpage
+
+be equivalent to a 0 (greatest lower bound) and the $\oplus$ would be equivalent to the "OR."
+
+Hu et al provide a truth table that illustrates the change in the position of the lattice when there is a change in the input A or B, in relation to the two input AND-2.
+\begin{table}
+  \begin{center}
+  \caption{Truthtable for the 2 input And}
+  \label{tab: table1}
+  \begin{tabular}{|c|c|c|c|c|c|c|c}
+  \hline
+  \textbf{Num}& \textbf{A} & \textbf{B} & \textbf{$A_t$} & \textbf{ $B_t$} & \textbf{O} & \textbf{$O_t$}\\
+  \hline\hline
+  1 & 0 & 0 & $A_t$ & $B_t$ & 0 & $A_t \odot B_t$\\
+  2 & 0 & 1 & $A_t$ & $B_t$ & 0 & $A_t$\\
+  3 & 1 & 0 & $A_t$ & $B_t$ & 0 & $B_t$\\
+  4 & 1 & 1 & $A_t$ & $B_t$ & 1 & $A_t \oplus B_t$\\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{table}
+
+Hu discusses the definition of the Security Lattice in a broader sense, the du system only uses two levels of the Security Lattice.  
+
+Diagram
+

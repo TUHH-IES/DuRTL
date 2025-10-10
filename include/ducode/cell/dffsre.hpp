@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <ducode/cell.hpp>
+#include <ducode/cell/basic_dff.hpp>
 
 #include <utility>
 
@@ -12,15 +12,14 @@ namespace ducode {
 pred_0= CLK, pred_1= CLR, pred_2 = dataIn, pred_3 = ENable, pred_4 = SET, the succssor is the data output.
 */
 
-class CellDFFSRE : public Cell {
-  bool clk_pos_edge;
+class CellDFFSRE : public CellBasicDFF {
   bool set_active_high;
   bool clr_active_high;
   bool en_active_high;
 
 public:
   CellDFFSRE(std::string name, std::string type, std::vector<ducode::Port>& ports, bool hidden, const nlohmann::json& parameters, const nlohmann::json& attributes)
-      : Cell(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
+      : CellBasicDFF(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
     // One output
     assert(ports.size() == 6);
     assert(ports[0].m_name == "CLK");
@@ -40,11 +39,9 @@ public:
     assert(ports[1].m_bits.size() == ports[4].m_bits.size());
     assert(ports[2].m_bits.size() == ports[4].m_bits.size());
     assert(ports[5].m_bits.size() == ports[4].m_bits.size());
-    clk_pos_edge = std::stoull(parameters.at("CLK_POLARITY").get<std::string>(), nullptr, 2) != 0;
     set_active_high = std::stoull(parameters.at("SET_POLARITY").get<std::string>(), nullptr, 2) != 0;
     clr_active_high = std::stoull(parameters.at("CLR_POLARITY").get<std::string>(), nullptr, 2) != 0;
     en_active_high = std::stoull(parameters.at("EN_POLARITY").get<std::string>(), nullptr, 2) != 0;
-    m_register = true;
   }
 
   [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const override {
@@ -151,6 +148,25 @@ public:
       result << "  end\n\n";
     }
     return result.str();
+  }
+
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+
+    assert(port_expr_map.size() <= 7);
+
+    uint32_t bv_size = port_expr_map.at("Q").get_sort().bv_size();
+
+    int neg_en = en_active_high ? 1 : 0;
+    int neg_set = set_active_high ? 1 : 0;
+    int neg_clr = clr_active_high ? 1 : 0;
+
+    for (uint32_t i = 0; i < bv_size; i++) {
+
+      z3::expr en_expr = to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == neg_en), port_expr_map.at("D").extract(i, i), port_expr_map.at("Q_prev").extract(i, i)));
+      z3::expr set_expr = to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("SET").extract(i, i) == neg_set), ctx.bv_val(1, 1), en_expr));
+      z3::expr clr_expr = to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("CLR").extract(i, i) == neg_clr), ctx.bv_val(0, 1), set_expr));
+      solver.add((port_expr_map.at("Q").extract(i, i) == clr_expr));
+    }
   }
 };
 }// namespace ducode

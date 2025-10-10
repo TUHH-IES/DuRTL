@@ -2,7 +2,9 @@
 
 #pragma once
 
-#include <ducode/cell.hpp>
+#include <ducode/cell/basic_dff.hpp>
+
+#include <gsl/narrow>
 
 #include <utility>
 
@@ -12,14 +14,13 @@ namespace ducode {
 pred_0= CLK, pred_1= dataIn pred_2 = RST, the succssor is the data output.
 */
 
-class CellSDFF : public Cell {
-  bool clk_pos_edge;
+class CellSDFF : public CellBasicDFF {
   bool srst_active_high;
-  uint64_t srst_value;
+  std::string srst_value;
 
 public:
   CellSDFF(std::string name, std::string type, std::vector<ducode::Port>& ports, bool hidden, const nlohmann::json& parameters, const nlohmann::json& attributes)
-      : Cell(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
+      : CellBasicDFF(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
     // One output
     assert(ports.size() == 4);
     assert(ports[0].m_name == "CLK");
@@ -34,11 +35,8 @@ public:
     assert(ports[3].m_bits.size() == 1);
     assert(ports[1].m_bits.size() == ports[2].m_bits.size());
     // Clock is the first input
-
-    clk_pos_edge = std::stoull(parameters.at("CLK_POLARITY").get<std::string>(), nullptr, 2) != 0;
     srst_active_high = std::stoull(parameters.at("SRST_POLARITY").get<std::string>(), nullptr, 2) != 0;
-    srst_value = std::stoull(parameters.at("SRST_VALUE").get<std::string>(), nullptr, 2);
-    m_register = true;
+    srst_value = parameters.at("SRST_VALUE").get<std::string>();
   }
 
   [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const override {
@@ -82,19 +80,37 @@ public:
 
     result << fmt::format("  always @({} {}) begin\n", clk_edge, clk)
            << fmt::format("      if ({}{}) begin\n", neg, srst)
-           << fmt::format("          {} <= {};\n", q, srst_value);
+           << fmt::format("          {} <= {}'b{};\n", q, width, srst_value);
     if (ift) {
-      result << fmt::format("          {}{} <= (^{} === 1'bx) ? 0 : (({} == {}) ? ({}{} | {}{}) : {}{});\n", q, ift_tag, d, d, srst_value, d, ift_tag, srst, ift_tag, srst, ift_tag);
+      result << fmt::format("          {}{} <= (^{} === 1'bx) ? 0 : (({} == {}'b{}) ? ({}{} | {}{}) : {}{});\n", q, ift_tag, d, d, width, srst_value, d, ift_tag, srst, ift_tag, srst, ift_tag);
     }
     result << "      end else begin\n";
     result << fmt::format("          {} <= {};\n", q, d);
     if (ift) {
-      result << fmt::format("          {}{} <= (^{} === 1'bx) ? 0 : (({} == {}) ? ({}{} | {}{}) : {}{});\n", q, ift_tag, d, d, srst_value, d, ift_tag, srst, ift_tag, d, ift_tag);
+      result << fmt::format("          {}{} <= (^{} === 1'bx) ? 0 : (({} == {}'b{}) ? ({}{} | {}{}) : {}{});\n", q, ift_tag, d, d, width, srst_value, d, ift_tag, srst, ift_tag, d, ift_tag);
     }
     result << "       end\n";
     result << "  end\n\n";
 
     return result.str();
+  }
+
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+
+    assert(port_expr_map.size() <= 4);
+
+    z3::expr srst_val(ctx);
+    if (srst_value.contains("x") || srst_value.contains("z")) {
+      srst_val = ctx.bv_const(srst_value.c_str(), gsl::narrow<uint32_t>(width));
+    } else {
+      srst_val = ctx.bv_val(stoi(srst_value), gsl::narrow<uint32_t>(width));
+    }
+
+    if (srst_active_high) {
+      solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("SRST") == 1), srst_val, port_expr_map.at("D")))));
+    } else {
+      solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("SRST") == 0), srst_val, port_expr_map.at("D")))));
+    }
   }
 };
 }// namespace ducode

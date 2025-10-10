@@ -2,22 +2,25 @@
 
 #pragma once
 
+#include <boost/container_hash/hash.hpp>
 #include <boost/functional/hash.hpp>
+#include <fmt/core.h>
 #include <fmt/ostream.h>
 
-#include <compare>
+#include <cstddef>
+#include <functional>
 #include <limits>
-
+#include <ostream>
 namespace ducode {
 /**
  * @brief Represents a bit value.
  */
 class Bit {
 public:
-  inline static constexpr std::size_t const_bit_0 = 0UL;
-  inline static constexpr std::size_t const_bit_1 = 1UL;
-  inline static constexpr std::size_t const_bit_X = std::numeric_limits<std::size_t>::max();
-  inline static constexpr std::size_t const_bit_Z = std::numeric_limits<std::size_t>::max() - 1;
+  static constexpr std::size_t const_bit_0 = 0UL;
+  static constexpr std::size_t const_bit_1 = 1UL;
+  static constexpr std::size_t const_bit_X = std::numeric_limits<std::size_t>::max();
+  static constexpr std::size_t const_bit_Z = std::numeric_limits<std::size_t>::max() - 1;
 
   /**
    * @brief Default constructor.
@@ -63,20 +66,24 @@ private:
 public:
   /**
    * @brief Overloads the << operator to output the Bit object.
-   * @param os The output stream.
+   * @param ostr The output stream.
    * @param bit The Bit object to output.
    * @return The output stream.
    */
-  friend std::ostream& operator<<(std::ostream& os, const Bit& bit) {
+  friend std::ostream& operator<<(std::ostream& ostr, const Bit& bit) {
     if (bit == const_bit_X) {
-      return os << "X";
+      return ostr << "X";
     }
 
     if (bit == const_bit_Z) {
-      return os << "Z";
+      return ostr << "Z";
     }
 
-    return os << bit.m_bit;
+    return ostr << bit.m_bit;
+  }
+
+  [[nodiscard]] std::size_t get_bit_value() const {
+    return m_bit;
   }
 
   friend std::size_t hash_value(const ducode::Bit& bit);

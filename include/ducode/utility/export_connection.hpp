@@ -4,8 +4,7 @@
 
 #pragma once
 
-#include <range/v3/view/enumerate.hpp>
-
+#include <ranges>
 #include <string>
 
 namespace ducode {
@@ -16,12 +15,12 @@ inline std::string export_connection(const std::string& source_name, const bit_c
   if (source_bits == target_bits) {
     result << fmt::format("  assign {} = {};\n", target_name, source_name);
   } else {
-    for (const auto& [target_index, target_bit]: ranges::views::enumerate(target_bits)) {
+    for (const auto& [target_index, target_bit]: std::views::enumerate(target_bits)) {
 
       if (!target_bit.is_constant()) {
         const std::string assignment_string = target_bits.size() > 1 ? fmt::format("{}[{}]", target_name, target_index) : target_name;
 
-        for (const auto& [source_index, source_bit]: ranges::views::enumerate(source_bits)) {
+        for (const auto& [source_index, source_bit]: std::views::enumerate(source_bits)) {
           if (target_bit == source_bit) {
             if (source_bits.size() == 1) {
               result << fmt::format("  assign {} = {};\n", assignment_string, source_name);

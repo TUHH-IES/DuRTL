@@ -133,5 +133,20 @@ public:
 
     return result.str();
   }
+
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+
+    assert(port_expr_map.size() <= 5);
+
+    uint32_t bv_size = port_expr_map.at("Q").get_sort().bv_size();
+
+    int neg_en = enable_active_high ? 1 : 0;
+    int neg_set = set_active_high ? 1 : 0;
+    int neg_clr = clr_active_high ? 1 : 0;
+
+    for (uint32_t i = 0; i < bv_size; i++) {
+      solver.add((port_expr_map.at("Q").extract(i, i) == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("CLR").extract(i, i) == neg_clr), ctx.bv_val(0, 1), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("SET").extract(i, i) == neg_set), ctx.bv_val(1, 1), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == neg_en), port_expr_map.at("D").extract(i, i), port_expr_map.at("Q").extract(i, i)))))))));
+    }
+  }
 };
 }// namespace ducode

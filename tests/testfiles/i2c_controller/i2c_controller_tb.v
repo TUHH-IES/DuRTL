@@ -66,6 +66,13 @@ module i2c_controller_tb;
 		$finish;
 		
 	end      
+
+	 initial
+          begin
+             $dumpfile(`DUMP_FILE_NAME);
+            $dumpvars(0);		//writing the vcd file
+          end
+
 endmodule
 
 module i2c_slave_controller(
@@ -174,11 +181,5 @@ module i2c_slave_controller(
 			end
 		endcase
 	end
-
-	 initial
-          begin
-             $dumpfile(`DUMP_FILE_NAME);
-            $dumpvars(1);		//writing the vcd file
-          end
 
 endmodule

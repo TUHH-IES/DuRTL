@@ -11,7 +11,7 @@
 
 template<string_like T>
 [[nodiscard]] inline std::string legalize_identifier(const T& identifier) {
-  std::string local = {identifier};
+  std::string local{identifier};
   replace_all(local, "$", "_");
   replace_all(local, ".", "_");
   replace_all(local, ":", "_");

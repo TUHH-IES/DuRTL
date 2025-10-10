@@ -7,7 +7,7 @@ $end
 $timescale
 	1ps
 $end
-$scope module tb_shift $end
+$scope module shift_tb $end
 $var wire 2 ! Y [1:0] $end
 $var reg 2 " A [1:0] $end
 $var reg 2 # B [1:0] $end

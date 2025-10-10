@@ -2,11 +2,12 @@
 
 #pragma once
 
-#include <ducode/cell.hpp>
+#include <ducode/cell/basic_dff.hpp>
 #include <ducode/port.hpp>
 
 #include <fmt/format.h>
 #include <gsl/assert>
+#include <gsl/narrow>
 #include <nlohmann/json.hpp>
 
 #include <cassert>
@@ -25,15 +26,13 @@ pred_0= ARST, pred_1= CLK, pred_2 = dataIn, the succssor is the data output.
 It has a constant asynchronous reset value triggerd with the arst input
 */
 
-class CellADFF : public Cell {
-  bool clk_pos_edge;
-  bool arst_active_high;
+class CellADFF : public CellBasicDFF {
+  bool arst_active_high{};
   std::string arst_value;
-  uint64_t width;
 
 public:
   CellADFF(std::string name, std::string type, std::vector<ducode::Port>& ports, bool hidden, const nlohmann::json& parameters, const nlohmann::json& attributes)
-      : Cell(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
+      : CellBasicDFF(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
     // One output
     assert(ports.size() == 4);
     assert(ports[0].m_name == "ARST");
@@ -51,8 +50,6 @@ public:
     clk_pos_edge = std::stoull(parameters.at("CLK_POLARITY").get<std::string>(), nullptr, 2) != 0;
     arst_active_high = std::stoull(parameters.at("ARST_POLARITY").get<std::string>(), nullptr, 2) != 0;
     arst_value = parameters.at("ARST_VALUE").get<std::string>();
-    width = std::stoull(parameters.at("WIDTH").get<std::string>(), nullptr, 2);
-    m_register = true;
   }
 
   [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const override {
@@ -107,6 +104,26 @@ public:
     result << "  end\n\n";
 
     return result.str();
+  }
+
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+    // throw std::runtime_error("ADFF cell Not validated for smt2-simulation!! Would only work with specific configurations treating it like a synchronous element.");
+
+    assert(port_expr_map.size() <= 4);
+
+    z3::expr arst_val(ctx);
+    if (arst_value.contains("x") || arst_value.contains("z")) {
+      arst_val = ctx.bv_const(arst_value.c_str(), gsl::narrow<uint32_t>(width));
+    } else {
+      uint64_t arst_value_dec = std::stoul(arst_value, nullptr, 2);
+      arst_val = ctx.bv_val(arst_value_dec, gsl::narrow<uint32_t>(width));
+    }
+
+    if (arst_active_high) {// stoi (arst_value) when arst_value is a string of "x" or "z" create a bv_const(x, bv_size) instead
+      solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ARST") == 1), arst_val, port_expr_map.at("D")))));
+    } else {
+      solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ARST") == 0), arst_val, port_expr_map.at("D")))));
+    }
   }
 };
 

@@ -1,0 +1,119 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{multibib}
+%\usepackage{ifthen}
+\usepackage{setspace}
+\usepackage{titling}
+\usepackage{multicol}
+%\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+%\usepackage{verbatim}
+%\usepackage{url}
+%\usepackage{tcolorbox}
+%\usepackage{multicol}
+%\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{floatflt}
+\usepackage{minted}
+%\usepackage{listings}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,automata,positioning,shapes}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\usepackage{todonotes}
+\newcommand{\gf}[1]{\todo[inline]{GF: #1}}
+%\renewcommand{\gf}[1]{}
+
+\renewcommand{\baselinestretch}{1.050}
+%\newcommand{\ol}{\overline}
+\sloppy
+
+\newcommand{\tr}{\textcolor{red}}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+
+%Hervorhebungen im Pseudocode
+%\lstdefinelanguage[Pseudo]{C++}%
+%  {morekeywords={in,each,do,while,for,if,else,true,false,return}}
+
+%\setlength{\evensidemargin}{0cm}
+%\setlength{\oddsidemargin}{0cm}
+%\setlength{\textwidth}{17cm}
+%\setlength{\textheight}{25.2cm}
+%\setlength{\abovecaptionskip}{-1ex}
+%\setlength{\belowcaptionskip}{-1ex}
+%\setlength{\textfloatsep}{.3\textfloatsep}
+%\setlength{\floatsep}{.0\floatsep}
+%\setlength{\columnsep}{.7\columnsep}
+
+\newcommand{\four}{{\mathbb F}}
+\newtheorem{definition}{Definition}%[section]
+\newtheorem{theorem}{Satz}%[section]
+\newtheorem{example}{Example}%[section]
+\newtheorem{defrule}{Rule}%[section]
+\newtheorem{lemma}{Lemma}%[section]
+%\newtheorem{remark}{Remark}%[section]
+\newtheorem{remark}{Bemerkung}%[section]
+\newenvironment{myitemize}{
+	\begin{itemize}
+%	\vspace{-\topsep}
+	\setlength{\itemsep}{0ex}
+	\setlength{\parsep}{0ex}
+	\setlength{\itemsep}{-1ex}
+}{
+	\end{itemize}
+}
+
+
+\def\textfraction{0.01}
+\def\topfraction{0.99}
+
+\usepackage{geometry}
+\geometry{a4paper,left=20mm,right=20mm, top=25mm, bottom=20mm}
+
+\newcites{own}{$\;$}
+%\newcites{oth}{Arbeiten anderer Autoren}
+\renewcommand\refname{\section{Literature} \label{sec:bibliography}}
+
+\newcounter{caufwanddok}
+\newcounter{caufwandstud}
+\newcommand{\aufwand}[2]{{(\em Effort: #1 PM PhD student%
+\ifthenelse{\equal{0}{#2}}{}{, #2 PM stud. assistant})
+
+}
+\addtocounter{caufwanddok}{#1}\addtocounter{caufwandstud}{#2}}
+
+\begin{document}
+\title{Methodology, Algorithms, and Framework \\for Hardware Design Understanding 
+%\\
+% \large -- Antrag auf Sachbeihilfe --
+}
+
+\author{Prof.\ Dr.-Ing.\ G\"orschwin Fey, TU Hamburg, Germany}
+\date{}
+\maketitle
+%\thispagestyle{empty}
+\pagestyle{myheadings}
+\newcommand{\headerTitle}{Methodology, Algorithms, and Framework for Hardware Design Understanding}
+\markboth{{\headerTitle\hfill}}{{\headerTitle\hfill}}
+%\setlength\cftparskip{-0pt}
+%\setlength\cftbeforechapskip{0pt}
+%\setlength\cftbeforesecskip{0pt}
+%\vspace{-1.5cm}
+
+%\begin{spacing}{0.9} 
+%\small
+%\gf{Table of contents is useful while writing the proposal - to be removed for submission}
+%\tableofcontents 
+%\end{spacing}
+%%\pagebreak
+%%\listoftodos
+%%\pagebreak
+\vspace{-1.8cm}
+
+\input{text.tex}
+
+
+\end{document}

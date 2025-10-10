@@ -4,30 +4,41 @@
     "m_0": {
       "attributes": {
         "dynports": "00000000000000000000000000000001",
+        "top": "00000000000000000000000000000001",
         "src": "dlatch.v:1.1-15.10"
       },
       "parameter_default_values": {
-      	"ARST_POLARITY": "1",
-      	"ARST_VALUE": "00000000000000000000000000000011",
+        "ARST_POLARITY": "1",
+        "ARST_VALUE": "00000000000000000000000000000011",
         "EN_POLARITY": "1",
         "WIDTH": "00000000000000000000000000000010"
       },
       "ports": {
-      	"ARST":{
-      	  "direction":"input",
-          "bits":[2]
+        "ARST": {
+          "direction": "input",
+          "bits": [
+            2
+          ]
         },
         "D": {
           "direction": "input",
-          "bits": [ 3, 4 ]
+          "bits": [
+            3,
+            4
+          ]
         },
         "EN": {
           "direction": "input",
-          "bits": [ 5 ]
+          "bits": [
+            5
+          ]
         },
         "Q": {
           "direction": "output",
-          "bits": [ 6, 7 ]
+          "bits": [
+            6,
+            7
+          ]
         }
       },
       "cells": {
@@ -44,44 +55,64 @@
             "src": "adlatch.v:10.1-13.4"
           },
           "port_directions": {
-            "ARST": "input",	
+            "ARST": "input",
             "D": "input",
             "EN": "input",
             "Q": "output"
           },
           "connections": {
-            "ARST": [2],	
-            "D": [ 3, 4 ],
-            "EN": [ 5 ],
-            "Q": [ 6, 7 ]
+            "ARST": [
+              2
+            ],
+            "D": [
+              3,
+              4
+            ],
+            "EN": [
+              5
+            ],
+            "Q": [
+              6,
+              7
+            ]
           }
         }
       },
       "netnames": {
-      	"ARST": {
-      	  "hide_name": 0,
-      	  "bits": [2],
-      	  "attributes": {
-      	   "src": "adlatch.v:8.19-8.20"	
-      	  }
-      	},
+        "ARST": {
+          "hide_name": 0,
+          "bits": [
+            2
+          ],
+          "attributes": {
+            "src": "adlatch.v:8.19-8.20"
+          }
+        },
         "D": {
           "hide_name": 0,
-          "bits": [ 3, 4 ],
+          "bits": [
+            3,
+            4
+          ],
           "attributes": {
             "src": "adlatch.v:7.19-7.20"
           }
         },
         "EN": {
           "hide_name": 0,
-          "bits": [ 5 ],
+          "bits": [
+            5
+          ],
           "attributes": {
             "src": "adlatch.v:6.7-6.9"
           }
         },
         "Q": {
           "hide_name": 0,
-          "bits": [ 6, 7 ],
+          "bits": [
+            6,
+            7
+          ],
           "attributes": {
             "src": "adlatch.v:8.24-8.25"
           }

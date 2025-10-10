@@ -2,15 +2,17 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json",
   "default-registry": {
     "kind": "builtin",
-    "baseline": "cc97b4536ae749ec0e4f643488b600b217540fb3"
+    "baseline": "bc994510d2eb11aac7b43b03f67a7751d5bfe0e4"
   },
   "registries": [
     {
       "kind": "git",
-      "baseline": "e29c845ade83baf8f0139a2797f9f3cd2e4270fe",
-      "repository": "https://github.com/gian21391/vcpkg-registry",
+      "baseline": "e1d863280d553c83cc354785167f21d62bf1810d",
+      "repository": "https://github.com/TUHH-IES/vcpkg-registry/",
       "packages": [
-        "vcd-parser"
+        "vcd-parser",
+        "verible",
+        "yosys-verilog"
       ]
     }
   ]

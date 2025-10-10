@@ -1,18 +1,18 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 
+#include <spdlog/common.h>
+#include <spdlog/logger.h>
 #define CATCH_CONFIG_RUNNER
 
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_session.hpp>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 
-#include <iostream>
-
+#include <memory>
 
 int main(int argc, char* argv[]) {
   // global setup...
-
   //making two sinks, one for consol, one for log file
   auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
   console_sink->set_level(spdlog::level::info);
@@ -35,8 +35,6 @@ int main(int argc, char* argv[]) {
   spdlog::debug("Configured LOGGER");
 
   int result = Catch::Session().run(argc, argv);
-
-  spdlog::shutdown();
 
   return result;
 }

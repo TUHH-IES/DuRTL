@@ -4,6 +4,7 @@
     "m_0": {
       "attributes": {
         "dynports": "00000000000000000000000000000001",
+        "top": "00000000000000000000000000000001",
         "src": "dffsre.v:1.1-30.10"
       },
       "parameter_default_values": {
@@ -16,27 +17,39 @@
       "ports": {
         "CLK": {
           "direction": "input",
-          "bits": [ 2 ]
+          "bits": [
+            2
+          ]
         },
         "SET": {
           "direction": "input",
-          "bits": [ 3 ]
+          "bits": [
+            3
+          ]
         },
         "CLR": {
           "direction": "input",
-          "bits": [ 4 ]
+          "bits": [
+            4
+          ]
         },
         "EN": {
           "direction": "input",
-          "bits": [ 5 ]
+          "bits": [
+            5
+          ]
         },
         "D": {
           "direction": "input",
-          "bits": [ 6 ]
+          "bits": [
+            6
+          ]
         },
         "Q": {
           "direction": "output",
-          "bits": [ 7 ]
+          "bits": [
+            7
+          ]
         }
       },
       "cells": {
@@ -62,54 +75,78 @@
             "SET": "input"
           },
           "connections": {
-            "CLK": [ 2 ],
-            "CLR": [ 4 ],
-            "D": [ 6 ],
-            "EN": [ 5 ],
-            "Q": [ 7 ],
-            "SET": [ 3 ]
+            "CLK": [
+              2
+            ],
+            "CLR": [
+              4
+            ],
+            "D": [
+              6
+            ],
+            "EN": [
+              5
+            ],
+            "Q": [
+              7
+            ],
+            "SET": [
+              3
+            ]
           }
         }
       },
       "netnames": {
         "CLK": {
           "hide_name": 0,
-          "bits": [ 2 ],
+          "bits": [
+            2
+          ],
           "attributes": {
             "src": "dffsre.v:9.7-9.10"
           }
         },
         "CLR": {
           "hide_name": 0,
-          "bits": [ 4 ],
+          "bits": [
+            4
+          ],
           "attributes": {
             "src": "dffsre.v:10.24-10.27"
           }
         },
         "D": {
           "hide_name": 0,
-          "bits": [ 6 ],
+          "bits": [
+            6
+          ],
           "attributes": {
             "src": "dffsre.v:10.29-10.30"
           }
         },
         "EN": {
           "hide_name": 0,
-          "bits": [ 5 ],
+          "bits": [
+            5
+          ],
           "attributes": {
             "src": "dffsre.v:9.12-9.14"
           }
         },
         "Q": {
           "hide_name": 0,
-          "bits": [ 7 ],
+          "bits": [
+            7
+          ],
           "attributes": {
             "src": "dffsre.v:11.24-11.25"
           }
         },
         "SET": {
           "hide_name": 0,
-          "bits": [ 3 ],
+          "bits": [
+            3
+          ],
           "attributes": {
             "src": "dffsre.v:10.19-10.22"
           }

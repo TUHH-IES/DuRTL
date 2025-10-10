@@ -1,5 +1,5 @@
 
-module main;
+module y86_tb;
 
   reg clk, rst;
   wire [31:0] bus_A_ins;
@@ -61,7 +61,7 @@ module main;
 	initial
 		begin
 			$dumpfile(`DUMP_FILE_NAME);
-			$dumpvars(0,main);
+			$dumpvars(0);
 		end
 		
 	always @(posedge clk) begin

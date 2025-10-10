@@ -3,9 +3,16 @@
 #include <common_definitions.hpp>
 #include <ducode/utility/parser_utility.hpp>
 
-#include <boost/filesystem.hpp>
-#include <catch2/catch_all.hpp>
+#include <boost/filesystem/operations.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <vcd-parser/VCDFileParser.hpp>
+#include <vcd-parser/VCDTimedValue.hpp>
+#include <vcd-parser/VCDTypes.hpp>
+#include <vcd-parser/VCDValue.hpp>
+
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 TEST_CASE("get_hierarchical_name", "[parser_utility]") {
 

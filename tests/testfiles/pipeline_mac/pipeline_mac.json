@@ -1,0 +1,515 @@
+{
+  "creator": "Yosys 0.36 (git sha1 8f07a0d8404, clang 16.0.6 -fPIC -Os)",
+  "modules": {
+    "pipelined_mac": {
+      "attributes": {
+        "dynports": "00000000000000000000000000000001",
+        "top": "00000000000000000000000000000001",
+        "src": "pipeline_mac.v:2.1-63.10"
+      },
+      "parameter_default_values": {
+        "WIDTH": "00000000000000000000000000001000"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "rst_n": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "valid_in": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "clear_acc": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "a": {
+          "direction": "input",
+          "bits": [ 6, 7, 8, 9, 10, 11, 12, 13 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 14, 15, 16, 17, 18, 19, 20, 21 ]
+        },
+        "c": {
+          "direction": "input",
+          "bits": [ 22, 23, 24, 25, 26, 27, 28, 29 ]
+        },
+        "y": {
+          "direction": "output",
+          "bits": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 ]
+        },
+        "valid_out": {
+          "direction": "output",
+          "bits": [ 47 ]
+        }
+      },
+      "cells": {
+        "$add$pipeline_mac.v:47$3": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000001001"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:47.25-47.34"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 48, 49, 50, 51, 52, 53, 54, 55 ],
+            "B": [ 56, 57, 58, 59, 60, 61, 62, 63 ],
+            "Y": [ 64, 65, 66, 67, 68, 69, 70, 71, 72 ]
+          }
+        },
+        "$add$pipeline_mac.v:56$5": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000010001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000010001",
+            "Y_WIDTH": "00000000000000000000000000010001"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:56.26-56.40"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 ],
+            "B": [ 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106 ],
+            "Y": [ 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$43": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000000",
+            "SRST_VALUE": "00000000000000000",
+            "WIDTH": "00000000000000000000000000010001"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:27.5-62.8"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 ],
+            "Q": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$44": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000000",
+            "SRST_VALUE": "00000000",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:27.5-62.8"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 6, 7, 8, 9, 10, 11, 12, 13 ],
+            "Q": [ 48, 49, 50, 51, 52, 53, 54, 55 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$45": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000000",
+            "SRST_VALUE": "00000000",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:27.5-62.8"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 14, 15, 16, 17, 18, 19, 20, 21 ],
+            "Q": [ 56, 57, 58, 59, 60, 61, 62, 63 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$46": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000000",
+            "SRST_VALUE": "00000000",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:27.5-62.8"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 22, 23, 24, 25, 26, 27, 28, 29 ],
+            "Q": [ 124, 125, 126, 127, 128, 129, 130, 131 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$47": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000000",
+            "SRST_VALUE": "000000000",
+            "WIDTH": "00000000000000000000000000001001"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:27.5-62.8"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 64, 65, 66, 67, 68, 69, 70, 71, 72 ],
+            "Q": [ 132, 133, 134, 135, 136, 137, 138, 139, 140 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$48": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000000",
+            "SRST_VALUE": "00000000000000000",
+            "WIDTH": "00000000000000000000000000010001"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:27.5-62.8"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157 ],
+            "Q": [ 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$54": {
+          "hide_name": 1,
+          "type": "$sdffe",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "EN_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000001",
+            "SRST_VALUE": "00000000000000000",
+            "WIDTH": "00000000000000000000000000010001"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:27.5-62.8"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "EN": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123 ],
+            "EN": [ 158 ],
+            "Q": [ 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 ],
+            "SRST": [ 159 ]
+          }
+        },
+        "$auto$ff.cc:266:slice$55": {
+          "hide_name": 1,
+          "type": "$sdff",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000000",
+            "SRST_VALUE": "0000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:27.5-62.8"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 4, 160, 161, 158 ],
+            "Q": [ 160, 161, 158, 47 ],
+            "SRST": [ 3 ]
+          }
+        },
+        "$auto$opt_dff.cc:250:combine_resets$50": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "Y": [ 162 ]
+          }
+        },
+        "$auto$opt_dff.cc:254:combine_resets$53": {
+          "hide_name": 1,
+          "type": "$reduce_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 162 ],
+            "Y": [ 159 ]
+          }
+        },
+        "$mul$pipeline_mac.v:50$4": {
+          "hide_name": 1,
+          "type": "$mul",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000010001"
+          },
+          "attributes": {
+            "src": "pipeline_mac.v:50.25-50.36"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 132, 133, 134, 135, 136, 137, 138, 139, 140 ],
+            "B": [ 124, 125, 126, 127, 128, 129, 130, 131 ],
+            "Y": [ 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157 ]
+          }
+        }
+      },
+      "netnames": {
+        "$add$pipeline_mac.v:47$3_Y": {
+          "hide_name": 1,
+          "bits": [ 64, 65, 66, 67, 68, 69, 70, 71, 72 ],
+          "attributes": {
+            "src": "pipeline_mac.v:47.25-47.34"
+          }
+        },
+        "$add$pipeline_mac.v:56$5_Y": {
+          "hide_name": 1,
+          "bits": [ 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123 ],
+          "attributes": {
+            "src": "pipeline_mac.v:56.26-56.40"
+          }
+        },
+        "$auto$opt_dff.cc:253:combine_resets$52": {
+          "hide_name": 1,
+          "bits": [ 159 ],
+          "attributes": {
+          }
+        },
+        "$auto$rtlil.cc:2461:Not$51": {
+          "hide_name": 1,
+          "bits": [ 162 ],
+          "attributes": {
+          }
+        },
+        "$mul$pipeline_mac.v:50$4_Y": {
+          "hide_name": 1,
+          "bits": [ 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157 ],
+          "attributes": {
+            "src": "pipeline_mac.v:50.25-50.36"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 6, 7, 8, 9, 10, 11, 12, 13 ],
+          "attributes": {
+            "src": "pipeline_mac.v:9.37-9.38"
+          }
+        },
+        "a_r": {
+          "hide_name": 0,
+          "bits": [ 48, 49, 50, 51, 52, 53, 54, 55 ],
+          "attributes": {
+            "src": "pipeline_mac.v:19.23-19.26"
+          }
+        },
+        "acc_r": {
+          "hide_name": 0,
+          "bits": [ 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 ],
+          "attributes": {
+            "src": "pipeline_mac.v:22.23-22.28"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 14, 15, 16, 17, 18, 19, 20, 21 ],
+          "attributes": {
+            "src": "pipeline_mac.v:10.37-10.38"
+          }
+        },
+        "b_r": {
+          "hide_name": 0,
+          "bits": [ 56, 57, 58, 59, 60, 61, 62, 63 ],
+          "attributes": {
+            "src": "pipeline_mac.v:19.28-19.31"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [ 22, 23, 24, 25, 26, 27, 28, 29 ],
+          "attributes": {
+            "src": "pipeline_mac.v:11.37-11.38"
+          }
+        },
+        "c_r": {
+          "hide_name": 0,
+          "bits": [ 124, 125, 126, 127, 128, 129, 130, 131 ],
+          "attributes": {
+            "src": "pipeline_mac.v:19.33-19.36"
+          }
+        },
+        "clear_acc": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "pipeline_mac.v:8.37-8.46"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "pipeline_mac.v:5.37-5.40"
+          }
+        },
+        "mult_r": {
+          "hide_name": 0,
+          "bits": [ 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106 ],
+          "attributes": {
+            "src": "pipeline_mac.v:21.23-21.29"
+          }
+        },
+        "rst_n": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "pipeline_mac.v:6.37-6.42"
+          }
+        },
+        "sum_r": {
+          "hide_name": 0,
+          "bits": [ 132, 133, 134, 135, 136, 137, 138, 139, 140 ],
+          "attributes": {
+            "src": "pipeline_mac.v:20.23-20.28"
+          }
+        },
+        "valid_in": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "pipeline_mac.v:7.37-7.45"
+          }
+        },
+        "valid_out": {
+          "hide_name": 0,
+          "bits": [ 47 ],
+          "attributes": {
+            "src": "pipeline_mac.v:13.37-13.46"
+          }
+        },
+        "valid_sr": {
+          "hide_name": 0,
+          "bits": [ 160, 161, 158, 47 ],
+          "attributes": {
+            "src": "pipeline_mac.v:23.23-23.31"
+          }
+        },
+        "y": {
+          "hide_name": 0,
+          "bits": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 ],
+          "attributes": {
+            "src": "pipeline_mac.v:12.37-12.38"
+          }
+        }
+      }
+    }
+  }
+}

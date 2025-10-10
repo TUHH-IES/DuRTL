@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <ducode/cell.hpp>
+#include <ducode/cell/basic_dff.hpp>
 
 #include <utility>
 
@@ -12,12 +12,11 @@ namespace ducode {
 pred_0= CLK, pred_1= dataIn, the succssor is the data output Q.
 */
 
-class CellDFF : public Cell {
-  bool clk_pos_edge;
+class CellDFF : public CellBasicDFF {
 
 public:
   CellDFF(std::string name, std::string type, std::vector<ducode::Port>& ports, bool hidden, const nlohmann::json& parameters, const nlohmann::json& attributes)
-      : Cell(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
+      : CellBasicDFF(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
     // One output
     assert(ports.size() == 3);
     assert(ports[0].m_name == "CLK");
@@ -29,9 +28,6 @@ public:
     assert(ports[0].m_bits.size() == 1);
     assert(ports[1].m_bits.size() == ports[2].m_bits.size());
     // Clock is the first input
-
-    clk_pos_edge = std::stoull(parameters.at("CLK_POLARITY").get<std::string>(), nullptr, 2) != 0;
-    m_register = true;
   }
 
   [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const override {
@@ -80,6 +76,14 @@ public:
     result << "  end\n\n";
 
     return result.str();
+  }
+
+  /// CellBasicGate calls a general export function for basicgates which have a common verilog syntax and mostly different because of the used operator
+  void export_smt2([[maybe_unused]] z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+
+    assert(port_expr_map.size() <= 3);
+
+    solver.add(port_expr_map.at("Q") == port_expr_map.at("D"), fmt::format("edge_{}=={}", port_expr_map.at("Q").to_string(), port_expr_map.at("D").to_string()).c_str());
   }
 };
 }// namespace ducode

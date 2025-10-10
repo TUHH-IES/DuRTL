@@ -2,23 +2,18 @@
 
 #pragma once
 
-#include <ducode/ids.hpp>
 #include <ducode/port.hpp>
 #include <ducode/utility/legalize_identifier.hpp>
 
 #include <boost/functional/hash.hpp>
-#include <boost/poly_collection/base_collection.hpp>
 #include <fmt/core.h>
 #include <nlohmann/json.hpp>
-#include <spdlog/spdlog.h>
+#include <nlohmann/json_fwd.hpp>
+#include <z3++.h>
 
-#include <limits>
-#include <map>
-#include <memory>
-#include <ostream>
-#include <sstream>
+#include <stdexcept>
 #include <string>
-#include <unordered_set>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -60,6 +55,18 @@ public:
     return m_ports;
   }
 
+  [[nodiscard]] const ducode::Port& get_port(std::string port_name) const {
+    auto iter = std::ranges::find_if(m_ports, [&](const ducode::Port& port) { return port.m_name == port_name; });
+    if (iter == m_ports.end()) {
+      throw std::runtime_error(fmt::format("Port {} not found in cell {}", port_name, m_name));
+    }
+    return *iter;
+  }
+
+  [[nodiscard]] bool has_port(std::string port_name) const {
+    return std::ranges::any_of(m_ports, [&](const ducode::Port& port) { return port.m_name == port_name; });
+  }
+
   [[nodiscard]] std::string get_name() const {
     return m_name;
   };
@@ -69,6 +76,13 @@ public:
       return fmt::format("{}", m_attributes["src"].get<std::string>());
     }
     return fmt::format("src attribute not available.");
+  };
+
+  [[nodiscard]] const nlohmann::json& get_parameters() const {
+    return m_parameters;
+  };
+  [[nodiscard]] const nlohmann::json& get_attributes() const {
+    return m_attributes;
   };
 
   [[nodiscard]] bool is_hidden() const {
@@ -89,6 +103,17 @@ public:
 
   [[nodiscard]] const std::string& get_type() const {
     return m_type;
+  }
+
+  virtual void export_smt2([[maybe_unused]] z3::context& ctx, [[maybe_unused]] z3::solver& solver, [[maybe_unused]] const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const {
+    throw std::runtime_error("Not implemented");
+  };
+
+  [[nodiscard]] virtual z3::expr get_cell_assertion_unary([[maybe_unused]] z3::context& ctx, [[maybe_unused]] const z3::expr& input1, [[maybe_unused]] const z3::expr& output) const {
+    throw std::runtime_error("Not implemented");
+  }
+  [[nodiscard]] virtual z3::expr get_cell_assertion_binary([[maybe_unused]] z3::context& ctx, [[maybe_unused]] const z3::expr& input1, [[maybe_unused]] const z3::expr& input2, [[maybe_unused]] const z3::expr& output) const {
+    throw std::runtime_error("Not implemented");
   }
 };
 }// namespace ducode

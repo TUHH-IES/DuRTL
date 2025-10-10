@@ -1,0 +1,136 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+
+\title{IFT - Pseudocode}
+\author{Lutz; Paula}
+
+\begin{document}
+    
+\maketitle
+
+\section*{Statistical Analysis - Pseudocode}
+
+%%% Main function for managing the statistical analysis using IFT
+\begin{algorithm}
+    \caption{StatAnalysis (Statistical Analysis using IFT-functions in SA class)}
+    \begin{algorithmic}[1]
+        \Require Netlist; OG Verilog + \_tb
+        \Ensure external simulation runs through
+        \State IFTGenIFTVerilog(verilogPath) \Comment{generates IFT extended Verilog}
+        \State IFTPathAnalysis()
+    \end{algorithmic}
+\end{algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Generation functions for exporting the IFT extended Verilog and testbench
+\begin{algorithm}
+    \caption{IFTGenVerilog (IFTGeneration of extended Verilog)}
+    \begin{algorithmic}[1]
+        \Require OG Verilog + \_tb
+        \State design.exportIFTVerilog()
+            \For{m in Modules}
+                \State exportIFTVerilogModuleHeader()
+                \State exportIFTVerilogModuleInternals()
+            \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{IFTGenTestBench (IFTGeneration of IFT testbench)}
+    \begin{algorithmic}[1]
+        \Require OG Verilog + \_tb
+        \State generateInputVCD() \Comment{simulates OG Verilog + \_tb}
+        \State exportIFTTestBench(InputVCD)
+    \end{algorithmic}
+\end{algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Executes the simulation of the extended IFT verilog design
+\begin{algorithm}
+    \caption{IFTExe (IFTExecution)}
+    \begin{algorithmic}[1]
+        \Require IFT Verilog
+        \State SimulateIFTVerilog(IFTVerilogPath + TestBenchPath)
+        \State readBackVCD(outputVCD) \Comment{stores simulation values in Design}
+    \end{algorithmic}
+\end{algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%
+%%% Calls TagGen() which decides which inputs get tagged and writes the tag input file
+%%% Calls testbench creation to rewrite testbench variable
+\begin{algorithm}
+    \caption{IFTPA (IFT Path Analysis)}
+    \begin{algorithmic}[1]
+        \Require OR IFT Verilog + \_tb
+        \State TagGen() \Comment{generate TAG inputs}
+        \For{i in 100}
+            \State IFTGenTestbench() \Comment{At some point change of design input values}
+            \State IFTExe(TAGs, TestBenchPath)
+            \State StatisticalAnalysis \Comment identify + enumerate paths from simulation values
+        \EndFor 
+    \end{algorithmic}
+\end{algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% a method to decide which inputs of the current design get a tag for the next simulation run
+%%% either generate a new set of tags every run or prepare the full set of tags and inputs beforehand
+\begin{algorithm}
+    \caption{TagGen (Tag Generation method)}
+    \begin{algorithmic}[1]
+        \Require Number of Inputs/Tags in design
+        \State DecideTags() \Comment some method needed to choose which tags to set
+            \State - Random (numberOfTagsIn\%) \Comment{Choose Tags at random (predetermined number of tags)}
+            \State - Analyze InputNames (special use cases (designs/design groups)) \Comment{decide which inputs to tag on NameDatabase??}
+            \State - User Selection
+            \State - PreProcessing of Variable Paths \Comment{Choose which variables to tag based on criteria for their paths}
+    \end{algorithmic}
+\end{algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Calls TagGen() which decides which inputs get tagged and writes the tag input file
+%%% Calls testbench creation to rewrite testbench variable
+\begin{algorithm}
+    \caption{IFTPA (IFT Path Analysis)}
+    \begin{algorithmic}[1]
+        \Require OR IFT Verilog + \_tb
+        \State TagGen() \Comment{generate TAG inputs}
+        \For{i in numSimulationRuns}
+            \State IFTGenTestbench() \Comment{At some point change of design input values}
+            \State IFTExe(TAGs, TestBenchPath)
+            \State StatisticalAnalysis \Comment identify + enumerate paths from simulation values
+        \EndFor 
+    \end{algorithmic}
+\end{algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\section*{Parameters}
+
+For Information flow tracking with subsequent statistical analysis of the obtained results a lot of possible parameters exist.\\
+How are these parameters set? automatically or manually?\\
+
+\paragraph*{Parameters directly relevant for the tags}
+\begin{itemize}
+    \item number of tags
+    \item length of time tags are set (how long?)
+    \item at which point in time are tags set (when?)
+\end{itemize}
+
+\paragraph*{Parameters for the statistical analysis}
+\begin{itemize}
+    \item number of simulation runs
+    \item number of input variable combinations 
+    \item input and tag combinations
+\end{itemize}
+
+\subsubsection*{input and tag combinations}
+How are input and tag combinations decided?\\
+Are multiple new tags set for the same inputs?\\
+How many sets of inputs are needed for meaningful stastitical analysis?\\
+
+\end{document}

@@ -1,11 +1,13 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 
 #include <common_definitions.hpp>
+#include <ducode/design.hpp>
 #include <ducode/static_analysis/pipeline_detection.hpp>
 
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <spdlog/spdlog.h>
 
+#include <cstddef>
 #include <vector>
 
 
@@ -49,9 +51,7 @@ TEST_CASE("pdnSregPipeline", "[PipelineDetectionName]") {
 
 /** \brief Test pipeline identification based on match string patterns for names of nets. Design is a shift register resembing a pipeline. */
 TEST_CASE("pdnPicorv", "[PipelineDetectionName]") {
-  auto json_file = boost::filesystem::path{TESTFILES_DIR} / "read_in" / "picorv32_2.json";
-
-  //Temporalily deactivating test case to fix reading of picorv32.json
+  auto json_file = boost::filesystem::path{TESTFILES_DIR} / "picorv32" / "picorv32.json";
 
   auto d = ducode::Design::parse_json(json_file);
 
@@ -63,9 +63,7 @@ TEST_CASE("pdnPicorv", "[PipelineDetectionName]") {
   spdlog::debug("Pipeline candidates: \n");
   for (const auto& c: pc) {
     CHECK(!c.stages.empty());
-    //spdlog::debug("{}\n",c);
   }
 
-  //This design does not contain a pipeline canidate
   CHECK(!pc.empty());
 }

@@ -1,0 +1,184 @@
+\section{Use Cases for Information Flow Tracking}
+
+
+\subsection{Static Overview }
+\gf{Copied from DFG proposal}
+
+We plan to solely rely on the design description for this type of analysis using static information flow analysis as the main engine. Figure~\ref{fig:vh} shows the conceptual steps we want to realize. 
+The extraction of a Control-and-Data-Flow Graph (CDFG) is the first step which is trivial given the intermediate representation. As suggested above, this induces the virtual hierarchy splitting control flow and data processing.
+The next step performs a static information flow analysis. The analysis determines how data propagates from primary inputs into and through the design on a cycle accurate level. Per cycle the analysis requires formal static checks to determine the conditions for data to propagate or to be stalled. As a result starting from the initial cycle for sampling the input data, the procedure induces during which time cycles data propagates statically showing the overall sequential behavior across clock-cycles (Line 5) and also which parts of the design operate on the same data concurrently (Line 6). 
+The automatically extracted information is similar to the one visualized for the Y86 processor in Figure~\ref{fig:y86} and gives a useful overview on overall sequential behavior as well as resource sharing between different processing steps.
+
+\begin{minted}[xleftmargin=0.8cm,linenos,escapeinside=||]{c++}
+ExtractVirtualHiearchy(Design D) {
+  G= createCDFG(D);
+  D.induceControlAndDataHierarchy(G);
+  IF= G.staticInformationFlow();
+  D.induceSequentialPropagation(IF);
+  D.induceConcurrency(IF);
+}
+\end{minted}
+
+While information flow analysis in the literature focuses on security and, thus, on a conservative analysis where data may propagate to, our procedure is different as it reveals sequential and concurrent processing paradigms in the design. Since we focus on RTL designs the static analysis can always be exact. If considering structural analysis only, an over-approximation of information flow can efficiently be calculated, while a full functional analysis is more complex. The splitting into combinational cycle accurate steps and abstraction into the CDFG based on the intermediate representation allows for a decomposition into reasoning problems of smaller sizes. By this, computational effort can be controlled even for complex problems.
+
+
+\subsection{Static Pipeline Identification}
+
+Identifying activation= reset-signal used (if any), trace back to inputs
+
+\begin{minted}[xleftmargin=0.8cm,linenos,escapeinside=||]{c++}
+IdentifyPipelines(Design D) {
+  FFgraph= graph where combinational logic is replaced by edges;
+  Remove self-loops from FFgraph; // may correspond to  pipeline stall
+  Remove all FFs that are in loops in FFgraph;
+  Group all FFs in same distance from primary inputs;
+  Pipeline= Sequence of FF groups;
+  In Pipeline extend FFgroups by driving combinational logic to form pipeline parts
+}
+\end{minted}
+
+\subsection{Typical Usage }
+\gf{Copied from proposal}
+
+Static analysis considering only the design cannot reliably show how this design is typically used. Even some of the typical sequential behavior may not be enforced by the design itself, but may depend on how, e.g., at what frequency, data is supplied. We will rely on statistical information flow tracking to retrieve such knowledge. 
+
+\begin{minted}[xleftmargin=0.4cm,linenos,escapeinside=||]{c++}
+TypicalUsage(Design D, Traces T) {
+  IF= D.statisticalInformationFlow(T);
+  P= D.findLikelyPaths(IF);
+  D.induceCommunicationPatterns(IF, P);
+  D.induceSequentialPropagation(P);
+  D.induceConcurrency(P);
+  D.induceSimplifiedRepresentation(P);
+}
+\end{minted}
+
+The algorithm lists the steps of this process. Besides accessing the design, the analysis requires execution traces, e.g., given by a testbench, to dynamically execute the design. The quality and the type of tests directly determine the quality of the results of this inference step.
+Statistical information flow tracking identifies the data flow from primary inputs based on the execution traces. As a result typical paths in the design can be derived, e.g., on a bus structure in a design connecting many devices only few of all the possible communication links will be used. A more fine grain analysis taking cycle accurate information into account will additionally reveal communication in burst mode, recurring communication patterns etc. (Line 4). While the static analysis for information flow takes all possible paths for information flow into account, the knowledge about typical paths constrains this view. Given execution traces we will extract knowledge about sequential (Line 5) and concurrent processing (Line 6) dynamically. All these results are then integrated to produce a simplified instantiation of the design abstracting infrequently used parts. By fixing control conditions with high likelihood for taking a specific branch the now unused parts of the design may be ''greyed out'' to induce a simplification (Line 7).
+
+In contrast to traditional information flow tracking with respect to security, we are interested in typical cases and statistical results. Moreover, we aim at generating a more abstract view onto the design given the results.
+
+The realization of these algorithms is one research question. As a further visionary research question we want to investigate whether we can infer likely paths for typical usage by static analysis without having actual execution traces. However, this option must take information from other steps of the design understanding flow into account, e.g., design concepts like knowledge about protocol implementations.
+
+
+\section{Algorithms}
+\subsection{Statistical Information Flow Tracking}
+\gf{To be discussed}
+\subsubsection{Definitions}
+
+Tag - what is called taint in security analysis.
+
+Source - the point where a tag is injected.
+
+\subsubsection{Options}
+\begin{itemize}
+\item Sequential resolution 
+  \begin{itemize}
+  \item Tags associated to time steps
+
+  At a source, the tag is set only once in a single time step.
+
+  Allows for understanding sequential flow of information. Consequently, requires many tracking runs to handle longer simulations.
+  \item Tags independent from time steps
+
+  At a source, the tag is set continuously through all time steps.
+ 
+  \item Time intervals 
+
+  Trade-off between the previous two options.
+  \end{itemize}
+\item Bitwise resolution 
+  \begin{itemize}
+  \item Tags per bit
+
+  Maximum resolution for combinational gates, e.g., OR, MUX. In most cases not useful for arithmetic gates.
+  \item Tags per vector
+
+  Reduces resolution for combinational gates, e.g., OR, MUX. In most cases sufficient for arithmetic gates.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Algorithm}
+Implemented as part of the Design. Potentially, refactored later.
+
+\begin{minted}[xleftmargin=0.4cm,linenos,escapeinside=||]{c++}
+c= a OR b;
+c_t= (a==1? a_t :0  ) OR (b==1? b_t : 0);
+\end{minted}
+
+\begin{minted}[xleftmargin=0.4cm,linenos,escapeinside=||]{c++}
+size_t numberOfTags= 32;
+class Tags : public array<bool, numberOfTags> {
+}
+
+class TimedTags : private map<pair<FlatNetID, uint>, Tags>  {
+  public:
+    // Nice interface
+    initialize(FlatNetID, time, tag);
+    addTag(FlatNetID, time, tag);
+}
+
+statisticalInformationFlow(Source s) {
+  TimedTags tagged;
+  writeInstrumentedVerilog();
+  enhanceTestbench();
+  for all time steps ts
+    for all Sources src in s
+        executeEnhancedTestbench(src, ts);
+        readBack(tagged);
+  return tagged;
+}
+\end{minted}
+
+Implementation alernatives TimedTags can be implemented, e.g., as vector of maps.
+
+   \begin{itemize}
+      \item Timetags will be implemented as maps.
+      \item Tags will be stored in the instances.
+      \item With respect to the option of one tag versus many, there will be one tag set at a time for every run of the IFT.  
+      \item Later it will be useful to run one tag a many tags and observe the consequences.
+   \end{itemize}
+\newpage
+
+
+test
+
+\subsection{Finding Likely Paths}
+Tagging: tags are not stored at different time steps, but in the same place for all time points; tags activated only at a single time step -> this keeps patterns simple, i.e., not modified by flip-flop.
+
+
+\begin{minted}[xleftmargin=0.4cm,linenos,escapeinside=||]{c++}
+findLikelyPaths(Vector<Tagging> tags) {
+  TimedTags ttags= statisticalInformationFlow();
+  UnimedTags utags= ttags.discardTiminingInformation();
+  Vector<Vector<FlatNetIDs>> likelyPaths;
+  for each input i
+    queue.append(i);
+    while (n : queue) {
+      queue.pop_front();
+      if (n.commonTagsWith(i, utags)>threshold) {
+        path.append(n);
+        queue.append(n.succs);
+      }
+    }
+    likelyPaths.insert(path);
+}
+\end{minted}
+
+\subsection{Finding Pipelines}
+Tagging: tags stored at different time steps to identify time shift through pipeline; tags only activated at a single time step
+
+
+
+\begin{minted}[xleftmargin=0.4cm,linenos,escapeinside=||]{c++}
+findPipelines(Vector<Tagging> tags) {
+  Vector<Tagging> tags= statisticalInformationFlow();
+  P= parts of the design with the same tags ;
+  P."validate combinational conncectivity";
+  S= Sequences of parts with tags that sequentially follow each other;
+  C= Extend parts in sequence in combinational part where tags are subsets 
+      (to account for non-activated combinational structures);
+
+  // Needs further processing here to add all combinational logic ...
+}
+\end{minted}

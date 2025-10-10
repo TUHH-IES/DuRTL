@@ -1,11 +1,16 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 
-#include <ducode/ids.hpp>
+#include <common_definitions.hpp>
 #include <ducode/utility/iverilog_wrapper.hpp>
-#include <ducode/utility/parser_utility.hpp>
 
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <spdlog/spdlog.h>
+#include <vcd-parser/VCDFile.hpp>
 #include <vcd-parser/VCDFileParser.hpp>
+
+#include <filesystem>
+#include <memory>
+#include <stdexcept>
 
 TEST_CASE("VCD comparison", "[iverilog_wrapper]") {
   auto vcd_reference = std::filesystem::path{TESTFILES_DIR} / "gateExample" / "gateExample.vcd";

@@ -14,7 +14,7 @@ namespace ducode {
  * The `CellMux` class is a derived class of `CellBasicGate` and represents a multiplexer cell.
  * It provides functionality to export the Verilog representation of the cell based on the provided parameters.
  */
-class CellMux : public CellBasicGate {
+class CellMux : public Cell {
 public:
   /**
    * @brief Constructs a CellMux object.
@@ -29,18 +29,7 @@ public:
    * @param attributes The JSON object containing the attributes of the CellMux.
    */
   CellMux(std::string name, std::string type, std::vector<ducode::Port>& ports, bool hidden, const nlohmann::json& parameters, const nlohmann::json& attributes)
-      : CellBasicGate(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
-  }
-
-  /**
-   * @brief Returns the Verilog operator for the cell.
-   *
-   * This function returns the Verilog operator that corresponds to the cell's operation.
-   *
-   * @return The Verilog operator as a string.
-   */
-  [[nodiscard]] std::string get_verilog_operator() const override {
-    return " ";
+      : Cell(std::move(name), std::move(type), ports, hidden, parameters, attributes) {
   }
 
   /**
@@ -92,28 +81,18 @@ public:
 
     result << fmt::format("  assign {} = {} ? {} : {};\n", y, s, b, a);
     if (ift) {
-      result << ift_assignment(y, {a, b, s});
+      // result << ift_assignment(y, {a, b, s});
+      static constexpr std::string_view str = "assign {}{} = (^{} === 1'bx ? 0 : ({} ? {}{} : {}{})) | (^({}^{}) === 1'bx ? 0 : ( (^({} ^ {}) === 1'b1) ? {}{} : 0)) | ({}{} & {}{}) | ({}{} & {}{});\n";
+      result << fmt::format(str, y, ift_tag, s, s, b, ift_tag, a, ift_tag, a, b, a, b, s, ift_tag, a, ift_tag, s, ift_tag, b, ift_tag, s, ift_tag);
     }
 
     return result.str();
   }
 
-  /**
-   * Calculates the if-then-else assignment for a given successor and predecessors.
-   *
-   * @param successor The successor variable.
-   * @param predecessors The vector of predecessor variables.
-   * @return The if-then-else assignment as a string.
-   */
-  [[nodiscard]] std::string ift_assignment(const std::string& successor, const std::vector<std::string>& predecessors) const override {
-    assert(!successor.empty());
-    assert(predecessors.size() == 3);
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+    assert(port_expr_map.size() <= 4);
 
-    static constexpr std::string_view s = "assign {}{} = (^{} === 1'bx ? 0 : ({} ? {}{} : {}{})) | (^({}^{}) === 1'bx ? 0 : ( (^({} ^ {}) === 1'b1) ? {}{} : 0)) | ({}{} & {}{}) | ({}{} & {}{});\n";
-    return fmt::format(s, successor, ift_tag, predecessors[2], predecessors[2], predecessors[1], ift_tag, predecessors[0], ift_tag, predecessors[0], predecessors[1], predecessors[0], predecessors[1], predecessors[2], ift_tag, predecessors[0], ift_tag, predecessors[2], ift_tag, predecessors[1], ift_tag, predecessors[2], ift_tag);
-
-    //      result << fmt::format("  assign {}{} = {} ? {}{} : {}{} ;\n", y, ift_tag, predecessors[2], predecessors[1], ift_tag, predecessors[0], ift_tag);
-    //      result << fmt::format("  assign {}{} = (({}{}>0) && ({} ^ {})) ? ({}{} | {}{} | {}{}) : ({} ? {}{} : {}{}) ;\n", y, ift_tag, predecessors[2], ift_tag, predecessors[0], predecessors[1], predecessors[1], ift_tag, predecessors[0], ift_tag, predecessors[2], ift_tag, predecessors[2], predecessors[1], ift_tag, predecessors[0], ift_tag);
+    solver.add((port_expr_map.at("Y") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("S") == 1), port_expr_map.at("B"), port_expr_map.at("A")))));
   }
 };
 }// namespace ducode

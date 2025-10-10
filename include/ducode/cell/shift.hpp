@@ -82,5 +82,25 @@ public:
 
     return result.str();
   }
+
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+
+    assert(port_expr_map.size() <= 3);
+    unsigned largest_bit_size = std::max({port_expr_map.at("A").get_sort().bv_size(),
+                                          port_expr_map.at("B").get_sort().bv_size(),
+                                          port_expr_map.at("Y").get_sort().bv_size()});
+    z3::expr extended_a = A_signed ? z3::sext(port_expr_map.at("A"), (largest_bit_size - port_expr_map.at("A").get_sort().bv_size())) : z3::zext(port_expr_map.at("A"), (largest_bit_size - port_expr_map.at("A").get_sort().bv_size()));
+    z3::expr extended_b = B_signed ? z3::sext(port_expr_map.at("B"), (largest_bit_size - port_expr_map.at("B").get_sort().bv_size())) : z3::zext(port_expr_map.at("B"), (largest_bit_size - port_expr_map.at("B").get_sort().bv_size()));
+    z3::expr extended_b_inv = to_expr(ctx, Z3_mk_bvadd(ctx, to_expr(ctx, Z3_mk_bvnot(ctx, extended_b)), ctx.bv_val(1, largest_bit_size)));
+    if (B_signed) {
+      if (A_signed) {
+        solver.add(z3::sext(port_expr_map.at("Y"), (largest_bit_size - port_expr_map.at("Y").get_sort().bv_size())) == to_expr(ctx, Z3_mk_ite(ctx, (extended_b.extract(extended_b.get_sort().bv_size() - 1, extended_b.get_sort().bv_size() - 1) == ctx.bv_val(1, 1)), to_expr(ctx, Z3_mk_bvshl(ctx, extended_a, extended_b_inv)), to_expr(ctx, Z3_mk_bvlshr(ctx, extended_a, extended_b)))));
+      } else {
+        solver.add(z3::zext(port_expr_map.at("Y"), (largest_bit_size - port_expr_map.at("Y").get_sort().bv_size())) == to_expr(ctx, Z3_mk_ite(ctx, (extended_b.extract(extended_b.get_sort().bv_size() - 1, extended_b.get_sort().bv_size() - 1) == ctx.bv_val(1, 1)), to_expr(ctx, Z3_mk_bvshl(ctx, extended_a, extended_b_inv)), to_expr(ctx, Z3_mk_bvlshr(ctx, extended_a, extended_b)))));
+      }
+    } else {
+      solver.add(z3::zext(port_expr_map.at("Y"), (largest_bit_size - port_expr_map.at("Y").get_sort().bv_size())) == to_expr(ctx, Z3_mk_bvlshr(ctx, extended_a, extended_b)));
+    }
+  }
 };
 }// namespace ducode

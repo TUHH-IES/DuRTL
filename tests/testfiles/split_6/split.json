@@ -1,0 +1,114 @@
+{
+  "creator": "Yosys 0.36 (git sha1 8f07a0d8404, clang 16.0.6 -fPIC -Os)",
+  "modules": {
+    "split": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "split.v:10.1-18.10"
+      },
+      "ports": {
+        "a": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 6, 7, 8 ]
+        },
+        "out": {
+          "direction": "output",
+          "bits": [ 9, 10 ]
+        }
+      },
+      "cells": {
+        "mod": {
+          "hide_name": 0,
+          "type": "split_sub",
+          "parameters": {
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "split.v:16.12-16.44"
+          },
+          "port_directions": {
+            "f": "input",
+            "g": "input",
+            "h": "output"
+          },
+          "connections": {
+            "f": [ 5 ],
+            "g": [ 8 ],
+            "h": [ 9, 10 ]
+          }
+        }
+      },
+      "netnames": {
+        "a": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5 ],
+          "attributes": {
+            "src": "split.v:12.14-12.15"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 6, 7, 8 ],
+          "attributes": {
+            "src": "split.v:13.14-13.15"
+          }
+        },
+        "out": {
+          "hide_name": 0,
+          "bits": [ 9, 10 ],
+          "attributes": {
+            "src": "split.v:14.15-14.18"
+          }
+        }
+      }
+    },
+    "split_sub": {
+      "attributes": {
+        "src": "split.v:1.1-8.10"
+      },
+      "ports": {
+        "f": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "g": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "h": {
+          "direction": "output",
+          "bits": [ 2, 3 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "f": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "split.v:3.8-3.9"
+          }
+        },
+        "g": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "split.v:3.11-3.12"
+          }
+        },
+        "h": {
+          "hide_name": 0,
+          "bits": [ 2, 3 ],
+          "attributes": {
+            "src": "split.v:4.15-4.16"
+          }
+        }
+      }
+    }
+  }
+}

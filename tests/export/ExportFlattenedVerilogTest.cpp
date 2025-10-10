@@ -1,15 +1,19 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 
+#include <common_definitions.hpp>
+#include <ducode/design.hpp>
 #include <ducode/instantiation_graph.hpp>
+#include <ducode/utility/VCD_comparisons.hpp>
 #include <ducode/utility/iverilog_wrapper.hpp>
-#include <ducode/utility/parser_utility.hpp>
 
-#include <catch2/catch_all.hpp>
-#include <range/v3/view/transform.hpp>
-#include <range/v3/view/unique.hpp>
+#include <boost/filesystem/operations.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <fmt/core.h>
 #include <spdlog/spdlog.h>
-#include <vcd-parser/VCDComparisons.hpp>
+#include <vcd-parser/VCDFileParser.hpp>
 
+#include <algorithm>
+#include <cassert>
 #include <filesystem>
 #include <string>
 #include <utility>
@@ -28,7 +32,7 @@ auto export_flattened_test_function(const std::string& design_file_path) {
   auto instance = ducode::DesignInstance::create_instance(design);
   auto exported_design = temp_dir / "flatten.v";
   instance.write_verilog(exported_design);
-  instance.write_graphviz("graph.dot");
+  //instance.write_graphviz("graph.dot");
 
   auto data = ducode::simulate_design(exported_design, reference_tb);
   return data;
@@ -46,6 +50,26 @@ TEST_CASE("export_flattened_verilog", "[ExportFlattenedVerilog]") {
     auto signal_it = std::ranges::find_if(inner_scope.signals, [&](auto signal) { return signal->reference == scope_reference_signal->reference; });
     CHECK(signal_it != inner_scope.signals.end());
     CHECK(vcd_reference->get_signal_values(scope_reference_signal->hash) == data->get_signal_values((*signal_it)->hash));
+  }
+}
+
+TEST_CASE("export_flattened_dff_design", "[ExportFlattenedVerilog]") {
+  auto data = export_flattened_test_function("dff_design/dff_design");
+
+  auto vcd_reference_file = boost::filesystem::path{TESTFILES_DIR} / "dff_design" / "dff_design.vcd";
+  auto reference_file = boost::filesystem::path{TESTFILES_DIR} / "dff_design" / "dff_design.v";
+  auto testbench_file = boost::filesystem::path{TESTFILES_DIR} / "dff_design" / "dff_design_tb.v";
+
+  auto reference_data = ducode::simulate_design(reference_file, testbench_file);
+
+  VCDFileParser parser;
+  auto vcd_reference = parser.parse_file(vcd_reference_file.string());
+  const auto& inner_scope = data->get_scope("dff_design_tb");
+  const auto& inner_scope_reference = reference_data->get_scope("dff_design_tb");
+  for (auto* scope_reference_signal: inner_scope_reference.signals) {
+    auto signal_it = std::ranges::find_if(inner_scope.signals, [&](auto signal) { return signal->reference == scope_reference_signal->reference; });
+    CHECK(signal_it != inner_scope.signals.end());
+    CHECK(reference_data->get_signal_values(scope_reference_signal->hash) == data->get_signal_values((*signal_it)->hash));
   }
 }
 
@@ -84,19 +108,19 @@ TEST_CASE("export_flattened_y86", "[ExportFlattenedVerilog]") {
     auto created = boost::filesystem::create_directories(temp_dir);
     assert(created);
 
-    auto design = ducode::Design::parse_json(json_file.string());
+    auto design = ducode::Design::parse_json(json_file);
 
     VCDFileParser parser;
     auto vcd_reference = parser.parse_file(vcd_reference_file.string());
     auto instance = ducode::DesignInstance::create_instance(design);
     auto exported_design = temp_dir / ("flatten.v");
-    instance.write_verilog(exported_design.string());
-    instance.write_graphviz("graph.dot");
+    instance.write_verilog(exported_design);
+    //instance.write_graphviz("graph.dot");
 
     auto data = ducode::simulate_design(exported_design, reference_tb, reference_input);
 
-    const auto& inner_scope = data->get_scope(fmt::format("main", design_file));
-    const auto& inner_scope_reference = vcd_reference->get_scope(fmt::format("main", design_file));
+    const auto& inner_scope = data->get_scope(fmt::format("y86_tb", design_file));
+    const auto& inner_scope_reference = vcd_reference->get_scope(fmt::format("y86_tb", design_file));
     for (auto* scope_reference_signal: inner_scope_reference.signals) {
       spdlog::info("{}", scope_reference_signal->reference);
       auto signal_it = std::ranges::find_if(inner_scope.signals, [&](auto signal) { return signal->reference == scope_reference_signal->reference; });
@@ -125,21 +149,8 @@ TEST_CASE("export_flattened_verilog_basicGates", "[ExportFlattenedVerilog]") {
     for (auto* scope_reference_signal: inner_scope_reference.signals) {
       spdlog::info("{}", scope_reference_signal->reference);
       auto signal_it = std::ranges::find_if(inner_scope.signals, [&](auto signal) { return signal->reference == scope_reference_signal->reference; });
-      CHECK(signal_it != inner_scope.signals.end());
-      auto reference_values = vcd_reference->get_signal_values(scope_reference_signal->hash) |
-                              ranges::views::transform([](const VCDTimedValue& value) { return value.value; }) |
-                              ranges::views::unique;
-      auto values = data->get_signal_values((*signal_it)->hash) |
-                    ranges::views::transform([](const VCDTimedValue& value) { return value.value; }) |
-                    ranges::views::unique;
-
-      auto ref_it = reference_values.begin();
-      auto val_it = values.begin();
-      for (; ref_it != reference_values.end() || val_it != values.end(); ref_it++, val_it++) {
-        if (*ref_it != *val_it) {
-          CHECK(false);
-        }
-      }
+      REQUIRE(signal_it != inner_scope.signals.end());
+      CHECK(ducode::no_repetitions_compare(vcd_reference->get_signal_values(scope_reference_signal->hash), data->get_signal_values((*signal_it)->hash)));
     }
   }
 }
@@ -155,20 +166,23 @@ TEST_CASE("export_flattened_picorv32", "[ExportFlattenedVerilog]") {
   for (auto* scope_reference_signal: inner_scope_reference.signals) {
     spdlog::info("{}", scope_reference_signal->reference);
     auto signal_it = std::ranges::find_if(inner_scope.signals, [&](auto signal) { return signal->reference == scope_reference_signal->reference; });
-    CHECK(signal_it != inner_scope.signals.end());
-    auto reference_values = vcd_reference->get_signal_values(scope_reference_signal->hash) |
-                            ranges::views::transform([](const VCDTimedValue& value) { return value.value; }) |
-                            ranges::views::unique;
-    auto values = data->get_signal_values((*signal_it)->hash) |
-                  ranges::views::transform([](const VCDTimedValue& value) { return value.value; }) |
-                  ranges::views::unique;
+    REQUIRE(signal_it != inner_scope.signals.end());
+    CHECK(ducode::no_repetitions_compare(vcd_reference->get_signal_values(scope_reference_signal->hash), data->get_signal_values((*signal_it)->hash)));
+  }
+}
 
-    auto ref_it = reference_values.begin();
-    auto val_it = values.begin();
-    for (; ref_it != reference_values.end() || val_it != values.end(); ref_it++, val_it++) {
-      if (*ref_it != *val_it) {
-        CHECK(false);
-      }
-    }
+TEST_CASE("export_flattened_usb2uart", "[ExportFlattenedVerilog][.]") {
+  auto data = export_flattened_test_function("usb2uart/usb2uart");
+
+  auto vcd_reference_file = boost::filesystem::path{TESTFILES_DIR} / "usb2uart" / "usb2uart.vcd";
+  VCDFileParser parser;
+  auto vcd_reference = parser.parse_file(vcd_reference_file.string());
+  const auto& inner_scope = data->get_scope("usb2uart_tb");
+  const auto& inner_scope_reference = vcd_reference->get_scope("usb2uart_tb");
+  for (auto* scope_reference_signal: inner_scope_reference.signals) {
+    spdlog::info("{}", scope_reference_signal->reference);
+    auto signal_it = std::ranges::find_if(inner_scope.signals, [&](auto signal) { return signal->reference == scope_reference_signal->reference; });
+    REQUIRE(signal_it != inner_scope.signals.end());
+    CHECK(ducode::no_repetitions_compare(vcd_reference->get_signal_values(scope_reference_signal->hash), data->get_signal_values((*signal_it)->hash)));
   }
 }

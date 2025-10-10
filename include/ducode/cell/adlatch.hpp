@@ -86,5 +86,26 @@ public:
 
     return result.str();
   }
+
+  void export_smt2(z3::context& ctx, z3::solver& solver, const std::unordered_map<std::string, z3::expr>& port_expr_map, [[maybe_unused]] const nlohmann::json& params) const override {
+
+    assert(port_expr_map.size() <= 4);
+
+    uint32_t bv_size = port_expr_map.at("Q").get_sort().bv_size();
+
+    if (enable_active_high) {
+      if (arst_active_high) {
+        solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 1), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ARST") == 1), ctx.bv_val(arst_value, bv_size), port_expr_map.at("D"))), port_expr_map.at("Q")))));
+      } else {
+        solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 1), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ARST") == 0), ctx.bv_val(arst_value, bv_size), port_expr_map.at("D"))), port_expr_map.at("Q")))));
+      }
+    } else {
+      if (arst_active_high) {
+        solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 0), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ARST") == 1), ctx.bv_val(arst_value, bv_size), port_expr_map.at("D"))), port_expr_map.at("Q")))));
+      } else {
+        solver.add((port_expr_map.at("Q") == to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("EN") == 0), to_expr(ctx, Z3_mk_ite(ctx, (port_expr_map.at("ARST") == 0), ctx.bv_val(arst_value, bv_size), port_expr_map.at("D"))), port_expr_map.at("Q")))));
+      }
+    }
+  }
 };
 }// namespace ducode

@@ -1,0 +1,1541 @@
+{
+  "creator": "Yosys 0.15+44 (git sha1 3bf107024, x86_64-w64-mingw32-g++ 9.2.1 -Os)",
+  "modules": {
+    "Environmental_Monitor": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:1.1-93.10"
+      },
+      "ports": {
+        "vibration_level": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9 ]
+        },
+        "temperature": {
+          "direction": "input",
+          "bits": [ 10, 11, 12, 13, 14, 15, 16, 17 ]
+        },
+        "storm_detected": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "clk": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "reset": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "env_action": {
+          "direction": "output",
+          "bits": [ 21, 22 ]
+        },
+        "warning": {
+          "direction": "output",
+          "bits": [ 23 ]
+        },
+        "shutdown": {
+          "direction": "output",
+          "bits": [ 24 ]
+        }
+      },
+      "cells": {
+        "$gt$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33$3": {
+          "hide_name": 1,
+          "type": "$gt",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.22-33.46"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+            "B": [ "0", "0", "1", "0", "0", "1", "1", "0" ],
+            "Y": [ 25 ]
+          }
+        },
+        "$gt$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33$4": {
+          "hide_name": 1,
+          "type": "$gt",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.52-33.71"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 10, 11, 12, 13, 14, 15, 16, 17 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "1", "0" ],
+            "Y": [ 26 ]
+          }
+        },
+        "$gt$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43$6": {
+          "hide_name": 1,
+          "type": "$gt",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43.40-43.64"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+            "B": [ "0", "0", "0", "1", "1", "1", "1", "0" ],
+            "Y": [ 27 ]
+          }
+        },
+        "$le$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45$8": {
+          "hide_name": 1,
+          "type": "$le",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45.31-45.56"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+            "B": [ "0", "0", "1", "0", "0", "1", "1", "0" ],
+            "Y": [ 28 ]
+          }
+        },
+        "$le$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45$9": {
+          "hide_name": 1,
+          "type": "$le",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45.62-45.82"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 10, 11, 12, 13, 14, 15, 16, 17 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "1", "0" ],
+            "Y": [ 29 ]
+          }
+        },
+        "$le$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$12": {
+          "hide_name": 1,
+          "type": "$le",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.41-53.66"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+            "B": [ "0", "0", "1", "0", "0", "1", "1", "0" ],
+            "Y": [ 30 ]
+          }
+        },
+        "$le$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$14": {
+          "hide_name": 1,
+          "type": "$le",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.72-53.92"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 10, 11, 12, 13, 14, 15, 16, 17 ],
+            "B": [ "0", "1", "1", "0", "0", "0", "1", "0" ],
+            "Y": [ 31 ]
+          }
+        },
+        "$logic_and$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45$10": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45.30-45.83"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 28 ],
+            "B": [ 29 ],
+            "Y": [ 32 ]
+          }
+        },
+        "$logic_and$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$13": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.21-53.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 33 ],
+            "B": [ 30 ],
+            "Y": [ 34 ]
+          }
+        },
+        "$logic_and$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$15": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.21-53.93"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 34 ],
+            "B": [ 31 ],
+            "Y": [ 35 ]
+          }
+        },
+        "$logic_not$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$11": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.21-53.36"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 18 ],
+            "Y": [ 33 ]
+          }
+        },
+        "$logic_or$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33$5": {
+          "hide_name": 1,
+          "type": "$logic_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.21-33.72"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 25 ],
+            "B": [ 26 ],
+            "Y": [ 36 ]
+          }
+        },
+        "$logic_or$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43$7": {
+          "hide_name": 1,
+          "type": "$logic_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43.21-43.65"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 18 ],
+            "B": [ 27 ],
+            "Y": [ 37 ]
+          }
+        },
+        "$procdff$75": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "00",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:21.5-27.8"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 20 ],
+            "CLK": [ 19 ],
+            "D": [ 38, 39 ],
+            "Q": [ 40, 41 ]
+          }
+        },
+        "$procmux$18": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:66.9-90.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1" ],
+            "S": [ 42 ],
+            "Y": [ 24 ]
+          }
+        },
+        "$procmux$19_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:66.9-90.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "0", "1" ],
+            "Y": [ 42 ]
+          }
+        },
+        "$procmux$21": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000000010",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:66.9-90.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1", "1" ],
+            "S": [ 43, 44 ],
+            "Y": [ 23 ]
+          }
+        },
+        "$procmux$22_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:66.9-90.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "0", "1" ],
+            "Y": [ 43 ]
+          }
+        },
+        "$procmux$23_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:66.9-90.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "1", "0" ],
+            "Y": [ 44 ]
+          }
+        },
+        "$procmux$25": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000000010",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:66.9-90.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0" ],
+            "B": [ "0", "1", "1", "0" ],
+            "S": [ 45, 46 ],
+            "Y": [ 21, 22 ]
+          }
+        },
+        "$procmux$26_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:66.9-90.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "0", "1" ],
+            "Y": [ 45 ]
+          }
+        },
+        "$procmux$27_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:66.9-90.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "1", "0" ],
+            "Y": [ 46 ]
+          }
+        },
+        "$procmux$30": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.21-53.93|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.17-57.20"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "1" ],
+            "B": [ "0", "0" ],
+            "S": [ 35 ],
+            "Y": [ 47, 48 ]
+          }
+        },
+        "$procmux$32": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "x", "x" ],
+            "B": [ 47, 48 ],
+            "S": [ 49 ],
+            "Y": [ 50, 51 ]
+          }
+        },
+        "$procmux$33_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "0", "1" ],
+            "Y": [ 49 ]
+          }
+        },
+        "$procmux$37": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45.30-45.83|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45.26-49.20"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1", "0" ],
+            "B": [ "0", "0" ],
+            "S": [ 32 ],
+            "Y": [ 52, 53 ]
+          }
+        },
+        "$procmux$40": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43.21-43.65|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43.17-49.20"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 52, 53 ],
+            "B": [ "x", "x" ],
+            "S": [ 37 ],
+            "Y": [ 54, 55 ]
+          }
+        },
+        "$procmux$42": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "x", "x" ],
+            "B": [ 54, 55 ],
+            "S": [ 56 ],
+            "Y": [ 57, 58 ]
+          }
+        },
+        "$procmux$43_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "1", "0" ],
+            "Y": [ 56 ]
+          }
+        },
+        "$procmux$47": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43.21-43.65|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43.17-49.20"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 57, 58 ],
+            "B": [ "0", "1" ],
+            "S": [ 37 ],
+            "Y": [ 59, 60 ]
+          }
+        },
+        "$procmux$49": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "x", "x" ],
+            "B": [ 59, 60 ],
+            "S": [ 61 ],
+            "Y": [ 62, 63 ]
+          }
+        },
+        "$procmux$50_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "1", "0" ],
+            "Y": [ 61 ]
+          }
+        },
+        "$procmux$55": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:35.30-35.44|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:35.26-39.20"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0" ],
+            "B": [ "0", "1" ],
+            "S": [ 18 ],
+            "Y": [ 64, 65 ]
+          }
+        },
+        "$procmux$58": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.21-33.72|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.17-39.20"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65 ],
+            "B": [ "x", "x" ],
+            "S": [ 36 ],
+            "Y": [ 66, 67 ]
+          }
+        },
+        "$procmux$60": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "x", "x" ],
+            "B": [ 66, 67 ],
+            "S": [ 68 ],
+            "Y": [ 69, 70 ]
+          }
+        },
+        "$procmux$61_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "Y": [ 68 ]
+          }
+        },
+        "$procmux$66": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.21-33.72|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.17-39.20"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 69, 70 ],
+            "B": [ "1", "0" ],
+            "S": [ 36 ],
+            "Y": [ 71, 72 ]
+          }
+        },
+        "$procmux$68": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "x", "x" ],
+            "B": [ 71, 72 ],
+            "S": [ 73 ],
+            "Y": [ 74, 75 ]
+          }
+        },
+        "$procmux$69_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "Y": [ 73 ]
+          }
+        },
+        "$procmux$71": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000000011",
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0" ],
+            "B": [ 50, 51, 62, 63, 74, 75 ],
+            "S": [ 76, 77, 78 ],
+            "Y": [ 38, 39 ]
+          }
+        },
+        "$procmux$72_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "0", "1" ],
+            "Y": [ 76 ]
+          }
+        },
+        "$procmux$73_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "B": [ "1", "0" ],
+            "Y": [ 77 ]
+          }
+        },
+        "$procmux$74_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:0.0-0.0|C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:31.9-61.16"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 40, 41 ],
+            "Y": [ 78 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\env_action[1:0]": {
+          "hide_name": 1,
+          "bits": [ 21, 22 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:65.5-91.8"
+          }
+        },
+        "$0\\next_state[1:0]": {
+          "hide_name": 1,
+          "bits": [ 38, 39 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:30.5-62.8"
+          }
+        },
+        "$0\\shutdown[0:0]": {
+          "hide_name": 1,
+          "bits": [ 24 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:65.5-91.8"
+          }
+        },
+        "$0\\state[1:0]": {
+          "hide_name": 1,
+          "bits": [ 38, 39 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:21.5-27.8"
+          }
+        },
+        "$0\\warning[0:0]": {
+          "hide_name": 1,
+          "bits": [ 23 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:65.5-91.8"
+          }
+        },
+        "$1\\env_action[1:0]": {
+          "hide_name": 1,
+          "bits": [ 21, 22 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:65.5-91.8"
+          }
+        },
+        "$1\\next_state[1:0]": {
+          "hide_name": 1,
+          "bits": [ 38, 39 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:30.5-62.8"
+          }
+        },
+        "$1\\shutdown[0:0]": {
+          "hide_name": 1,
+          "bits": [ 24 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:65.5-91.8"
+          }
+        },
+        "$1\\warning[0:0]": {
+          "hide_name": 1,
+          "bits": [ 23 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:65.5-91.8"
+          }
+        },
+        "$2\\next_state[1:0]": {
+          "hide_name": 1,
+          "bits": [ 74, 75 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:30.5-62.8"
+          }
+        },
+        "$3\\next_state[1:0]": {
+          "hide_name": 1,
+          "bits": [ 69, 70 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:30.5-62.8"
+          }
+        },
+        "$4\\next_state[1:0]": {
+          "hide_name": 1,
+          "bits": [ 62, 63 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:30.5-62.8"
+          }
+        },
+        "$5\\next_state[1:0]": {
+          "hide_name": 1,
+          "bits": [ 57, 58 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:30.5-62.8"
+          }
+        },
+        "$6\\next_state[1:0]": {
+          "hide_name": 1,
+          "bits": [ 50, 51 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:30.5-62.8"
+          }
+        },
+        "$gt$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33$3_Y": {
+          "hide_name": 1,
+          "bits": [ 25 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.22-33.46"
+          }
+        },
+        "$gt$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33$4_Y": {
+          "hide_name": 1,
+          "bits": [ 26 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.52-33.71"
+          }
+        },
+        "$gt$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43$6_Y": {
+          "hide_name": 1,
+          "bits": [ 27 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43.40-43.64"
+          }
+        },
+        "$le$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45$8_Y": {
+          "hide_name": 1,
+          "bits": [ 28 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45.31-45.56"
+          }
+        },
+        "$le$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45$9_Y": {
+          "hide_name": 1,
+          "bits": [ 29 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45.62-45.82"
+          }
+        },
+        "$le$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$12_Y": {
+          "hide_name": 1,
+          "bits": [ 30 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.41-53.66"
+          }
+        },
+        "$le$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$14_Y": {
+          "hide_name": 1,
+          "bits": [ 31 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.72-53.92"
+          }
+        },
+        "$logic_and$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45$10_Y": {
+          "hide_name": 1,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:45.30-45.83"
+          }
+        },
+        "$logic_and$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$13_Y": {
+          "hide_name": 1,
+          "bits": [ 34 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.21-53.67"
+          }
+        },
+        "$logic_and$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$15_Y": {
+          "hide_name": 1,
+          "bits": [ 35 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.21-53.93"
+          }
+        },
+        "$logic_not$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53$11_Y": {
+          "hide_name": 1,
+          "bits": [ 33 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:53.21-53.36"
+          }
+        },
+        "$logic_or$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33$5_Y": {
+          "hide_name": 1,
+          "bits": [ 36 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:33.21-33.72"
+          }
+        },
+        "$logic_or$C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43$7_Y": {
+          "hide_name": 1,
+          "bits": [ 37 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:43.21-43.65"
+          }
+        },
+        "$procmux$18_Y": {
+          "hide_name": 1,
+          "bits": [ 24 ],
+          "attributes": {
+          }
+        },
+        "$procmux$19_CMP": {
+          "hide_name": 1,
+          "bits": [ 42 ],
+          "attributes": {
+          }
+        },
+        "$procmux$21_Y": {
+          "hide_name": 1,
+          "bits": [ 23 ],
+          "attributes": {
+          }
+        },
+        "$procmux$22_CMP": {
+          "hide_name": 1,
+          "bits": [ 43 ],
+          "attributes": {
+          }
+        },
+        "$procmux$23_CMP": {
+          "hide_name": 1,
+          "bits": [ 44 ],
+          "attributes": {
+          }
+        },
+        "$procmux$25_Y": {
+          "hide_name": 1,
+          "bits": [ 21, 22 ],
+          "attributes": {
+          }
+        },
+        "$procmux$26_CMP": {
+          "hide_name": 1,
+          "bits": [ 45 ],
+          "attributes": {
+          }
+        },
+        "$procmux$27_CMP": {
+          "hide_name": 1,
+          "bits": [ 46 ],
+          "attributes": {
+          }
+        },
+        "$procmux$30_Y": {
+          "hide_name": 1,
+          "bits": [ 47, 48 ],
+          "attributes": {
+          }
+        },
+        "$procmux$31_CMP": {
+          "hide_name": 1,
+          "bits": [ 35 ],
+          "attributes": {
+          }
+        },
+        "$procmux$32_Y": {
+          "hide_name": 1,
+          "bits": [ 50, 51 ],
+          "attributes": {
+          }
+        },
+        "$procmux$33_CMP": {
+          "hide_name": 1,
+          "bits": [ 49 ],
+          "attributes": {
+          }
+        },
+        "$procmux$37_Y": {
+          "hide_name": 1,
+          "bits": [ 52, 53 ],
+          "attributes": {
+          }
+        },
+        "$procmux$38_CMP": {
+          "hide_name": 1,
+          "bits": [ 32 ],
+          "attributes": {
+          }
+        },
+        "$procmux$40_Y": {
+          "hide_name": 1,
+          "bits": [ 54, 55 ],
+          "attributes": {
+          }
+        },
+        "$procmux$41_CMP": {
+          "hide_name": 1,
+          "bits": [ 37 ],
+          "attributes": {
+          }
+        },
+        "$procmux$42_Y": {
+          "hide_name": 1,
+          "bits": [ 57, 58 ],
+          "attributes": {
+          }
+        },
+        "$procmux$43_CMP": {
+          "hide_name": 1,
+          "bits": [ 56 ],
+          "attributes": {
+          }
+        },
+        "$procmux$47_Y": {
+          "hide_name": 1,
+          "bits": [ 59, 60 ],
+          "attributes": {
+          }
+        },
+        "$procmux$48_CMP": {
+          "hide_name": 1,
+          "bits": [ 37 ],
+          "attributes": {
+          }
+        },
+        "$procmux$49_Y": {
+          "hide_name": 1,
+          "bits": [ 62, 63 ],
+          "attributes": {
+          }
+        },
+        "$procmux$50_CMP": {
+          "hide_name": 1,
+          "bits": [ 61 ],
+          "attributes": {
+          }
+        },
+        "$procmux$55_Y": {
+          "hide_name": 1,
+          "bits": [ 64, 65 ],
+          "attributes": {
+          }
+        },
+        "$procmux$56_CMP": {
+          "hide_name": 1,
+          "bits": [ 18 ],
+          "attributes": {
+          }
+        },
+        "$procmux$58_Y": {
+          "hide_name": 1,
+          "bits": [ 66, 67 ],
+          "attributes": {
+          }
+        },
+        "$procmux$59_CMP": {
+          "hide_name": 1,
+          "bits": [ 36 ],
+          "attributes": {
+          }
+        },
+        "$procmux$60_Y": {
+          "hide_name": 1,
+          "bits": [ 69, 70 ],
+          "attributes": {
+          }
+        },
+        "$procmux$61_CMP": {
+          "hide_name": 1,
+          "bits": [ 68 ],
+          "attributes": {
+          }
+        },
+        "$procmux$66_Y": {
+          "hide_name": 1,
+          "bits": [ 71, 72 ],
+          "attributes": {
+          }
+        },
+        "$procmux$67_CMP": {
+          "hide_name": 1,
+          "bits": [ 36 ],
+          "attributes": {
+          }
+        },
+        "$procmux$68_Y": {
+          "hide_name": 1,
+          "bits": [ 74, 75 ],
+          "attributes": {
+          }
+        },
+        "$procmux$69_CMP": {
+          "hide_name": 1,
+          "bits": [ 73 ],
+          "attributes": {
+          }
+        },
+        "$procmux$71_Y": {
+          "hide_name": 1,
+          "bits": [ 38, 39 ],
+          "attributes": {
+          }
+        },
+        "$procmux$72_CMP": {
+          "hide_name": 1,
+          "bits": [ 76 ],
+          "attributes": {
+          }
+        },
+        "$procmux$73_CMP": {
+          "hide_name": 1,
+          "bits": [ 77 ],
+          "attributes": {
+          }
+        },
+        "$procmux$74_CMP": {
+          "hide_name": 1,
+          "bits": [ 78 ],
+          "attributes": {
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:5.16-5.19"
+          }
+        },
+        "env_action": {
+          "hide_name": 0,
+          "bits": [ 21, 22 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:7.22-7.32"
+          }
+        },
+        "next_state": {
+          "hide_name": 0,
+          "bits": [ 38, 39 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:18.22-18.32"
+          }
+        },
+        "reset": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:6.16-6.21"
+          }
+        },
+        "shutdown": {
+          "hide_name": 0,
+          "bits": [ 24 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:9.16-9.24"
+          }
+        },
+        "state": {
+          "hide_name": 0,
+          "bits": [ 40, 41 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:18.15-18.20"
+          }
+        },
+        "storm_detected": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:4.16-4.30"
+          }
+        },
+        "temperature": {
+          "hide_name": 0,
+          "bits": [ 10, 11, 12, 13, 14, 15, 16, 17 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:3.22-3.33"
+          }
+        },
+        "vibration_level": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:2.22-2.37"
+          }
+        },
+        "warning": {
+          "hide_name": 0,
+          "bits": [ 23 ],
+          "attributes": {
+            "src": "C:\\Users\\moham\\Documents\\ducodeMaster\\tests\\testfiles\\wind_turbin/environment_monitor.v:8.16-8.23"
+          }
+        }
+      }
+    }
+  }
+}

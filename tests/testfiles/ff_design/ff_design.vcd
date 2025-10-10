@@ -1,0 +1,154 @@
+$date
+	Mon Aug 11 11:06:11 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ff_design_tb $end
+$var wire 17 ! y [16:0] $end
+$var wire 1 " out_valid $end
+$var parameter 32 # W $end
+$var reg 8 $ a [7:0] $end
+$var reg 8 % b [7:0] $end
+$var reg 8 & c [7:0] $end
+$var reg 1 ' clk $end
+$var reg 1 ( in_valid $end
+$var reg 1 ) rst_n $end
+$scope module dut $end
+$var wire 8 * a [7:0] $end
+$var wire 8 + b [7:0] $end
+$var wire 8 , c [7:0] $end
+$var wire 1 ' clk $end
+$var wire 1 ( in_valid $end
+$var wire 1 ) rst_n $end
+$var wire 9 - sum_wide [8:0] $end
+$var wire 17 . prod_wide [16:0] $end
+$var parameter 32 / W $end
+$var reg 8 0 c_r [7:0] $end
+$var reg 1 " out_valid $end
+$var reg 9 1 sum_r [8:0] $end
+$var reg 1 2 valid_r $end
+$var reg 17 3 y [16:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1000 /
+b1000 #
+$end
+#0
+$dumpvars
+bx 3
+x2
+bx 1
+bx 0
+bx .
+b0 -
+b0 ,
+b0 +
+b0 *
+0)
+0(
+0'
+b0 &
+b0 %
+b0 $
+x"
+bx !
+$end
+#5000
+02
+b0 .
+b0 0
+b0 1
+0"
+b0 !
+b0 3
+1'
+#10000
+0'
+#15000
+1)
+1'
+#20000
+b10 &
+b10 ,
+b100 %
+b100 +
+b111 -
+b11 $
+b11 *
+1(
+0'
+#25000
+12
+b1110 .
+b10 0
+b111 1
+1'
+#30000
+b101 &
+b101 ,
+b1 %
+b1 +
+b1011 -
+b1010 $
+b1010 *
+0'
+#35000
+1"
+b1110 !
+b1110 3
+b101 0
+b110111 .
+b1011 1
+1'
+#40000
+b11 &
+b11 ,
+b1001 %
+b1001 +
+b10000 -
+b111 $
+b111 *
+0'
+#45000
+b11 0
+b110000 .
+b10000 1
+b110111 !
+b110111 3
+1'
+#50000
+b0 &
+b0 ,
+b0 %
+b0 +
+b0 -
+b0 $
+b0 *
+0(
+0'
+#55000
+b110000 !
+b110000 3
+02
+b0 0
+b0 .
+b0 1
+1'
+#60000
+0'
+#65000
+0"
+b0 !
+b0 3
+1'
+#70000
+0'
+#75000
+1'

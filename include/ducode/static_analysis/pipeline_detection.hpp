@@ -5,9 +5,13 @@
 #include <ducode/design.hpp>
 #include <ducode/ids.hpp>
 
+#include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/join.hpp>
+#include <gsl/narrow>
+#include <spdlog/spdlog.h>
 
 #include <iostream>
+#include <ranges>
 #include <set>
 #include <vector>
 
@@ -142,7 +146,7 @@ public:
     // for each module in design D
     for (const auto& module: m_design->get_modules()) {
       // for each net in module
-      for (const auto& [index, net]: ranges::views::enumerate(module.get_nets())) {
+      for (const auto& [index, net]: std::views::enumerate(module.get_nets())) {
         std::string nName = net.get_name();
         if (nName.empty()) {
           continue;
@@ -211,10 +215,10 @@ public:
       for (std::size_t p = 0; p < ps.size(); p++) {
         if (ps[p] > threshold) {
           Confidence confidence = (static_cast<float>(ps[p])) / static_cast<float>(occMax);
-          std::cout << "Stage " << s << ": Selected pattern " << p << " with " << ps[p] << " occurences" << '\n';
+          spdlog::info("Stage {}: Selected pattern {} with {} occurences", s, p, ps[p]);
           std::string pattern = stagePatterns[s][p];
           if (pattern.length() < lenMax) {
-            std::cout << "Stage " << s << ": DROPPED - shorter than " << lenMax << '\n';
+            spdlog::info("Stage {}: DROPPED - shorter than {}", s, lenMax);
             continue;
           }
           for (auto& n2i: net2index) {//[std::pair<const Module *, NetID>(mp, n)]= sz;

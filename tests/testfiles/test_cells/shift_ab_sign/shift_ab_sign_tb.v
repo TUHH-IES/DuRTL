@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module tb_shift();
+module shift_tb();
 	reg [1:0] A;
 	reg [1:0] B;
 	wire[1:0] Y;

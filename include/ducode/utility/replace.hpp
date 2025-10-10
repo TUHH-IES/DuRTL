@@ -7,26 +7,26 @@
 
 #include <string>
 
-[[nodiscard]] inline std::string replace_all_copy(const std::string_view str, const std::string_view from, const std::string_view to) {
+[[nodiscard]] inline std::string replace_all_copy(const std::string_view str, const std::string_view source, const std::string_view target) {
   std::string result{str};
-  if (from.empty()) {
+  if (source.empty()) {
     return result;
   }
   std::size_t start_pos = 0;
-  while ((start_pos = result.find(from, start_pos)) != std::string::npos) {
-    result.replace(start_pos, from.length(), to);
-    start_pos += to.length();// In case 'to' contains 'from', like replacing 'x' with 'yx'
+  while ((start_pos = result.find(source, start_pos)) != std::string::npos) {
+    result.replace(start_pos, source.length(), target);
+    start_pos += target.length();// In case 'target' contains 'source', like replacing 'x' with 'yx'
   }
   return result;
 }
 
-inline void replace_all(std::string& str, const std::string_view from, const std::string_view to) {
-  if (from.empty()) {
+inline void replace_all(std::string& str, const std::string_view source, const std::string_view target) {
+  if (source.empty()) {
     return;
   }
   std::size_t start_pos = 0;
-  while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
-    str.replace(start_pos, from.length(), to);
-    start_pos += to.length();// In case 'to' contains 'from', like replacing 'x' with 'yx'
+  while ((start_pos = str.find(source, start_pos)) != std::string::npos) {
+    str.replace(start_pos, source.length(), target);
+    start_pos += target.length();// In case 'target' contains 'source', like replacing 'x' with 'yx'
   }
 }

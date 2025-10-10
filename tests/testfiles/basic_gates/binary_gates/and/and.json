@@ -1,0 +1,141 @@
+{
+  "creator": "Yosys 0.36 (git sha1 8f07a0d8404, clang 16.0.6 -fPIC -Os)",
+  "modules": {
+    "anda": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "and.v:1.1-9.10"
+      },
+      "ports": {
+        "a": {
+          "direction": "input",
+          "bits": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        "c": {
+          "direction": "output",
+          "bits": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ]
+        }
+      },
+      "cells": {
+        "$and$and.v:7$1": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "src": "and.v:7.14-7.19"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "B": [
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "Y": [
+              12,
+              13,
+              14,
+              15,
+              16
+            ]
+          }
+        }
+      },
+      "netnames": {
+        "$and$and.v:7$1_Y": {
+          "hide_name": 1,
+          "bits": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "attributes": {
+            "src": "and.v:7.14-7.19"
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "attributes": {
+            "src": "and.v:4.20-4.21"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "attributes": {
+            "src": "and.v:5.20-5.21"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "attributes": {
+            "src": "and.v:6.21-6.22"
+          }
+        }
+      }
+    }
+  }
+}

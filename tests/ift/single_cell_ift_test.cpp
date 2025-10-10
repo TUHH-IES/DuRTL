@@ -1,15 +1,22 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 
+#include <common_definitions.hpp>
 #include <ducode/design.hpp>
 #include <ducode/utility/VCD_comparisons.hpp>
 #include <ducode/utility/ift_signals_contain_x.hpp>
 #include <ducode/utility/iverilog_wrapper.hpp>
 
-#include <boost/filesystem.hpp>
-#include <catch2/catch_all.hpp>
+#include <boost/filesystem/operations.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/generators/catch_generators.hpp>
+#include <nlohmann/json_fwd.hpp>
 #include <spdlog/spdlog.h>
+#include <vcd-parser/VCDFile.hpp>
 #include <vcd-parser/VCDFileParser.hpp>
 
+#include <cassert>
+#include <cstdint>
+#include <memory>
 #include <string>
 
 /**
@@ -21,6 +28,8 @@
 void cell_ift_test_function(const std::string& design_file_path) {
   nlohmann::json params;
   params["ift"] = true;
+  const uint32_t tag_size = 32;
+  params["tag_size"] = tag_size;
 
   auto json_file = boost::filesystem::path{TESTFILES_DIR} / "ift" / (design_file_path + ".json");
   auto vcd_reference_file = boost::filesystem::path{TESTFILES_DIR} / "ift" / (design_file_path + "_ift.vcd");

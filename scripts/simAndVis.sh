@@ -1,6 +1,6 @@
 echo "Compiling with iverilog"
 MOD=$1
-iverilog $MOD.v $MOD_tb.v
+iverilog -D DUMP_FILE_NAME=\"test.vcd\" $MOD.v $MOD_tb.v
 echo "Simulating"
 ./a.out
 echo "Showing waveforms"

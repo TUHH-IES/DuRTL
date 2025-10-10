@@ -1,0 +1,135 @@
+$date
+	Wed Jan 22 11:25:32 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module ifa_seq_4_tb $end
+$var wire 4 ! k [3:0] $end
+$var wire 4 " j [3:0] $end
+$var wire 4 # i [3:0] $end
+$var wire 4 $ h [3:0] $end
+$var wire 4 % g [3:0] $end
+$var wire 4 & f [3:0] $end
+$var wire 4 ' e [3:0] $end
+$var wire 4 ( d [3:0] $end
+$var reg 4 ) a [3:0] $end
+$var reg 4 * b [3:0] $end
+$var reg 4 + c [3:0] $end
+$var reg 1 , clk $end
+$scope module d1 $end
+$var wire 4 - a [3:0] $end
+$var wire 4 . b [3:0] $end
+$var wire 4 / c [3:0] $end
+$var wire 1 , clk $end
+$var reg 4 0 d [3:0] $end
+$var reg 4 1 e [3:0] $end
+$var reg 4 2 f [3:0] $end
+$var reg 4 3 g [3:0] $end
+$var reg 4 4 h [3:0] $end
+$var reg 4 5 i [3:0] $end
+$var reg 4 6 j [3:0] $end
+$var reg 4 7 k [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+b0 /
+b0 .
+b0 -
+0,
+b0 +
+b0 *
+b0 )
+bx (
+bx '
+bx &
+bx %
+bx $
+bx #
+bx "
+bx !
+$end
+#1
+b0 '
+b0 1
+b0 (
+b0 0
+1,
+#2
+0,
+b1001 +
+b1001 /
+#3
+b0 %
+b0 3
+b0 &
+b0 2
+b1001 '
+b1001 1
+1,
+#4
+0,
+b1111 *
+b1111 .
+#5
+b1111 '
+b1111 1
+b1001 %
+b1001 3
+b1111 #
+b1111 5
+b1111 $
+b1111 4
+1,
+#6
+0,
+b0 *
+b0 .
+b11 )
+b11 -
+#7
+b1111 !
+b1111 7
+b0 "
+b0 6
+b110 #
+b110 5
+b1111 %
+b1111 3
+b1011 '
+b1011 1
+1,
+#8
+0,
+b1111 *
+b1111 .
+#9
+b1111 '
+b1111 1
+b1 (
+b1 0
+b1011 %
+b1011 3
+b0 #
+b0 5
+b110 !
+b110 7
+1,
+#10
+0,

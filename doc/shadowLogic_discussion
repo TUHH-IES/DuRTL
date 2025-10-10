@@ -1,0 +1,55 @@
+...passs               clock, enable            ...OR(Mask = 1)               ...AND(MASK = 0)          MUX(SELECT / ENABLE ??)
+{verilog Unary Cell}
+SHR shift right                                  OR                              AND                     MUX
+MEMRD                  DFFE                                                     MUL a= 0 and b=0                   PMUX
+CellMEMWR              ADFF (reset)                                             DIV: a= 0 special...test iverilog for b= 0
+MEMINIT                ADFFE                                                    Divfloor(XXX)
+MEM                    ALDFFE                                                   POW: a = 0; b=0 else both are propagate
+NOT                    SDFF (reset)                                             test iverilog 0⁰
+XOR                    SDFFE                                        
+XNOR                   DFFSR (reset)
+                        
+POS                    ADLatch
+NEX(XXX)                    DLatchSR
+EQX(XXX)                     ALDFF
+DFF
+Dlatch(XXX)
+REDUCE (etc)
+ADD
+SUB
+MOD
+Comparison operators (check verilog for output)
+
+
+
+
+SHR
+a      b     out       ca_t     cb_t
+0      0      0        1      0
+1      1      1        1      0
+1      0      1        1      0
+0      1      0        1      0
+
+
+XOR
+a      b     out       ca_t     cb_t
+0      0      0          1        1
+1      1      0          1        1
+1      0      1          1        1
+0      1      1          1        1   
+
+
+EQ
+a      b     out       ca_t     cb_t
+0      0      1         1        1
+1      1      1         1        1
+1      0      0         1        1 
+0      1      0         1        1    
+
+ADD
+a      b     out       ca_t     cb_t
+0      0      0          1       1
+1      1      1          0       0
+1      0      1          1       0 
+0      1      1          0       1
+Should always propagate the changing data.  There is always flow 

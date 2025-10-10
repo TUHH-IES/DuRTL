@@ -16,7 +16,7 @@
 
 `timescale 1ns / 1ps
 
-module test_aes_128;
+module aes_128_tb;
 
 	// Inputs
 	reg clk;
@@ -83,7 +83,7 @@ module test_aes_128;
     always #5 clk = ~clk;
     initial begin
     	$dumpfile(`DUMP_FILE_NAME);
-		$dumpvars(0,test_aes_128);
+		$dumpvars(0,aes_128_tb);
 	end
 endmodule
 

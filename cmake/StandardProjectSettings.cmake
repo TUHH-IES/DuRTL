@@ -2,14 +2,15 @@
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   message(STATUS "Setting build type to 'Debug' as none was specified.")
   set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build." FORCE)
+
   # Set the possible values of build type for cmake-gui, ccmake
   set_property(
     CACHE CMAKE_BUILD_TYPE
     PROPERTY STRINGS
-             "Debug"
-             "Release"
-             "MinSizeRel"
-             "RelWithDebInfo")
+    "Debug"
+    "Release"
+    "MinSizeRel"
+    "RelWithDebInfo")
 endif()
 
 # Generate compile_commands.json to make it easier to work with clang based tools
@@ -20,6 +21,7 @@ option(ENABLE_IPO "Enable Interprocedural Optimization, aka Link Time Optimizati
 if(ENABLE_IPO)
   include(CheckIPOSupported)
   check_ipo_supported(RESULT result OUTPUT output)
+
   if(result)
     set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
   else()
@@ -28,6 +30,21 @@ if(ENABLE_IPO)
 endif()
 
 option(ENABLE_LOGGING "Enable trace level logging" ON)
-if (ENABLE_LOGGING)
+
+if(ENABLE_LOGGING)
   add_definitions(-DSPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
-endif ()
+endif()
+
+option(ENABLE_PROFILING "Enable profiling with gprof" OFF)
+
+if(ENABLE_PROFILING)
+  add_compile_options(-pg)
+  add_link_options(-pg)
+endif()
+
+#if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
+#  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--stack,16777216")
+#else
+if(DEFINED MSVC)
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /STACK:16777216")
+endif()

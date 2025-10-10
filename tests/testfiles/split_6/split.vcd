@@ -1,0 +1,62 @@
+$date
+	Mon Oct 21 13:16:37 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module split_tb $end
+$var wire 2 ! out [1:0] $end
+$var reg 4 " a [3:0] $end
+$var reg 3 # b [2:0] $end
+$scope module a1 $end
+$var wire 4 $ a [3:0] $end
+$var wire 3 % b [2:0] $end
+$var wire 2 & out [1:0] $end
+$scope module mod $end
+$var wire 1 ' f $end
+$var wire 1 ( g $end
+$var wire 2 ) h [1:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 )
+0(
+0'
+b0 &
+b0 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#1
+b1 "
+b1 $
+#2
+b10 !
+b10 &
+b10 )
+1(
+b101 #
+b101 %
+b10 "
+b10 $
+#3
+b0 !
+b0 &
+b0 )
+0(
+b1 #
+b1 %
+b101 "
+b101 $
+#4

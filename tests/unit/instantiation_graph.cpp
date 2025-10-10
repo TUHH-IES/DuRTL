@@ -3,28 +3,56 @@
 #include <common_definitions.hpp>
 #include <ducode/design.hpp>
 #include <ducode/instantiation_graph.hpp>
+#include <ducode/instantiation_graph_traits.hpp>
+#include <ducode/signals_data_manager.hpp>
+#include <ducode/utility/VCD_comparisons.hpp>// NOLINT(misc-include-cleaner)
 #include <ducode/utility/iverilog_wrapper.hpp>
 
+#include "ducode/utility/VCD_utility.hpp"
 #include <boost/filesystem/operations.hpp>
 #include <boost/graph/adjacency_list.hpp>
-#include <catch2/catch_all.hpp>
+#include <boost/graph/detail/adjacency_list.hpp>
+#include <boost/graph/graph_traits.hpp>
+#include <boost/tuple/tuple.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/generators/catch_generators.hpp>
+#include <fmt/core.h>
+#include <vcd-parser/VCDFile.hpp>
 #include <vcd-parser/VCDFileParser.hpp>
 
 #include <algorithm>
+#include <memory>
 #include <string>
 #include <utility>
 
+namespace {
 std::pair<std::shared_ptr<VCDFile>, std::shared_ptr<VCDFile>> simulate_instantiation_graph(const std::string& design_file);
+}// namespace
 
 TEST_CASE("instantiate_basic", "[instantiation_graph]") {
   auto json_file = boost::filesystem::path{TESTFILES_DIR} / "hierarchy" / "hierarchy.json";
   auto design = ducode::Design::parse_json(json_file);
   auto instance = ducode::DesignInstance::create_instance(design);
 
-  instance.write_graphviz("graph.dot");
+  //instance.write_graphviz("graph.dot");
 
   CHECK(boost::num_vertices(instance.m_graph) == 29);
   CHECK(boost::num_edges(instance.m_graph) == 35);
+}
+
+TEST_CASE("instantiate_check_net_ptr_edges", "[instantiation_graph]") {
+  const auto* design_name = GENERATE("hierarchy", "picorv32", "y86", "simple_spi_top", "mips_16_core_top", "aes_128", "fft16", "openMSP430", "SPI_Master", "SPI_Slave");
+  auto json_file = boost::filesystem::path{TESTFILES_DIR} / design_name / fmt::format("{}.json", design_name);
+  auto design = ducode::Design::parse_json(json_file);
+  auto instance = ducode::DesignInstance::create_instance(design);
+
+  //instance.write_graphviz("graph.dot");
+
+  boost::graph_traits<ducode::instantiation_graph>::edge_iterator edge_it;
+  boost::graph_traits<ducode::instantiation_graph>::edge_iterator edge_it_end;
+  for (boost::tie(edge_it, edge_it_end) = boost::edges(instance.m_graph); edge_it != edge_it_end; ++edge_it) {
+    CHECK(instance.m_graph[*edge_it].net_ptr != nullptr);
+  }
 }
 
 TEST_CASE("simulate spi_master flattened", "[instantiation_graph]") {
@@ -73,15 +101,69 @@ TEST_CASE("add VCD data to instantian_graph", "[instantiation_graph]") {
   VCDFileParser parser;
   auto vcd_reference = parser.parse_file(vcd_file.string());
   auto instance = ducode::DesignInstance::create_instance(design);
-  instance.add_vcd_data(vcd_reference);
+  const VCDScope* root_scope = &ducode::find_root_scope(vcd_reference, design);
+  ducode::VCDSignalsDataManager test_value_map(vcd_reference, root_scope);
+  instance.add_signal_tag_map(std::make_unique<ducode::VCDSignalsDataManager>(test_value_map));
 
-  boost::graph_traits<ducode::DesignInstance::instantiation_graph>::edge_iterator ei;
-  boost::graph_traits<ducode::DesignInstance::instantiation_graph>::edge_iterator ei_end;
+  boost::graph_traits<ducode::instantiation_graph>::edge_iterator ei;
+  boost::graph_traits<ducode::instantiation_graph>::edge_iterator ei_end;
   for (boost::tie(ei, ei_end) = boost::edges(instance.m_graph); ei != ei_end; ++ei) {
     CHECK(instance.m_graph[*ei].net_ptr != nullptr);
   }
 }
 
+TEST_CASE("check clock of all flipflops", "[instantiation_graph]") {
+  const std::string design_file = "dff_design";
+  auto json_file = boost::filesystem::path{TESTFILES_DIR} / design_file / (design_file + ".json");
+
+  auto design = ducode::Design::parse_json(json_file);
+  auto instance = ducode::DesignInstance::create_instance(design);
+
+  CHECK(instance.check_clock_signal());
+}
+
+TEST_CASE("check clock edge of all flipflops", "[instantiation_graph]") {
+  const std::string design_file = "dff_design";
+  auto json_file = boost::filesystem::path{TESTFILES_DIR} / design_file / (design_file + ".json");
+
+  auto design = ducode::Design::parse_json(json_file);
+  auto instance = ducode::DesignInstance::create_instance(design);
+
+  CHECK(instance.check_clock_edge());
+}
+
+TEST_CASE("get clock signal name of flipflops", "[instantiation_graph]") {
+  const std::string design_file = "dff_design";
+  auto json_file = boost::filesystem::path{TESTFILES_DIR} / design_file / (design_file + ".json");
+
+  auto design = ducode::Design::parse_json(json_file);
+  auto instance = ducode::DesignInstance::create_instance(design);
+
+  CHECK(instance.get_clock_signal_from_dffs() == "clk");
+}
+
+TEST_CASE("check clock of all flipflops in hierarchy", "[instantiation_graph][.]") {
+  const std::string design_file = "dff_hierarchy_design";
+  auto json_file = boost::filesystem::path{TESTFILES_DIR} / design_file / (design_file + ".json");
+
+  auto design = ducode::Design::parse_json(json_file);
+  auto instance = ducode::DesignInstance::create_instance(design);
+
+  CHECK(instance.check_clock_signal());
+}
+
+TEST_CASE("get clock signal name of flipflops on hierarchy", "[instantiation_graph][.]") {
+  const std::string design_file = "dff_hierarchy_design";
+  auto json_file = boost::filesystem::path{TESTFILES_DIR} / design_file / (design_file + ".json");
+
+  auto design = ducode::Design::parse_json(json_file);
+  auto instance = ducode::DesignInstance::create_instance(design);
+
+  CHECK(instance.get_clock_signal_from_dffs() == "clk");
+}
+
+
+namespace {
 std::pair<std::shared_ptr<VCDFile>, std::shared_ptr<VCDFile>> simulate_instantiation_graph(const std::string& design_file) {
   auto json_file = boost::filesystem::path{TESTFILES_DIR} / design_file / (design_file + ".json");
   auto vcd_file = boost::filesystem::path{TESTFILES_DIR} / design_file / (design_file + ".vcd");
@@ -105,3 +187,4 @@ std::pair<std::shared_ptr<VCDFile>, std::shared_ptr<VCDFile>> simulate_instantia
 
   return std::make_pair(vcd_data, vcd_reference);
 }
+}// namespace

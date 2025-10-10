@@ -6,12 +6,11 @@
 #include <ducode/types.hpp>
 
 #include <fmt/ostream.h>
-#include <range/v3/view/enumerate.hpp>
+#include <z3++.h>
 
 #include <algorithm>
-#include <optional>
+#include <ranges>
 #include <string>
-#include <vector>
 
 namespace ducode {
 
@@ -115,6 +114,10 @@ public:
            std::tie(other.m_name, other.m_identifier, other.m_direction, other.m_bits, other.m_bits_signature, other.m_signed);
   }
 
+  const std::string& get_name() const {
+    return m_name;
+  }
+
   /**
    * @brief Exports the Verilog representation of the port.
    *
@@ -129,6 +132,9 @@ public:
   [[nodiscard]] std::string export_verilog(const nlohmann::json& params) const {
     Expects(params.contains("ift"));
     const bool ift = params["ift"].get<bool>();
+
+    Expects(params.contains("tag_size"));
+    const uint32_t tag_size = params["tag_size"].get<uint32_t>();
 
     bool is_register = false;
     if (params.contains("is_register")) {
@@ -152,11 +158,11 @@ public:
 
     result << fmt::format("  {} {} {};\n", net_type, net_width_string, legalized_name);
     if (ift) {
-      result << fmt::format("  {} [{}:0] {}_t{};\n", net_type, tag_size - 1, legalized_name, is_register ? " = 0" : "");
+      result << fmt::format("  {} [{}:0] {}{}{};\n", net_type, tag_size - 1, legalized_name, ift_tag, is_register ? " = 0" : "");
     }
 
     if (m_contains_constant) {
-      for (const auto& [index, bit]: ranges::views::enumerate(m_bits)) {
+      for (const auto& [index, bit]: std::views::enumerate(m_bits)) {
         const std::string assignment_string = m_bits.size() > 1 ? fmt::format("{}[{}]", legalized_name, index) : legalized_name;
         if (bit == Bit::const_bit_Z) {
           // do nothing
@@ -168,7 +174,7 @@ public:
 
     if (ift) {
       if (!m_contains_non_constant) {
-        const std::string assignment_string = fmt::format("{}", legalized_name + "_t");
+        const std::string assignment_string = fmt::format("{}{}", legalized_name, ift_tag);
         result << fmt::format("  assign {} = 0;\n", assignment_string);
       }
     }
@@ -184,20 +190,20 @@ private:
 /**
  * Overloads the << operator to allow printing the Port::Direction enum values.
  * 
- * @param os The output stream to write to.
+ * @param ostr The output stream to write to.
  * @param direction The Port::Direction value to be printed.
  * @return The modified output stream.
  * @throws std::runtime_error if the direction is not supported.
  */
-inline std::ostream& operator<<(std::ostream& os, const Port::Direction& direction) {
+inline std::ostream& operator<<(std::ostream& ostr, const Port::Direction& direction) {
   if (direction == Port::Direction::input) {
-    return os << "input";
+    return ostr << "input";
   }
   if (direction == Port::Direction::output) {
-    return os << "output";
+    return ostr << "output";
   }
   if (direction == Port::Direction::inout) {
-    return os << "inout";
+    return ostr << "inout";
   }
   throw std::runtime_error("direction not supported");
 }

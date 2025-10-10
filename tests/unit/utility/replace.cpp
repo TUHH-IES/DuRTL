@@ -2,7 +2,9 @@
 
 #include <ducode/utility/replace.hpp>
 
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_test_macros.hpp>
+
+#include <string>
 
 TEST_CASE("replace_all", "[replace]") {
   std::string test_string = "replace\\test\\string";

@@ -35,5 +35,10 @@ public:
     //      return fmt::format(s, successor, ift_tag, predecessors[0], ift_tag, predecessors[1], ift_tag);
     //    }
   }
+
+  [[nodiscard]] z3::expr get_cell_assertion_binary(z3::context& ctx, const z3::expr& input1, const z3::expr& input2, const z3::expr& output) const override {
+    uint32_t bv_size = output.get_sort().bv_size();
+    return (output == to_expr(ctx, Z3_mk_ite(ctx, ((input1 != 0) || (input2 != 0)), ctx.bv_val(1, bv_size), ctx.bv_val(0, bv_size))));
+  }
 };
 }// namespace ducode

@@ -4,6 +4,7 @@
     "m_0": {
       "attributes": {
         "dynports": "00000000000000000000000000000001",
+        "top": "00000000000000000000000000000001",
         "src": "dlatch.v:1.1-15.10"
       },
       "parameter_default_values": {
@@ -13,26 +14,39 @@
         "WIDTH": "00000000000000000000000000000010"
       },
       "ports": {
-      	"CLR": {
+        "CLR": {
           "direction": "input",
-          "bits": [ 2, 3 ]
+          "bits": [
+            2,
+            3
+          ]
         },
         "D": {
           "direction": "input",
-          "bits": [ 4, 5 ]
+          "bits": [
+            4,
+            5
+          ]
         },
         "EN": {
           "direction": "input",
-          "bits": [ 6 ]
+          "bits": [
+            6
+          ]
         },
         "Q": {
           "direction": "output",
-          "bits": [ 7, 8 ]
+          "bits": [
+            7,
+            8
+          ]
         },
-        
         "SET": {
           "direction": "input",
-          "bits": [ 9, 10 ]
+          "bits": [
+            9,
+            10
+          ]
         }
       },
       "cells": {
@@ -41,7 +55,7 @@
           "type": "$dlatchsr",
           "parameters": {
             "SET_POLARITY": "00000000000000000000000000000001",
-            "CLR_POLARITY": "00000000000000000000000000000001",	
+            "CLR_POLARITY": "00000000000000000000000000000001",
             "EN_POLARITY": "00000000000000000000000000000001",
             "WIDTH": "00000000000000000000000000000010"
           },
@@ -56,46 +70,74 @@
             "SET": "input"
           },
           "connections": {
-            "CLR": [2, 3 ],	
-            "D": [ 4, 5 ],
-            "EN": [ 6 ],
-            "Q": [ 7, 8 ],
-            "SET":[ 9, 10]
+            "CLR": [
+              2,
+              3
+            ],
+            "D": [
+              4,
+              5
+            ],
+            "EN": [
+              6
+            ],
+            "Q": [
+              7,
+              8
+            ],
+            "SET": [
+              9,
+              10
+            ]
           }
         }
       },
       "netnames": {
         "CLR": {
           "hide_name": 0,
-          "bits": [ 2, 3 ],
+          "bits": [
+            2,
+            3
+          ],
           "attributes": {
             "src": "dlatch.v:7.19-7.20"
           }
         },
- 	"D": {
+        "D": {
           "hide_name": 0,
-          "bits": [ 4, 5 ],
+          "bits": [
+            4,
+            5
+          ],
           "attributes": {
             "src": "dlatch.v:7.19-7.20"
           }
         },
         "EN": {
           "hide_name": 0,
-          "bits": [ 6 ],
+          "bits": [
+            6
+          ],
           "attributes": {
             "src": "dlatch.v:6.7-6.9"
           }
         },
         "Q": {
           "hide_name": 0,
-          "bits": [ 7, 8 ],
+          "bits": [
+            7,
+            8
+          ],
           "attributes": {
             "src": "dlatch.v:8.24-8.25"
           }
         },
         "SET": {
           "hide_name": 0,
-          "bits": [ 9, 10 ],
+          "bits": [
+            9,
+            10
+          ],
           "attributes": {
             "src": "dlatch.v:7.19-7.20"
           }

@@ -2,35 +2,56 @@
 
 #include <common_definitions.hpp>
 #include <ducode/design.hpp>
-#include <ducode/generate_tags.hpp>
 #include <ducode/ift_analysis.hpp>
 #include <ducode/instantiation_graph.hpp>
-#include <ducode/sim.hpp>
+#include <ducode/signals_data_manager.hpp>
+#include <ducode/tag_generator.hpp>
+#include <ducode/testbench.hpp>
+#include <ducode/utility/VCD_utility.hpp>
 #include <ducode/utility/iverilog_wrapper.hpp>
+#include <ducode/utility/simulation.hpp>
 
 #include <boost/filesystem/operations.hpp>
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_session.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <gsl/assert>
+#include <gsl/narrow>
+#include <nlohmann/json_fwd.hpp>
+#include <spdlog/common.h>
+#include <spdlog/logger.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
-#include <vcd-parser/VCDComparisons.hpp>
+#include <vcd-parser/VCDFile.hpp>
+#include <vcd-parser/VCDFileParser.hpp>
+#include <vcd-parser/VCDTypes.hpp>
 
+#include <algorithm>
+#include <cassert>
 #include <chrono>
+#include <cstdint>
+#include <filesystem>
+#include <fstream>
 #include <iostream>
-#include <stdexcept>
+#include <map>
+#include <memory>
 #include <string>
 #include <utility>
+#include <vector>
 
 /*
  * Contains all experiments for the IFT_Analysis paper
  */
 
+namespace {
 void run_experiment_full_resolution(const std::pair<std::string, std::string>& designs) {
   nlohmann::json params;
   auto start_overall = std::chrono::high_resolution_clock::now();
 
   nlohmann::json result_data_full;
   params["ift"] = true;
+  const uint32_t tag_size = 32;// default tag size
+  params["tag_size"] = tag_size;
 
   auto json_file = std::filesystem::path(TESTFILES_DIR) / designs.first / (designs.first + ".json");
   auto vcd_reference_file_path = boost::filesystem::path{TESTFILES_DIR} / designs.first / (designs.first + ".vcd");
@@ -41,7 +62,6 @@ void run_experiment_full_resolution(const std::pair<std::string, std::string>& d
 
   auto exported_verilog = temp_dir / ("ift" + designs.first + ".v");
   auto exported_testbench = temp_dir / ("ift" + designs.first + "_tb.v");
-  auto exported_tags = temp_dir / "vcd_input.txt";
 
   ducode::Design design = ducode::Design::parse_json(json_file);
 
@@ -53,19 +73,52 @@ void run_experiment_full_resolution(const std::pair<std::string, std::string>& d
   design.write_verilog(exported_verilog, params);
 
   //get top module
-  auto tb_module = std::ranges::find_if(design.get_modules(), [&](const auto& mod) { return mod.get_name() == design.get_top_module_name(); });
+  auto top_module = std::ranges::find_if(design.get_modules(), [&](const auto& mod) { return mod.get_name() == design.get_top_module_name(); });
 
-  //create tags with full resolution
-  auto tag_map = generate_tags_full_resolution(vcd_data->get_timestamps().back(), static_cast<uint32_t>(get_stepsize(vcd_data, designs.second)), tb_module->get_ports());
+  ducode::Stepsize stepsize(vcd_data, designs.second);
+  const auto timesteps_per_simulation_run = ducode::get_timesteps_per_simulation_run(*top_module, tag_size);
+  params["timesteps_per_simulation_run"] = timesteps_per_simulation_run;
+  const auto number_simulation_runs = ducode::get_number_of_simulation_runs(stepsize, timesteps_per_simulation_run,
+                                                                            vcd_data);
 
-  ducode::DesignInstance instance = ducode::do_simulation(design, tb_module, vcd_data, exported_verilog, exported_testbench, exported_tags, tag_map, params);
+  //exporting testbench with IFT
+  const VCDScope* root_scope = &ducode::find_root_scope(vcd_data, design);
+  ducode::VCDSignalsDataManager testbench_value_map(vcd_data, root_scope);
+  ducode::Testbench testbench(design, std::make_unique<ducode::VCDSignalsDataManager>(testbench_value_map));
+  testbench.set_tag_generator(
+      std::make_unique<ducode::FullResolutionTagGenerator>(top_module->get_input_ports(), vcd_data));
+  testbench.write_verilog(exported_testbench, params);
+
+  auto exported_tags_files = ducode::get_exported_tags_files(number_simulation_runs);
+  auto tags_times = ducode::get_tags_times(vcd_data, gsl::narrow<uint32_t>(stepsize.value()));
+  auto exported_tags_vec = ducode::get_exported_tags_vec(exported_tags_files, number_simulation_runs,
+                                                         tags_times, timesteps_per_simulation_run);
+  testbench.write_tags(exported_tags_vec, params);
+
+  auto instance = ducode::DesignInstance::create_instance(design);
+
+  std::vector<std::shared_ptr<VCDFile>> vcd_data_vector;
+  for (const auto& exported_tags: exported_tags_files) {
+    /// IFT simulation
+    spdlog::info("Simulating Exported Design + Testbench");
+    auto data = ducode::simulate_design(exported_verilog, exported_testbench, exported_tags);
+    spdlog::info("End of Simulation");
+    vcd_data_vector.emplace_back(data);
+  }
+  std::vector<const VCDScope*> vcd_root_scopes;
+  vcd_root_scopes.reserve(vcd_data_vector.size());
+  for (auto& vcd_file: vcd_data_vector) {
+    vcd_root_scopes.emplace_back(&ducode::find_root_scope(vcd_file, design));
+  }
+  ducode::VCDSignalsDataManager test_value_map(vcd_data_vector, vcd_root_scopes, vcd_data_vector.size());
+  instance.add_signal_tag_map(std::make_unique<ducode::VCDSignalsDataManager>(test_value_map));
 
   //    auto stop_ift_simulation = std::chrono::high_resolution_clock::now();
 
   ///fill json object with relevant information about design -> then add it to result data json
-  nlohmann::json ift_res = do_analysis(instance, design);
-  const uint32_t number_of_injected_tags_total = static_cast<uint32_t>((vcd_data->get_timestamps().back() / get_stepsize(vcd_data, designs.second)) * static_cast<double>(tb_module->get_input_names().size()));
-  const uint64_t number_of_simulated_tags = instance.m_vcd_data.size() * 32;
+  nlohmann::json ift_res = ducode::do_analysis(instance, design);
+  const uint32_t number_of_injected_tags_total = static_cast<uint32_t>((vcd_data->get_timestamps().back() * top_module->get_input_names().size()) / ducode::get_stepsize(vcd_data, designs.second));
+  const uint64_t number_of_simulated_tags = instance.m_signal_tag_map->get_vcd_data_size() * 32;
 
   if (number_of_injected_tags_total > number_of_simulated_tags) {
     ift_res["number_of_injected_tags"] = number_of_simulated_tags;
@@ -80,6 +133,7 @@ void run_experiment_full_resolution(const std::pair<std::string, std::string>& d
   os_json << result_data_full;
   os_json.close();
 }
+}// namespace
 
 TEST_CASE("full_y86", "[exp_full_res][.]") {
   std::pair<std::string, std::string> designs = {"y86", "clk"};
@@ -121,6 +175,7 @@ TEST_CASE("full_openMSP430", "[exp_full_res][.]") {
 //   run_experiment_full_resolution(designs);
 // }
 
+namespace {
 void run_experiment_random_resolution(const std::pair<std::string, std::string>& designs) {
   nlohmann::json params;
   //  auto start_overall = std::chrono::high_resolution_clock::now();
@@ -129,6 +184,8 @@ void run_experiment_random_resolution(const std::pair<std::string, std::string>&
   nlohmann::json result_data_random;
 
   params["ift"] = false;
+  const uint32_t tag_size = 32;// default tag size
+  params["tag_size"] = tag_size;
 
   auto json_file = std::filesystem::path(TESTFILES_DIR) / designs.first / (designs.first + ".json");
   auto vcd_reference_file_path = boost::filesystem::path{TESTFILES_DIR} / designs.first / (designs.first + ".vcd");
@@ -139,7 +196,6 @@ void run_experiment_random_resolution(const std::pair<std::string, std::string>&
 
   auto exported_verilog = temp_dir / ("ift" + designs.first + ".v");
   auto exported_testbench = temp_dir / ("ift" + designs.first + "_tb.v");
-  auto exported_tags = temp_dir / "vcd_input.txt";
 
   ducode::Design design = ducode::Design::parse_json(json_file);
   //export the design with IFT
@@ -150,53 +206,80 @@ void run_experiment_random_resolution(const std::pair<std::string, std::string>&
   auto vcd_data = vcd_obj.parse_file(vcd_reference_file_path.string());
 
   //get top module
-  auto tb_module = std::ranges::find_if(design.get_modules(), [&](const auto& mod) { return mod.get_name() == design.get_top_module_name(); });
+  auto top_module = std::ranges::find_if(design.get_modules(), [&](const auto& mod) { return mod.get_name() == design.get_top_module_name(); });
 
-  const uint64_t max_tag_number = static_cast<uint64_t>((vcd_data->get_timestamps().back() / get_stepsize(vcd_data, designs.second)) * static_cast<double>(tb_module->get_input_names().size()));
-  const uint64_t tag_number_increase = max_tag_number / 4;
+  params["ift"] = true;
 
-  const int add_nr = 25;
-  float tnr = add_nr;
+  design.write_verilog(exported_verilog, params);
 
-  for (uint64_t tag_number = max_tag_number / 4; tag_number <= max_tag_number; tag_number += tag_number_increase) {
+  ducode::Stepsize stepsize(vcd_data, designs.second);
+  const auto timesteps_per_simulation_run = ducode::get_timesteps_per_simulation_run(*top_module, tag_size);
+  params["timesteps_per_simulation_run"] = timesteps_per_simulation_run;
+  const auto number_simulation_runs = ducode::get_number_of_simulation_runs(stepsize, timesteps_per_simulation_run,
+                                                                            vcd_data);
+  //exporting testbench with IFT
+  const VCDScope* root_scope = &ducode::find_root_scope(vcd_data, design);
+  ducode::VCDSignalsDataManager testbench_value_map(vcd_data, root_scope);
+  ducode::Testbench testbench(design, std::make_unique<ducode::VCDSignalsDataManager>(testbench_value_map));
+
+  const std::vector<uint32_t> coverage_percentages = {25, 50, 75, 100};
+  for (const auto& coverage: coverage_percentages) {
     auto simulation_start = std::chrono::high_resolution_clock::now();
     std::map<std::string, std::vector<uint32_t>> const tag_counts;
 
-    params["ift"] = true;
+    testbench.set_tag_generator(
+        std::make_unique<ducode::DeterministicRandomTagGenerator>(top_module->get_input_ports(), vcd_data, coverage));
+    testbench.write_verilog(exported_testbench, params);
 
-    design.write_verilog(exported_verilog, params);
+    auto exported_tags_files = ducode::get_exported_tags_files(number_simulation_runs);
+    auto tags_times = ducode::get_tags_times(vcd_data, gsl::narrow<uint32_t>(stepsize.value()));
+    auto exported_tags_vec = ducode::get_exported_tags_vec(exported_tags_files, number_simulation_runs,
+                                                           tags_times, timesteps_per_simulation_run);
+    testbench.write_tags(exported_tags_vec, params);
+    spdlog::info("Number of tags: {}", testbench.get_number_of_injected_tags());
 
-    auto tag_map = generate_tags_random(vcd_data->get_timestamps().back(), static_cast<uint32_t>(get_stepsize(vcd_data, designs.second)), static_cast<int>(tag_number), tb_module->get_ports());
-    uint32_t tag_cnt = 0;
-    for (auto& tags: tag_map) {
-      for (auto& tss: tags.second) {
-        tag_cnt++;
-      }
+    auto instance = ducode::DesignInstance::create_instance(design);
+
+    std::vector<std::shared_ptr<VCDFile>> vcd_data_vector;
+    for (const auto& exported_tags: exported_tags_files) {
+      /// IFT simulation
+      spdlog::info("Simulating Exported Design + Testbench");
+      auto data = ducode::simulate_design(exported_verilog, exported_testbench, exported_tags);
+      spdlog::info("End of Simulation");
+      vcd_data_vector.emplace_back(data);
     }
-    spdlog::info("Number of tags: {}", tag_cnt);
-
-    ducode::DesignInstance instance = ducode::do_simulation(design, tb_module, vcd_data, exported_verilog, exported_testbench, exported_tags, tag_map, params);
+    std::vector<const VCDScope*> vcd_root_scopes;
+    vcd_root_scopes.reserve(vcd_data_vector.size());
+    for (auto& vcd_file: vcd_data_vector) {
+      vcd_root_scopes.emplace_back(&ducode::find_root_scope(vcd_file, design));
+    }
+    ducode::VCDSignalsDataManager test_value_map(vcd_data_vector, vcd_root_scopes, vcd_data_vector.size());
+    instance.add_signal_tag_map(std::make_unique<ducode::VCDSignalsDataManager>(test_value_map));
 
     ///fill json object with relevant information about design -> then add it to result data json
-    nlohmann::json ift_res = do_analysis(instance, design);
-    const uint64_t number_of_simulated_tags = instance.m_vcd_data.size() * 32;
+    nlohmann::json ift_res = ducode::do_analysis(instance, design);
+    const uint64_t number_of_simulated_tags = instance.m_signal_tag_map->get_vcd_data_size() * 32;
 
-    if (tag_number > number_of_simulated_tags) {
+    if (testbench.get_number_of_injected_tags() > number_of_simulated_tags) {
       ift_res["number_of_injected_tags"] = number_of_simulated_tags;
     } else {
-      ift_res["number_of_injected_tags"] = tag_number;
+      ift_res["number_of_injected_tags"] = testbench.get_number_of_injected_tags();
     }
 
     auto end_overall = std::chrono::high_resolution_clock::now();
-    result_data_random["overall_runtime"] = std::chrono::duration_cast<std::chrono::seconds>(end_overall - simulation_start).count();
+    result_data_random["overall_runtime"] = std::chrono::duration_cast<std::chrono::seconds>(
+                                                end_overall - simulation_start)
+                                                .count();
     result_data_random[designs.first] = ift_res;
 
-    std::fstream os_json_random("results/results_random_" + designs.first + "_" + std::to_string(static_cast<int>(tnr)) + ".json", std::ios::out);
+    std::fstream os_json_random(
+        "results/results_random_" + designs.first + "_" + std::to_string(static_cast<int>(coverage)) + ".json",
+        std::ios::out);
     os_json_random << result_data_random;
     os_json_random.close();
-    tnr += add_nr;
   }
 }
+}// namespace
 
 TEST_CASE("random_SPI_Master", "[exp_rand_res][.]") {
   std::pair<std::string, std::string> designs = {"SPI_Master", "clk"};
@@ -232,11 +315,6 @@ TEST_CASE("random_openMSP430", "[exp_rand_res][.]") {
   std::pair<std::string, std::string> designs = {"openMSP430", "mclk"};
   run_experiment_random_resolution(designs);
 }
-
-// TEST_CASE("random_mips_16_core_top", "[exp_rand_res][.]") {
-//   std::pair<std::string, std::string> designs = {"mips_16_core_top", "clk"};
-//   run_experiment_random_resolution(designs);
-// }
 
 int main(int argc, char* argv[]) {
   // global setup...

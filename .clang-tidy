@@ -40,9 +40,9 @@ WarningsAsErrors: >
   -bugprone-exception-escape,
   -bugprone-easily-swappable-parameters,
   -cert-err58-cpp,
+  -clang-analyzer-optin.core.EnumCastOutOfRange,
   -misc-const-correctness,
   -modernize-use-trailing-return-type,
-  -modernize-use-nodiscard,
   -readability-identifier-length,
   -readability-function-size,
 CheckOptions:
@@ -82,5 +82,7 @@ CheckOptions:
   value: 1
 - key: readability-identifier-naming.ClassCase
   value: CamelCase
+- key: readability-identifier-naming.MethodCase
+  value: lower_case
 FormatStyle: file
 UseColor: true

@@ -1,4 +1,4 @@
-image: gian21391/development:latest
+image: registry.collaborating.tuhh.de/es/ce/research/ducode
 
 workflow:
   rules:
@@ -13,19 +13,23 @@ build_gcc:
   stage: build
   needs: []
   script:
-    - ln -s /vcpkgconf/vcpkg ./thirdparty/vcpkg
+    - ln -s /vcpkg ./thirdparty/vcpkg
     - mkdir build && cd build
     - cmake -DENABLE_COVERAGE=TRUE -DENABLE_SANITIZER_ADDRESS=TRUE -DENABLE_SANITIZER_LEAK=TRUE -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=TRUE -G Ninja ..
     - cmake --build .
+  tags:
+    - jarvis
 
 build_clang:
   stage: build
   needs: []
   script:
-    - ln -s /vcpkgconf/vcpkg ./thirdparty/vcpkg
+    - ln -s /vcpkg ./thirdparty/vcpkg
     - mkdir build && cd build
     - CC=clang CXX=clang++ cmake -DENABLE_COVERAGE=TRUE -DENABLE_SANITIZER_ADDRESS=TRUE -DENABLE_SANITIZER_LEAK=TRUE -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=TRUE -G Ninja ..
     - cmake --build .
+  tags:
+    - jarvis
 
 format:
   stage: test
@@ -34,27 +38,32 @@ format:
     - find src -name *.cc -o -name *.h -o -name *.hpp -o -name *.cpp | xargs -I FILE clang-format -n -Werror FILE
     - find tests -name *.cc -o -name *.h -o -name *.hpp -o -name *.cpp | xargs -I FILE clang-format -n -Werror FILE
     - find include -name *.cc -o -name *.h -o -name *.hpp -o -name *.cpp | xargs -I FILE clang-format -n -Werror FILE
+  tags:
+    - jarvis
 
 lint:
   stage: test
   needs: [build_gcc]
   script:
-    - ln -s /vcpkgconf/vcpkg ./thirdparty/vcpkg
+    - ln -s /vcpkg ./thirdparty/vcpkg
     - (! grep --include=\*.{cpp,hpp} -rnw . -e "uint")
     - mkdir build-clang && cd build-clang
     - CC=clang CXX=clang++ cmake -DENABLE_COVERAGE=TRUE -G Ninja ..
     - sed -i -e 's/@.*modmap//g' compile_commands.json
+    - python3 ../scripts/compile_commands.py compile_commands.json
     - run-clang-tidy -header-filter=.*
   artifacts:
     when: always
     paths:
       - build-clang/compile_commands.json
+  tags:
+    - jarvis
 
 test:
   stage: test
   needs: [build_gcc]
   script:
-    - ln -s /vcpkgconf/vcpkg ./thirdparty/vcpkg
+    - ln -s /vcpkg ./thirdparty/vcpkg
     - mkdir build && cd build
     - ctest --output-on-failure -V -D MODEL=Experimental -C Debug -S ../scripts/Dash.ctest
     - gcovr -r ${CI_PROJECT_DIR} --exclude [.]*vcpkg[.]*  --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml
@@ -68,3 +77,5 @@ test:
       coverage_report:
         coverage_format: cobertura
         path: build/coverage.xml
+  tags:
+    - jarvis

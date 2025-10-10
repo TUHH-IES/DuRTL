@@ -216,8 +216,8 @@ module tst_bench_top();
 
  initial
       begin
-         $dumpfile(`DUMP_FILE_NAME);
-        $dumpvars(1);		//writing the vcd file
+        $dumpfile(`DUMP_FILE_NAME);
+        $dumpvars();		//writing the vcd file
       end
 
 endmodule

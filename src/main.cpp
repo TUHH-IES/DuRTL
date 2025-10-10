@@ -2,8 +2,13 @@
 
 #include <ducode/ift.hpp>
 
-#include <CLI/CLI.hpp>
+#include <CLI/App.hpp>
+#include <CLI/Validators.hpp>
 #include <boost/filesystem/path.hpp>
+#include <nlohmann/json.hpp>
+#include <nlohmann/json_fwd.hpp>
+#include <spdlog/common.h>
+#include <spdlog/logger.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
@@ -13,17 +18,23 @@
 #include <string>
 
 int main(int argc, char* argv[]) {
+  const uint32_t default_tag_size = 32;
+  const uint32_t default_step_size = 1;
+
   CLI::App app{"Basic IFT execution"};
+
   std::string json_filename;
   std::string design_filename;
   std::string testbench_filename;
   std::string vcd_filename;
-  uint32_t stepsize = 1;
+  uint32_t step_size = 0;
+  uint32_t tag_size = 0;
   app.add_option("-j,--json", json_filename, "The json file exported from Yosys")->required()->check(CLI::ExistingFile);
   app.add_option("-d,--design", design_filename, "The design")->required()->check(CLI::ExistingFile);
   app.add_option("-t,--testbench", testbench_filename, "The testbench")->required()->check(CLI::ExistingFile);
   app.add_option("-v,--vcdfile", vcd_filename, "The vcdfile")->required()->check(CLI::ExistingFile);
-  app.add_option("-s,--stepsize", stepsize, "The stepsize for the tag injection")->required()->check(CLI::PositiveNumber);
+  app.add_option("-s,--stepsize", step_size, "The stepsize for the tag injection")->required()->check(CLI::PositiveNumber)->default_val(default_step_size);
+  app.add_option("-w,--tag_width", tag_size, "The bitwidth of the tags for the tag injection")->required()->check(CLI::PositiveNumber)->default_val(default_tag_size);
   CLI11_PARSE(app, argc, argv);
 
   auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
@@ -43,7 +54,12 @@ int main(int argc, char* argv[]) {
 
   auto json_file = boost::filesystem::path(json_filename);
   auto vcd_file = boost::filesystem::path(vcd_filename);
-  ducode::ift(json_file, vcd_file, stepsize);
+  nlohmann::json params;
+  params["ift"] = true;
+  params["tag_size"] = tag_size;
+  params["step_size"] = step_size;
+
+  ducode::ift(json_file, vcd_file, params);
 
   spdlog::shutdown();
   return 0;
